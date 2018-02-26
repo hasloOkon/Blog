@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.WebApp", "Blog.WebApp\Blog.WebApp.csproj", "{96A5EB16-53F2-4C0B-B129-909E8886E404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Core", "Blog.Core\Blog.Core.csproj", "{08C66ACE-6C2A-4828-B809-7AFF09FD54B4}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96A5EB16-53F2-4C0B-B129-909E8886E404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A5EB16-53F2-4C0B-B129-909E8886E404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A5EB16-53F2-4C0B-B129-909E8886E404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A5EB16-53F2-4C0B-B129-909E8886E404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C66ACE-6C2A-4828-B809-7AFF09FD54B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C66ACE-6C2A-4828-B809-7AFF09FD54B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C66ACE-6C2A-4828-B809-7AFF09FD54B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C66ACE-6C2A-4828-B809-7AFF09FD54B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
