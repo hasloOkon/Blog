@@ -1,4 +1,7 @@
-﻿using Blog.Core.DomainObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Blog.Core.DomainObjects;
 using FluentNHibernate.Mapping;
 
 namespace Blog.Core.Mappings
@@ -24,6 +27,7 @@ namespace Blog.Core.Mappings
                 .Inverse()
                 .Cascade.All()
                 .KeyColumn("Category");
+
         }
     }
 }

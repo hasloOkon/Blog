@@ -1,0 +1,11 @@
+﻿@using Blog.WebApp
+@helper Tags(System.Web.Mvc.HtmlHelper htmlHelper,
+    IList<Blog.Core.DomainObjects.Tag> tags)
+{
+    foreach (var tag in tags)
+    {
+        <div class="tags-div">
+            @htmlHelper.TagLink(tag)
+        </div>
+    }
+}
