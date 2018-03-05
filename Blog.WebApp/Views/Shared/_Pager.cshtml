@@ -14,31 +14,31 @@
 
 @if (currentPage > 1 || currentPage < totalPages)
 {
-    var p = string.Format("pageNumber={0}", currentPage - 1);
-    var n = string.Format("pageNumber={0}", currentPage + 1);
+    var previousPageAction = string.Format("pageNumber={0}", currentPage - 1);
+    var nextPageAction = string.Format("pageNumber={0}", currentPage + 1);
 
     @* If the view is rendered for "search" action append the pagination value with "&" *@
 
 if (ViewContext.RouteData.Values["action"].ToString()
   .Equals("search", StringComparison.OrdinalIgnoreCase))
 {
-    var s = String.Format("?s={0}", ViewContext.RequestContext.HttpContext.Request.QueryString["s"]);
-    p = String.Format("{0}&{1}", s, p);
-    n = String.Format("{0}&{1}", s, n);
+    var searchActionPrefix = string.Format("?s={0}", ViewContext.RequestContext.HttpContext.Request.QueryString["s"]);
+    previousPageAction = string.Format("{0}&{1}", searchActionPrefix, previousPageAction);
+    nextPageAction = string.Format("{0}&{1}", searchActionPrefix, nextPageAction);
 }
 else
 {
-    p = String.Concat("?", p);
-    n = String.Concat("?", n);
+    previousPageAction = string.Concat("?", previousPageAction);
+    nextPageAction = string.Concat("?", nextPageAction);
 }
 
   <!--pagination links-->
     <div class="pager">
 
-        <a href="@p" title="Previous" class="previous"
+        <a href="@previousPageAction" title="Previous" class="previous"
            style="visibility:@(currentPage > 1 ? "visible" : "collapse")"><< previous</a>
 
-        <a href="@n" title="Next" class="next"
+        <a href="@nextPageAction" title="Next" class="next"
            style="visibility:@(currentPage < totalPages ? "visible" : "collapse")">next >></a>
 
     </div>
