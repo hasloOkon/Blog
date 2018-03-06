@@ -22,7 +22,7 @@
 if (ViewContext.RouteData.Values["action"].ToString()
   .Equals("search", StringComparison.OrdinalIgnoreCase))
 {
-    var searchActionPrefix = string.Format("?s={0}", ViewContext.RequestContext.HttpContext.Request.QueryString["s"]);
+    var searchActionPrefix = string.Format("?searchPhrase={0}", ViewContext.RequestContext.HttpContext.Request.QueryString["searchPhrase"]);
     previousPageAction = string.Format("{0}&{1}", searchActionPrefix, previousPageAction);
     nextPageAction = string.Format("{0}&{1}", searchActionPrefix, nextPageAction);
 }

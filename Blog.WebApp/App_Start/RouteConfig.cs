@@ -14,6 +14,13 @@ namespace Blog.WebApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "PostDetails",
+                url: "PostDetails/{year}/{month}/{postSlug}",
+                defaults: new { controller = "Blog", action = "PostDetails" },
+                constraints: new { year = @"\d{4}", month = @"\d{1,2}"}
+            );
+
+            routes.MapRoute(
                 name: "Category",
                 url: "Category/{categorySlug}",
                 defaults: new { controller = "Blog", action = "Category" }

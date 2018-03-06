@@ -15,5 +15,12 @@ namespace Blog.Core
         IList<Post> PostsForTag(string tagSlug, int pageNumber, int pageSize);
         int TotalPostsForTag(string tagSlug);
         Tag Tag(string tagSlug);
+
+        IList<Post> PostsBySearch(string searchPhrase, int pageNumber, int pageSize);
+        int TotalPostsBySearch(string searchPhrase);
+
+        Post PostDetails(int year, int month, string postSlug);
+
+        IList<Category> Categories();
     }
 }

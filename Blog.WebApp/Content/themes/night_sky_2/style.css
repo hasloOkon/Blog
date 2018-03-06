@@ -365,8 +365,8 @@ table tr td
 #search-form  p
 { display: inline-block; }
 
-#search-form #s
-{ width: 140px; }
+#search-form #searchPhrase
+{ width: 130px; }
 
 span.field-validation-error
 { color: red !important; }

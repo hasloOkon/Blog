@@ -7,18 +7,18 @@ namespace Blog.WebApp
 {
     public static class ActionLinkExtensions
     {
-        public static MvcHtmlString PostLink(this HtmlHelper helper, Post post)
+        public static MvcHtmlString PostLink(this HtmlHelper helper, Post post, string title)
         {
-            return helper.ActionLink(post.Title, "Post", "Blog",
+            return helper.ActionLink(title, "PostDetails", "Blog",
                 new
                 {
                     year = post.PostedOn.Year,
                     month = post.PostedOn.Month,
-                    title = post.UrlSlug
+                    postSlug = post.UrlSlug
                 },
                 new
                 {
-                    title = post.Title
+                    title = title
                 });
         }
 

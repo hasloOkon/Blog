@@ -6,7 +6,7 @@
 
             <!--Heading-->
             <div class="post-title">
-                <h2>@Html.PostLink(Model)</h2>
+                <h2>@Html.PostLink(Model, Model.Title)</h2>
             </div>
 
         </div>
@@ -38,15 +38,6 @@
     </div>
 
     <div class="post-foot">
-        @Html.ActionLink("continue...", "post", "blog",
-        new
-        {
-            year = Model.PostedOn.Year,
-            month = Model.PostedOn.Month,
-            day = Model.PostedOn.Day,
-            title = Model.UrlSlug
-        },
-        new { title = "continue..." }
-    )
+        @Html.PostLink(Model, "continue...")
     </div>
 </div>

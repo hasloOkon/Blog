@@ -96,5 +96,50 @@ namespace Blog.Core
         {
             return session.Query<Tag>().FirstOrDefault(tag => tag.UrlSlug == tagSlug);
         }
+
+        public IList<Post> PostsBySearch(string searchPhrase, int pageNumber, int pageSize)
+        {
+            searchPhrase = searchPhrase.ToLower();
+
+            var posts = session.Query<Post>()
+                .Where(post => post.Published
+                    && post.Title.ToLower().Contains(searchPhrase) || post.Description.ToLower().Contains(searchPhrase))
+                .OrderByDescending(post => post.PostedOn)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Fetch(post => post.Category)
+                .ToList();
+
+            var postIds = posts.Select(post => post.Id).ToList();
+
+            return session.Query<Post>()
+                  .Where(post => postIds.Contains(post.Id))
+                  .OrderByDescending(post => post.PostedOn)
+                  .FetchMany(post => post.Tags)
+                  .ToList();
+        }
+
+        public int TotalPostsBySearch(string searchPhrase)
+        {
+            searchPhrase = searchPhrase.ToLower();
+
+            return session.Query<Post>().Count(post => post.Published
+                && post.Title.ToLower().Contains(searchPhrase) || post.Description.ToLower().Contains(searchPhrase));
+        }
+
+        public Post PostDetails(int year, int month, string postSlug)
+        {
+            return session.Query<Post>()
+                .Fetch(post => post.Category)
+                .FirstOrDefault(post => post.Published
+                    && post.PostedOn.Year == year
+                    && post.PostedOn.Month == month
+                    && post.UrlSlug == postSlug);
+        }
+
+        public IList<Category> Categories()
+        {
+            return session.Query<Category>().ToList();
+        }
     }
 }

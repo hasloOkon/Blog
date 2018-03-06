@@ -19,14 +19,10 @@ namespace Blog.WebApp.Controllers
         {
             pageNumber = Math.Max(1, pageNumber);
 
-            var posts = blogRepository.Posts(pageNumber, pageSize: 10);
-
-            var totalPosts = blogRepository.TotalPosts();
-
             var postsViewModel = new PostsViewModel
             {
-                Posts = posts,
-                TotalPosts = totalPosts
+                Posts = blogRepository.Posts(pageNumber, pageSize: 10),
+                TotalPosts = blogRepository.TotalPosts()
             };
 
             ViewBag.Title = "Latest Posts";
@@ -43,13 +39,10 @@ namespace Blog.WebApp.Controllers
             if (category == null)
                 throw new HttpException(404, "Category not found");
 
-            var posts = blogRepository.PostsForCategory(categorySlug, pageNumber, pageSize: 10);
-            var totalPosts = blogRepository.TotalPostsForCategory(categorySlug);
-
             var postsViewModel = new PostsViewModel
             {
-                Posts = posts,
-                TotalPosts = totalPosts,
+                Posts = blogRepository.PostsForCategory(categorySlug, pageNumber, pageSize: 10),
+                TotalPosts = blogRepository.TotalPostsForCategory(categorySlug)
             };
 
             ViewBag.Title = $"Latest Posts for category \"{category.Name}\"";
@@ -66,18 +59,48 @@ namespace Blog.WebApp.Controllers
             if (tag == null)
                 throw new HttpException(404, "Tag not found");
 
-            var posts = blogRepository.PostsForTag(tagSlug, pageNumber, pageSize: 10);
-            var totalPosts = blogRepository.TotalPostsForTag(tagSlug);
-
             var postsViewModel = new PostsViewModel
             {
-                Posts = posts,
-                TotalPosts = totalPosts
+                Posts = blogRepository.PostsForTag(tagSlug, pageNumber, pageSize: 10),
+                TotalPosts = blogRepository.TotalPostsForTag(tagSlug)
             };
 
             ViewBag.Title = $"Lastest Posts for tag \"{tag.Name}\"";
 
             return View("Posts", postsViewModel);
+        }
+
+        public ViewResult Search(string searchPhrase, int pageNumber = 1)
+        {
+            pageNumber = Math.Max(1, pageNumber);
+
+            var postsViewModel = new PostsViewModel
+            {
+                Posts = blogRepository.PostsBySearch(searchPhrase, pageNumber, pageSize: 10),
+                TotalPosts = blogRepository.TotalPostsBySearch(searchPhrase)
+            };
+
+            ViewBag.Title = $"Search results for phrase \"{searchPhrase}\"";
+
+            return View("Posts", postsViewModel);
+        }
+
+        public ViewResult PostDetails(int year, int month, string postSlug)
+        {
+            var postDetails = blogRepository.PostDetails(year, month, postSlug);
+
+            return View("PostDetails", postDetails);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Sidebar()
+        {
+            var sidebarViewModel = new SidebarViewModel
+            {
+                Categories = blogRepository.Categories()
+            };
+
+            return PartialView("_Sidebar", sidebarViewModel);
         }
     }
 }

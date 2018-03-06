@@ -18,7 +18,7 @@
         <div id="header">
             <div id="logo">
                 <div id="logo_text">
-                    <h1><a href="/">Bunny<span class="logo_colour">Blog</span></a></h1>
+                    <h1><a href="/">Szpilką<span class="logo_colour"> Po Mapie</span></a></h1>
                     <h2>Writings, Experiments and More...</h2>
                 </div>
             </div>
@@ -37,11 +37,12 @@
         <!-- Site Content -->
         <div id="site_content">
             @RenderBody()
+            @Html.Action("Sidebar", "Blog")
         </div>
 
         <!-- Footer -->
         <div id="footer">
-            Copyright ï¿½ @DateTime.Now.Year JustBlog All Rights Reserved
+            Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
         </div>
     </div>
 </body>
