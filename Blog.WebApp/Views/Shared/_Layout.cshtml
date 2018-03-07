@@ -1,20 +1,13 @@
 ﻿<!DOCTYPE html>
-
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css"
           href="@Url.Content("~/Content/themes/night_sky_2/style.css")" />
 </head>
-
 <body>
     <div id="main">
-
-        <!-- Header -->
         <div id="header">
             <div id="logo">
                 <div id="logo_text">
@@ -22,25 +15,18 @@
                     <h2>Writings, Experiments and More...</h2>
                 </div>
             </div>
-
-            <!-- Navigation -->
             <div id="menubar">
                 <ul id="menu">
-                    <li>@Html.ActionLink("Posts", "Posts")</li>
+                    <li>@Html.ActionLink("Posts", "Posts", "Blog")</li>
                     <li>@Html.ActionLink("Contact", "Contact")</li>
                     <li>@Html.ActionLink("About Me", "AboutMe")</li>
                 </ul>
             </div>
-
         </div>
-
-        <!-- Site Content -->
         <div id="site_content">
             @RenderBody()
             @Html.Action("Sidebar", "Blog")
         </div>
-
-        <!-- Footer -->
         <div id="footer">
             Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
         </div>

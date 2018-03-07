@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Blog.Core.DomainObjects;
+using Blog.Core.Models;
 
 namespace Blog.Core
 {
@@ -22,5 +22,6 @@ namespace Blog.Core
         Post PostDetails(int year, int month, string postSlug);
 
         IList<Category> Categories();
+        IList<Tag> Tags();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Blog.Core.DomainObjects;
+using Blog.Core.Models;
 using NHibernate;
 using NHibernate.Linq;
 
@@ -103,7 +103,7 @@ namespace Blog.Core
 
             var posts = session.Query<Post>()
                 .Where(post => post.Published
-                    && post.Title.ToLower().Contains(searchPhrase) || post.Description.ToLower().Contains(searchPhrase))
+                    && post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase))
                 .OrderByDescending(post => post.PostedOn)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -124,7 +124,7 @@ namespace Blog.Core
             searchPhrase = searchPhrase.ToLower();
 
             return session.Query<Post>().Count(post => post.Published
-                && post.Title.ToLower().Contains(searchPhrase) || post.Description.ToLower().Contains(searchPhrase));
+                && post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase));
         }
 
         public Post PostDetails(int year, int month, string postSlug)
@@ -140,6 +140,11 @@ namespace Blog.Core
         public IList<Category> Categories()
         {
             return session.Query<Category>().ToList();
+        }
+
+        public IList<Tag> Tags()
+        {
+            return session.Query<Tag>().ToList();
         }
     }
 }

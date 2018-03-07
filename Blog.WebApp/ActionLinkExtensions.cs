@@ -1,7 +1,6 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using Blog.Core.DomainObjects;
+using Blog.Core.Models;
 
 namespace Blog.WebApp
 {

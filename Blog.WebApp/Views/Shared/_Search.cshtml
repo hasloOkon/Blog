@@ -1,8 +1,4 @@
-﻿@using (Html.BeginForm(
-                "Search",
-                "Blog",
-                FormMethod.Get,     
-                new { id = "search-form" })) 
+﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form" })) 
 {
     <p>
         @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase" })

@@ -77,9 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogRepository.cs" />
-    <Compile Include="DomainObjects\Category.cs" />
-    <Compile Include="DomainObjects\Post.cs" />
-    <Compile Include="DomainObjects\Tag.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="IBlogRepository.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\PostMap.cs" />

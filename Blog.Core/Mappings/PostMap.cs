@@ -1,4 +1,4 @@
-﻿using Blog.Core.DomainObjects;
+﻿using Blog.Core.Models;
 using FluentNHibernate.Mapping;
 
 namespace Blog.Core.Mappings
@@ -17,7 +17,7 @@ namespace Blog.Core.Mappings
                 .Length(5000)
                 .Not.Nullable();
 
-            Map(post => post.Description)
+            Map(post => post.Content)
                 .Length(5000)
                 .Not.Nullable();
 

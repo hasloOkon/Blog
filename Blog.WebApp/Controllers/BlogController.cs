@@ -1,31 +1,24 @@
 ﻿using System;
-using System.Web;
 using System.Web.Mvc;
-using Blog.Core;
-using Blog.WebApp.Models;
+using Blog.WebApp.ViewModels;
 
 namespace Blog.WebApp.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IBlogRepository blogRepository;
+        private readonly IViewModelFactory viewModelFactory;
 
-        public BlogController(IBlogRepository blogRepository)
+        public BlogController(IViewModelFactory viewModelFactory)
         {
-            this.blogRepository = blogRepository;
+            this.viewModelFactory = viewModelFactory;
         }
 
         public ViewResult Posts(int pageNumber = 1)
         {
             pageNumber = Math.Max(1, pageNumber);
 
-            var postsViewModel = new PostsViewModel
-            {
-                Posts = blogRepository.Posts(pageNumber, pageSize: 10),
-                TotalPosts = blogRepository.TotalPosts()
-            };
-
-            ViewBag.Title = "Latest Posts";
+            var postsViewModel = viewModelFactory.GetPosts(pageNumber);
+            ViewBag.Title = postsViewModel.Title;
 
             return View("Posts", postsViewModel);
         }
@@ -34,18 +27,8 @@ namespace Blog.WebApp.Controllers
         {
             pageNumber = Math.Max(1, pageNumber);
 
-            var category = blogRepository.Category(categorySlug);
-
-            if (category == null)
-                throw new HttpException(404, "Category not found");
-
-            var postsViewModel = new PostsViewModel
-            {
-                Posts = blogRepository.PostsForCategory(categorySlug, pageNumber, pageSize: 10),
-                TotalPosts = blogRepository.TotalPostsForCategory(categorySlug)
-            };
-
-            ViewBag.Title = $"Latest Posts for category \"{category.Name}\"";
+            var postsViewModel = viewModelFactory.GetPostsForCategory(categorySlug, pageNumber);
+            ViewBag.Title = postsViewModel.Title;
 
             return View("Posts", postsViewModel);
         }
@@ -54,18 +37,8 @@ namespace Blog.WebApp.Controllers
         {
             pageNumber = Math.Max(1, pageNumber);
 
-            var tag = blogRepository.Tag(tagSlug);
-
-            if (tag == null)
-                throw new HttpException(404, "Tag not found");
-
-            var postsViewModel = new PostsViewModel
-            {
-                Posts = blogRepository.PostsForTag(tagSlug, pageNumber, pageSize: 10),
-                TotalPosts = blogRepository.TotalPostsForTag(tagSlug)
-            };
-
-            ViewBag.Title = $"Lastest Posts for tag \"{tag.Name}\"";
+            var postsViewModel = viewModelFactory.GetPostsForTag(tagSlug, pageNumber);
+            ViewBag.Title = postsViewModel.Title;
 
             return View("Posts", postsViewModel);
         }
@@ -74,20 +47,15 @@ namespace Blog.WebApp.Controllers
         {
             pageNumber = Math.Max(1, pageNumber);
 
-            var postsViewModel = new PostsViewModel
-            {
-                Posts = blogRepository.PostsBySearch(searchPhrase, pageNumber, pageSize: 10),
-                TotalPosts = blogRepository.TotalPostsBySearch(searchPhrase)
-            };
-
-            ViewBag.Title = $"Search results for phrase \"{searchPhrase}\"";
+            var postsViewModel = viewModelFactory.GetPostsBySearch(searchPhrase, pageNumber);
+            ViewBag.Title = postsViewModel.Title;
 
             return View("Posts", postsViewModel);
         }
 
         public ViewResult PostDetails(int year, int month, string postSlug)
         {
-            var postDetails = blogRepository.PostDetails(year, month, postSlug);
+            var postDetails = viewModelFactory.GetPostDetails(year, month, postSlug);
 
             return View("PostDetails", postDetails);
         }
@@ -95,10 +63,7 @@ namespace Blog.WebApp.Controllers
         [ChildActionOnly]
         public PartialViewResult Sidebar()
         {
-            var sidebarViewModel = new SidebarViewModel
-            {
-                Categories = blogRepository.Categories()
-            };
+            var sidebarViewModel = viewModelFactory.GetSidebar();
 
             return PartialView("_Sidebar", sidebarViewModel);
         }

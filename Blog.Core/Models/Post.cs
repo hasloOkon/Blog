@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blog.Core.DomainObjects
+namespace Blog.Core.Models
 {
     public class Post
     {
@@ -14,7 +14,7 @@ namespace Blog.Core.DomainObjects
         public virtual string ShortDescription
         { get; set; }
 
-        public virtual string Description
+        public virtual string Content
         { get; set; }
 
         public virtual string Meta

@@ -1,41 +1,27 @@
-﻿@model Blog.Core.DomainObjects.Post
+﻿@model Blog.Core.Models.Post
+
 <div id="content">
     <div class="post">
         <div class="post-meta">
             <div class="row">
-
-                <!--Heading-->
                 <div class="post-title">
                     <h2>@Html.PostLink(Model, Model.Title)</h2>
                 </div>
-
             </div>
-
             <div class="row">
-
-                <!--Category-->
                 <div class="post-category">
                     <span>Category: </span>@Html.CategoryLink(Model.Category)
                 </div>
-
-                <!--Tags-->
                 <div class="post-tags">
                     <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
                 </div>
-
-                <!--Posted date-->
                 <div class="posted-date">
                     @Model.PostedOn.ToConfigLocalTime()
                 </div>
-
             </div>
-
         </div>
-
-        <!--Description-->
         <div class="post-body">
-            @Html.Raw(Model.Description)
+            @Html.Raw(Model.Content)
         </div>
-
     </div>
 </div>

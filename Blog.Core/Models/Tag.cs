@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blog.Core.DomainObjects
+namespace Blog.Core.Models
 {
     public class Tag
     {

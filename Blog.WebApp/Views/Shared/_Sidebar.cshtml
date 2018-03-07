@@ -1,6 +1,5 @@
-﻿@model Blog.WebApp.Models.SidebarViewModel
+﻿@model Blog.WebApp.ViewModels.SidebarViewModel
 
-<!-- Side bars -->
 <div id="sidebars">
     <div class="sidebar">
         @Html.Partial("_Search")
@@ -8,11 +7,25 @@
     <div class="sidebar">
         <h3>Categories</h3>
         <ul>
-            @{
-                foreach (var category in Model.Categories)
-                {
-                    <li>@Html.CategoryLink(category)</li>
-                }
+            @foreach (var category in Model.Categories)
+            {
+                <li>@Html.CategoryLink(category)</li>
+            }
+        </ul>
+    </div>
+    <div class="sidebar tags">
+        <h3>Tags</h3>
+            @foreach (var tag in Model.Tags)
+            {
+                @Html.TagLink(tag)
+            }
+    </div>
+    <div class="sidebar">
+        <h3>Latest posts</h3>
+        <ul>
+            @foreach (var post in Model.LatestPosts)
+            {
+                <li>@Html.PostLink(post, post.Title)</li>
             }
         </ul>
     </div>

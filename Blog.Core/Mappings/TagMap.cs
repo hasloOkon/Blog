@@ -1,4 +1,4 @@
-﻿using Blog.Core.DomainObjects;
+﻿using Blog.Core.Models;
 using FluentNHibernate.Mapping;
 
 namespace Blog.Core.Mappings

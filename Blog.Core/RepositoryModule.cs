@@ -1,9 +1,8 @@
-﻿using Blog.Core.DomainObjects;
+﻿using Blog.Core.Models;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cache;
-using NHibernate.Tool.hbm2ddl;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;
@@ -32,6 +31,8 @@ namespace Blog.Core
             Bind<ISession>()
                 .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
                 .InRequestScope();
+
+            Bind<IBlogRepository>().To<BlogRepository>();
         }
     }
 }
