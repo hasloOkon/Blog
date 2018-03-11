@@ -1,4 +1,5 @@
-﻿using System.Web.Routing;
+﻿using System.Web.Optimization;
+using System.Web.Routing;
 using Blog.Core;
 using Blog.WebApp.ViewModels;
 using Ninject;
@@ -20,6 +21,7 @@ namespace Blog.WebApp
 
         protected override void OnApplicationStarted()
         {
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             base.OnApplicationStarted();
         }
