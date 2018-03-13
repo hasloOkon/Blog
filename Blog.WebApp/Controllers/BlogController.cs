@@ -61,11 +61,19 @@ namespace Blog.WebApp.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult Sidebar()
+        public PartialViewResult LeftSidebar()
         {
-            var sidebarViewModel = viewModelFactory.GetSidebar();
+            var sidebarViewModel = viewModelFactory.GetLeftSidebar();
 
-            return PartialView("_Sidebar", sidebarViewModel);
+            return PartialView("_LeftSidebar", sidebarViewModel);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult RightSidebar()
+        {
+            var sidebarViewModel = viewModelFactory.GetRightSidebar();
+
+            return PartialView("_RightSidebar", sidebarViewModel);
         }
     }
 }

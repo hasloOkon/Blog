@@ -1,9 +1,11 @@
-﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form" })) 
+﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form" }))
 {
-    <p>
-        @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase" })
-    </p>
-    <p>
-        <input type="submit" value="Search">
-    </p>
+    <div class="row w-100 ml-0">
+        <div class="col-auto m-0 p-0 w-50">
+            @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase", @class = "form-control" })
+        </div>
+        <div class="col-auto m-0 p-0 w-50">
+            <input type="submit" value="Search" class="form-control">
+        </div>
+    </div>
 }

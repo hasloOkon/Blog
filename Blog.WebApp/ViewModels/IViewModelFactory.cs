@@ -9,6 +9,7 @@ namespace Blog.WebApp.ViewModels
         PostsViewModel GetPostsForTag(string tagSlug, int pageNumber);
         PostsViewModel GetPostsBySearch(string searchPhrase, int pageNumber);
         Post GetPostDetails(int year, int month, string postSlug);
-        SidebarViewModel GetSidebar();
+        LeftSidebarViewModel GetLeftSidebar();
+        RightSidebarViewModel GetRightSidebar();
     }
 }

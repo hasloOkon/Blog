@@ -20,7 +20,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = blogRepository.Posts(pageNumber, PageSize),
                 TotalPosts = blogRepository.TotalPosts(),
-                Title = "Latest Posts"
+                Title = string.Empty
             };
         }
 
@@ -69,13 +69,20 @@ namespace Blog.WebApp.ViewModels
             return blogRepository.PostDetails(year, month, postSlug);
         }
 
-        public SidebarViewModel GetSidebar()
+        public LeftSidebarViewModel GetLeftSidebar()
         {
-            return new SidebarViewModel
+            return new LeftSidebarViewModel
             {
                 Categories = blogRepository.Categories(),
-                Tags = blogRepository.Tags(),
                 LatestPosts = blogRepository.Posts(pageNumber: 1, pageSize: PageSize)
+            };
+        }
+
+        public RightSidebarViewModel GetRightSidebar()
+        {
+            return new RightSidebarViewModel
+            {
+                Tags = blogRepository.Tags()
             };
         }
     }

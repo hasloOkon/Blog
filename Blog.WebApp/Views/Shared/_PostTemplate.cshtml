@@ -1,30 +1,33 @@
 ﻿@model Blog.Core.Models.Post
 
 <div class="post">
-    <div class="post-meta">
+    <div class="p-4">
         <div class="row">
-            <div class="post-title">
+            <div class="col">
                 <h2>@Html.PostLink(Model, Model.Title)</h2>
             </div>
         </div>
         <div class="row">
-            <div class="post-category">
+            <div class="col">
                 <span>Category: </span>@Html.CategoryLink(Model.Category)
             </div>
-            <div class="post-tags">
-                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
-            </div>
-            <div class="posted-date">
+
+            <div class="col-auto text-right">
                 @Model.PostedOn.ToConfigLocalTime()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
             </div>
         </div>
     </div>
 
-    <div class="post-body">
+    <div class="p-4">
         @Html.Raw(Model.ShortDescription)
     </div>
 
-    <div class="post-foot">
+    <div class="text-right p-0">
         @Html.PostLink(Model, "continue...")
     </div>
 </div>

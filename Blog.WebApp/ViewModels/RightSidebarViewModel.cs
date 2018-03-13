@@ -3,10 +3,8 @@ using Blog.Core.Models;
 
 namespace Blog.WebApp.ViewModels
 {
-    public class SidebarViewModel
+    public class RightSidebarViewModel
     {
-        public IList<Category> Categories { get; set; }
         public IList<Tag> Tags { get; set; }
-        public IList<Post> LatestPosts { get; set; }
     }
 }

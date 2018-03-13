@@ -1,11 +1,10 @@
-﻿@model Blog.WebApp.ViewModels.SidebarViewModel
+﻿@model Blog.WebApp.ViewModels.LeftSidebarViewModel
 
 <div id="sidebars">
     <div class="sidebar">
-        @Html.Partial("_Search")
-    </div>
-    <div class="sidebar">
-        <h3>Categories</h3>
+        <div id="categories-title" class="text-center">
+            <h3>Categories</h3>
+        </div>
         <ul>
             @foreach (var category in Model.Categories)
             {
@@ -13,15 +12,10 @@
             }
         </ul>
     </div>
-    <div class="sidebar tags">
-        <h3>Tags</h3>
-            @foreach (var tag in Model.Tags)
-            {
-                @Html.TagLink(tag)
-            }
-    </div>
     <div class="sidebar">
-        <h3>Latest posts</h3>
+        <div id="latest-posts-title" class="text-center">
+            <h3>Latest posts</h3>
+        </div>
         <ul>
             @foreach (var post in Model.LatestPosts)
             {

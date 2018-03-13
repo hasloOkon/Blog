@@ -3,32 +3,53 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/night_sky_2/css")
+    @Styles.Render("~/external/css")
+    @Styles.Render("~/internal/css")
+    @Scripts.Render("~/external/js")
 </head>
 <body>
-    <div id="main">
-        <div id="header">
-            <div id="logo">
-                <div id="logo_text">
-                    <h1><a href="/">Szpilką<span class="logo_colour"> Po Mapie</span></a></h1>
-                    <h2>Writings, Experiments and More...</h2>
+    <div id="header" class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 text-center">
+                <img src="@Url.Content("~/Content/themes/night_sky_2/images/main-logo-3.png")" class="w-100" />
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8 text-center">
+                @*<ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        @Html.ActionLink("Posts", "Posts", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contact", "Contact", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About Me", "AboutMe", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
+                    </li>
+                </ul>*@
+                <div class="btn-group d-flex" role="group">
+                    @Html.ActionLink("Posts", "Posts", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
+                    @Html.ActionLink("Contact", "Contact", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
+                    @Html.ActionLink("About Me", "AboutMe", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
                 </div>
             </div>
-            <div id="menubar">
-                <ul id="menu">
-                    <li>@Html.ActionLink("Posts", "Posts", "Blog")</li>
-                    <li>@Html.ActionLink("Contact", "Contact")</li>
-                    <li>@Html.ActionLink("About Me", "AboutMe")</li>
-                </ul>
+        </div>
+    </div>
+    <div id="site-content" class="container">
+        <div class="row">
+            <div id="left-sidebar" class="col-2 m-0">
+                @Html.Action("LeftSidebar", "Blog")
+            </div>
+            <div id="center-content" class="col-8 m-0">
+                @RenderBody()
+            </div>
+            <div id="right-sidebar" class="col-2 m-0">
+                @Html.Action("RightSidebar", "Blog")
             </div>
         </div>
-        <div id="site_content">
-            @RenderBody()
-            @Html.Action("Sidebar", "Blog")
-        </div>
-        <div id="footer">
-            Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
-        </div>
+    </div>
+    <div id="footer" class="container">
+        Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
     </div>
 </body>
 </html>
