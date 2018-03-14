@@ -10,9 +10,21 @@ namespace Blog.WebApp
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Logout",
+                url: "Logout",
+                defaults: new { controller = "Admin", action = "Logout" }
+            );
+
+            routes.MapRoute(
                 name: "Login",
                 url: "Login",
                 defaults: new { controller = "Admin", action = "Login" }
+            );
+
+            routes.MapRoute(
+                name: "Manage",
+                url: "Manage",
+                defaults: new { controller = "Admin", action = "Manage" }
             );
 
             routes.MapRoute(

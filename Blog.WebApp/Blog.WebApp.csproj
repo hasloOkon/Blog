@@ -200,6 +200,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Providers\ILoginProvider.cs" />
+    <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PostsViewModel.cs" />
@@ -231,6 +233,8 @@
     <Content Include="Scripts\external\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\external\jquery-3.3.1.min.map" />
     <Content Include="Views\Shared\_RightSidebar.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -240,7 +244,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Core\Blog.Core.csproj">

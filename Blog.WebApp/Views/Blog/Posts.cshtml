@@ -9,7 +9,7 @@
     {
         foreach (var post in Model.Posts)
         {
-            @Html.Partial("_PostTemplate", post)
+            <div class="mb-2">@Html.Partial("_PostTemplate", post)</div>
         }
     }
     else
