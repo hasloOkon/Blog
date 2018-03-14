@@ -5,7 +5,9 @@
         @Html.Partial("_Search")
     </div>
     <div class="sidebar">
-        <h3>Tags</h3>
+        <div class="text-center section-title">
+            <h3>Tags</h3>
+        </div>
         @foreach (var tag in Model.Tags)
         {
             <span>@Html.TagLink(tag)</span>

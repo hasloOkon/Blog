@@ -149,6 +149,7 @@
     <Content Include="Content\themes\night_sky_2\images\main-logo.png" />
     <Content Include="Content\themes\night_sky_2\images\search.png" />
     <Content Include="Content\themes\night_sky_2\images\tabs.png" />
+    <Content Include="Content\themes\night_sky_2\images\tlo3.jpg" />
     <Content Include="Content\themes\night_sky_2\style.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\external\bootstrap.bundle.js" />

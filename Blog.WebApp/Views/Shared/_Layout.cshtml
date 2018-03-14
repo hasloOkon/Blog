@@ -28,22 +28,22 @@
                     </li>
                 </ul>*@
                 <div class="btn-group d-flex" role="group">
-                    @Html.ActionLink("Posts", "Posts", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
-                    @Html.ActionLink("Contact", "Contact", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
-                    @Html.ActionLink("About Me", "AboutMe", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100"})
+                    @Html.ActionLink("Posts", "Posts", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100  content-bg" })
+                    @Html.ActionLink("Contact", "Contact", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100 content-bg" })
+                    @Html.ActionLink("About Me", "AboutMe", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100 content-bg" })
                 </div>
             </div>
         </div>
     </div>
-    <div id="site-content" class="container">
+    <div class="container">
         <div class="row">
-            <div id="left-sidebar" class="col-2 m-0">
+            <div id="left-sidebar" class="col-2 m-0 content-bg">
                 @Html.Action("LeftSidebar", "Blog")
             </div>
             <div id="center-content" class="col-8 m-0">
                 @RenderBody()
             </div>
-            <div id="right-sidebar" class="col-2 m-0">
+            <div id="right-sidebar" class="col-2 m-0 content-bg">
                 @Html.Action("RightSidebar", "Blog")
             </div>
         </div>
