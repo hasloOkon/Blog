@@ -1,9 +1,15 @@
 ﻿@model Blog.WebApp.ViewModels.PostsViewModel
 
 <div id="content">
-    <h1>@ViewBag.Title</h1>
-
+    
     @Html.Partial("_Pager", Model.PagerViewModel)
+
+    @if (!string.IsNullOrEmpty(ViewBag.Title))
+    {
+        <div class="content-bg mb-2 p-2">
+            <h2 class="m-0">@ViewBag.Title</h2>
+        </div>
+    }
 
     @if (Model.Posts.Count > 0)
     {
@@ -14,7 +20,7 @@
     }
     else
     {
-        <p>No posts found!</p>
+        <p class="content-bg mb-2 p-2">No posts found!</p>
     }
 
     @Html.Partial("_Pager", Model.PagerViewModel)

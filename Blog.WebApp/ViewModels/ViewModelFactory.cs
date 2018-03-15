@@ -31,7 +31,7 @@ namespace Blog.WebApp.ViewModels
             var category = blogRepository.Category(categorySlug);
 
             if (category == null)
-                throw new HttpException(404, "Category not found");
+                throw new HttpException(404, "Nie znaleziono kategorii :(");
 
             var totalPosts = blogRepository.TotalPostsForCategory(categorySlug);
 
@@ -39,7 +39,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = blogRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Latest Posts for category \"{category.Name}\""
+                Title = $"Ostatnie posty dla kategorii \"{category.Name}\":"
             };
         }   
 
@@ -48,7 +48,7 @@ namespace Blog.WebApp.ViewModels
             var tag = blogRepository.Tag(tagSlug);
 
             if (tag == null)
-                throw new HttpException(404, "Tag not found");
+                throw new HttpException(404, "Nie znaleziono taga :(");
 
             var totalPosts = blogRepository.TotalPostsForTag(tagSlug);
 
@@ -56,7 +56,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = blogRepository.PostsForTag(tagSlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Lastest Posts for tag \"{tag.Name}\""
+                Title = $"Ostatnie posty dla taga \"{tag.Name}\":"
             };
         }
 
