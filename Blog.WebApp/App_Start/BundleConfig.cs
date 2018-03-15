@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Blog.WebApp
 {

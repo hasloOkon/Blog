@@ -3,7 +3,7 @@
 <div id="content">
     <h1>@ViewBag.Title</h1>
 
-    @Html.Partial("_Pager", Model)
+    @Html.Partial("_Pager", Model.PagerViewModel)
 
     @if (Model.Posts.Count > 0)
     {
@@ -17,5 +17,5 @@
         <p>No posts found!</p>
     }
 
-    @Html.Partial("_Pager", Model)
+    @Html.Partial("_Pager", Model.PagerViewModel)
 </div>

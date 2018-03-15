@@ -6,7 +6,7 @@ namespace Blog.WebApp.ViewModels
 {
     public class ViewModelFactory : IViewModelFactory
     {
-        private const int PageSize = 5;
+        private const int PageSize = 3;
         private readonly IBlogRepository blogRepository;
 
         public ViewModelFactory(IBlogRepository blogRepository)
@@ -16,10 +16,12 @@ namespace Blog.WebApp.ViewModels
 
         public PostsViewModel GetPosts(int pageNumber)
         {
+            var totalPosts = blogRepository.TotalPosts();
+
             return new PostsViewModel
             {
                 Posts = blogRepository.Posts(pageNumber, PageSize),
-                TotalPosts = blogRepository.TotalPosts(),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = string.Empty
             };
         }
@@ -31,10 +33,12 @@ namespace Blog.WebApp.ViewModels
             if (category == null)
                 throw new HttpException(404, "Category not found");
 
+            var totalPosts = blogRepository.TotalPostsForCategory(categorySlug);
+
             return new PostsViewModel
             {
                 Posts = blogRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
-                TotalPosts = blogRepository.TotalPostsForCategory(categorySlug),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Latest Posts for category \"{category.Name}\""
             };
         }   
@@ -46,20 +50,24 @@ namespace Blog.WebApp.ViewModels
             if (tag == null)
                 throw new HttpException(404, "Tag not found");
 
+            var totalPosts = blogRepository.TotalPostsForTag(tagSlug);
+
             return new PostsViewModel
             {
                 Posts = blogRepository.PostsForTag(tagSlug, pageNumber, PageSize),
-                TotalPosts = blogRepository.TotalPostsForTag(tagSlug),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Lastest Posts for tag \"{tag.Name}\""
             };
         }
 
         public PostsViewModel GetPostsBySearch(string searchPhrase, int pageNumber)
         {
+            var totalPosts = blogRepository.TotalPostsBySearch(searchPhrase);
+
             return new PostsViewModel
             {
                 Posts = blogRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
-                TotalPosts = blogRepository.TotalPostsBySearch(searchPhrase),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Search results for phrase \"{searchPhrase}\""
             };
         }
