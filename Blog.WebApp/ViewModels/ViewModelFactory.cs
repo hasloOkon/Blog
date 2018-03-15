@@ -6,7 +6,7 @@ namespace Blog.WebApp.ViewModels
 {
     public class ViewModelFactory : IViewModelFactory
     {
-        private const int PageSize = 10;
+        private const int PageSize = 5;
         private readonly IBlogRepository blogRepository;
 
         public ViewModelFactory(IBlogRepository blogRepository)

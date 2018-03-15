@@ -27,13 +27,18 @@ a:hover {
     margin: 0px;
 }
 
-.btn.btn-primary {
+.btn.btn-primary, .pagination .page-item .page-link {
     color: #FF8C00;
     font-weight: bold;
     border-radius: 0;
 }
 
-.btn.btn-primary:hover {
+.pagination .page-item .page-link {
+    font-size: small;
+    padding: 4px;
+}
+
+.btn.btn-primary:hover, .pagination .page-item.active .page-link, .pagination .page-item .page-link:hover{
     color: black;
     background-color: #FF8C00;
     border-color: #F5F5F5;
