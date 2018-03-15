@@ -1,0 +1,31 @@
+﻿@model Blog.WebApp.ViewModels.AddPostForm
+
+@{
+    ViewBag.Title = "AddPost";
+}
+
+<div class="content-bg">
+    <h2>AddPost</h2>
+
+    @using (Html.BeginForm("AddPost", "Admin", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Add Post</legend>
+            <p>
+                @Html.LabelFor(m => m.Title)
+                @Html.TextBoxFor(m => m.Title)
+                @Html.ValidationMessageFor(m => m.Title)
+            </p>
+
+            <p>
+                @Html.LabelFor(m => m.Content)
+                @Html.TextAreaFor(m => m.Content)
+                @Html.ValidationMessageFor(m => m.Content)
+            </p>
+
+            <p>
+                <input type="submit" value="Add post"/>
+            </p>
+        </fieldset>
+    }
+</div>

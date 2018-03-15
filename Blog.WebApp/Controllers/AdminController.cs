@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using Blog.Core;
+using Blog.Core.Models;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
 
@@ -8,10 +12,12 @@ namespace Blog.WebApp.Controllers
     public class AdminController : Controller
     {
         private readonly ILoginProvider loginProvider;
+        private readonly IBlogRepository blogRepository;
 
-        public AdminController(ILoginProvider loginProvider)
+        public AdminController(ILoginProvider loginProvider, IBlogRepository blogRepository)
         {
             this.loginProvider = loginProvider;
+            this.blogRepository = blogRepository;
         }
 
         [AllowAnonymous]
@@ -50,9 +56,42 @@ namespace Blog.WebApp.Controllers
 
             return RedirectToAction("Login", "Admin");
         }
+
         public ActionResult Manage()
         {
             return View();
+        }
+
+        public ActionResult AddPost()
+        {
+            return View(new AddPostForm());
+        }
+
+        [HttpPost]
+        public ActionResult AddPost(AddPostForm addPostForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var post = new Post
+                {
+                    Title = addPostForm.Title,
+                    Content = addPostForm.Content,
+                    Published = true,
+                    Category = blogRepository.Categories().First(),
+                    ShortDescription = "test SD",
+                    PostedOn = DateTime.Now,
+                    Meta = "test meta",
+                    UrlSlug = "test_url_slug"
+                };
+
+                blogRepository.AddPost(post);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                return View(addPostForm);
+            }
         }
 
         private ActionResult RedirectToUrl(string returnUrl)

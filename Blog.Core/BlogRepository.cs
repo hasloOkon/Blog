@@ -146,5 +146,14 @@ namespace Blog.Core
         {
             return session.Query<Tag>().ToList();
         }
+
+        public void AddPost(Post post)
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                session.Save(post);
+                transaction.Commit();
+            }
+        }
     }
 }

@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Providers\ILoginProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
+    <Compile Include="ViewModels\AddPostForm.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PagerViewModel.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Views\Shared\_RightSidebar.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Manage.cshtml" />
+    <Content Include="Views\Admin\AddPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
