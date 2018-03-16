@@ -1,4 +1,6 @@
-﻿@model Blog.WebApp.ViewModels.AddPostForm
+﻿@using Blog.Core.Models
+@using Blog.WebApp.Widgets
+@model Blog.WebApp.ViewModels.AddPostForm
 
 @{
     ViewBag.Title = "AddPost";
@@ -9,28 +11,38 @@
 
     @using (Html.BeginForm("AddPost", "Admin", FormMethod.Post))
     {
-        <fieldset>
-            <legend>Add Post</legend>
-            <p>
-                @Html.LabelFor(m => m.Title)
-                @Html.TextBoxFor(m => m.Title)
-                @Html.ValidationMessageFor(m => m.Title)
-            </p>
+    <fieldset>
+        <legend>Add Post</legend>
+        <p>
+            @Html.LabelFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title)
+            @Html.ValidationMessageFor(m => m.Title)
+        </p>
 
-            <p>
-                @Html.LabelFor(m => m.Content)
-                @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "summernote" })
-            </p>
+        <p>
+            @Html.LabelFor(m => m.ShortDescription)
+            @Html.TextAreaFor(m => m.ShortDescription, htmlAttributes: new { id = "short-description-editor" })
+        </p>
 
-            <p>
-                <input type="submit" value="Add post" />
-            </p>
-        </fieldset>
+        <p>
+            @Html.LabelFor(m => m.Content)
+            @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "content-editor" })
+        </p>
+
+        <p>
+            @Html.CategoryDropDownListFor(m => m.CategoryId, (IEnumerable<Category>)ViewData["Categories"])
+        </p>
+
+        <p>
+            <input type="submit" value="Add post" />
+        </p>
+    </fieldset>
     }
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#summernote').summernote();
+        $('#short-description-editor').summernote();
+        $('#content-editor').summernote();
     });
 </script>

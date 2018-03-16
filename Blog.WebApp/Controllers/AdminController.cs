@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Web.Mvc;
-using Blog.Core;
+﻿using Blog.Core;
 using Blog.Core.Models;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Blog.WebApp.Controllers
 {
@@ -64,6 +64,8 @@ namespace Blog.WebApp.Controllers
 
         public ActionResult AddPost()
         {
+            ViewData["Categories"] = blogRepository.Categories();
+
             return View(new AddPostForm());
         }
 
@@ -77,7 +79,7 @@ namespace Blog.WebApp.Controllers
                     Title = addPostForm.Title,
                     Content = addPostForm.Content,
                     Published = true,
-                    Category = blogRepository.Categories().First(),
+                    Category = blogRepository.Categories().First(category => category.Id == addPostForm.CategoryId),
                     ShortDescription = "test SD",
                     PostedOn = DateTime.Now,
                     Meta = "test meta",
@@ -90,6 +92,8 @@ namespace Blog.WebApp.Controllers
             }
             else
             {
+                ViewData["Categories"] = blogRepository.Categories();
+
                 return View(addPostForm);
             }
         }
