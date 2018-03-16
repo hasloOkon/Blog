@@ -13,7 +13,13 @@ namespace Blog.WebApp
         private static void RegisterScriptBundles(BundleCollection bundles)
         {
             var externalScripts = new ScriptBundle("~/external/js")
-                .IncludeDirectory("~/Scripts/external", "*.js", searchSubdirectories: true);
+                .Include("~/Scripts/external/jquery-{version}.js")
+                .Include("~/Scripts/external/jquery-ui.js")
+                .Include("~/Scripts/external/tether.js")
+                .Include("~/Scripts/external/popper.js")
+                .Include("~/Scripts/external/bootstrap.js")
+                .Include("~/Scripts/external/tooltip.js")
+                .Include("~/Scripts/external/summernote-bs4.js");
 
             bundles.Add(externalScripts);
         }

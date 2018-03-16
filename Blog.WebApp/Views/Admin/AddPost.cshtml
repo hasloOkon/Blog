@@ -19,13 +19,18 @@
 
             <p>
                 @Html.LabelFor(m => m.Content)
-                @Html.TextAreaFor(m => m.Content)
-                @Html.ValidationMessageFor(m => m.Content)
+                @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "summernote" })
             </p>
 
             <p>
-                <input type="submit" value="Add post"/>
+                <input type="submit" value="Add post" />
             </p>
         </fieldset>
     }
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+</script>

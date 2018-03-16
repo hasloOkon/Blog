@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,6 +135,27 @@
     <Content Include="Content\external\bootstrap-reboot.min.css" />
     <Content Include="Content\external\bootstrap.css" />
     <Content Include="Content\external\bootstrap.min.css" />
+    <Content Include="Content\external\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\external\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\external\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\external\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\external\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\external\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\external\jquery-ui.css" />
+    <Content Include="Content\external\jquery-ui.min.css" />
+    <Content Include="Content\external\jquery-ui.structure.css" />
+    <Content Include="Content\external\jquery-ui.structure.min.css" />
+    <Content Include="Content\external\jquery-ui.theme.css" />
+    <Content Include="Content\external\jquery-ui.theme.min.css" />
+    <Content Include="Content\external\summernote-bs4.css" />
+    <Content Include="Content\external\tether-theme-arrows-dark.css" />
+    <Content Include="Content\external\tether-theme-arrows-dark.min.css" />
+    <Content Include="Content\external\tether-theme-arrows.css" />
+    <Content Include="Content\external\tether-theme-arrows.min.css" />
+    <Content Include="Content\external\tether-theme-basic.css" />
+    <Content Include="Content\external\tether-theme-basic.min.css" />
+    <Content Include="Content\external\tether.css" />
+    <Content Include="Content\external\tether.min.css" />
     <Content Include="Content\themes\night_sky_2\admin.css" />
     <Content Include="Content\themes\night_sky_2\images\arrow.png" />
     <Content Include="Content\themes\night_sky_2\images\back.png" />
@@ -152,41 +174,31 @@
     <Content Include="Content\themes\night_sky_2\images\tlo3.jpg" />
     <Content Include="Content\themes\night_sky_2\style.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\external\bootstrap.bundle.js" />
-    <Content Include="Scripts\external\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\external\bootstrap.js" />
-    <Content Include="Scripts\external\bootstrap.min.js" />
-    <Content Include="Scripts\external\esm\popper-utils.js" />
-    <Content Include="Scripts\external\esm\popper-utils.min.js" />
-    <Content Include="Scripts\external\esm\popper.js" />
-    <Content Include="Scripts\external\esm\popper.min.js" />
-    <Content Include="Scripts\external\esm\popper.min.js.map" />
-    <Content Include="Scripts\external\esm\popper.js.map" />
-    <Content Include="Scripts\external\esm\popper-utils.min.js.map" />
-    <Content Include="Scripts\external\esm\popper-utils.js.map" />
-    <Content Include="Scripts\external\bootstrap.min.js.map" />
-    <Content Include="Scripts\external\bootstrap.js.map" />
-    <Content Include="Scripts\external\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\external\bootstrap.bundle.js.map" />
     <Content Include="Content\external\bootstrap.min.css.map" />
     <Content Include="Content\external\bootstrap.css.map" />
     <Content Include="Content\external\bootstrap-reboot.min.css.map" />
     <Content Include="Content\external\bootstrap-reboot.css.map" />
     <Content Include="Content\external\bootstrap-grid.min.css.map" />
     <Content Include="Content\external\bootstrap-grid.css.map" />
-    <None Include="Scripts\external\jquery-3.3.1.intellisense.js" />
+    <Content Include="Content\external\font\summernote.eot" />
+    <Content Include="Content\external\font\summernote.ttf" />
+    <Content Include="Content\external\font\summernote.woff" />
+    <Content Include="Scripts\external\bootstrap.js" />
+    <Content Include="Scripts\external\bootstrap.min.js" />
     <Content Include="Scripts\external\jquery-3.3.1.js" />
     <Content Include="Scripts\external\jquery-3.3.1.min.js" />
     <Content Include="Scripts\external\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\external\jquery-3.3.1.slim.min.js" />
-    <Content Include="Scripts\external\popper-utils.js" />
-    <Content Include="Scripts\external\popper-utils.min.js" />
+    <Content Include="Scripts\external\jquery-ui.js" />
+    <Content Include="Scripts\external\jquery-ui.min.js" />
     <Content Include="Scripts\external\popper.js" />
     <Content Include="Scripts\external\popper.min.js" />
-    <Content Include="Scripts\external\umd\popper-utils.js" />
-    <Content Include="Scripts\external\umd\popper-utils.min.js" />
-    <Content Include="Scripts\external\umd\popper.js" />
-    <Content Include="Scripts\external\umd\popper.min.js" />
+    <Content Include="Scripts\external\summernote-bs4.js" />
+    <Content Include="Scripts\external\summernote-bs4.min.js" />
+    <Content Include="Scripts\external\tether.js" />
+    <Content Include="Scripts\external\tether.min.js" />
+    <Content Include="Scripts\external\tooltip.js" />
+    <Content Include="Scripts\external\tooltip.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -225,20 +237,13 @@
     <Content Include="Views\Shared\_Search.cshtml" />
     <Content Include="Views\Blog\PostDetails.cshtml" />
     <Content Include="Views\Shared\_LeftSidebar.cshtml" />
-    <Content Include="Scripts\external\umd\popper.min.js.map" />
-    <Content Include="Scripts\external\umd\popper.js.map" />
-    <Content Include="Scripts\external\umd\popper-utils.min.js.map" />
-    <Content Include="Scripts\external\umd\popper-utils.js.map" />
-    <Content Include="Scripts\external\popper.min.js.map" />
-    <Content Include="Scripts\external\popper.js.map" />
-    <Content Include="Scripts\external\popper-utils.min.js.map" />
-    <Content Include="Scripts\external\popper-utils.js.map" />
-    <Content Include="Scripts\external\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\external\jquery-3.3.1.min.map" />
     <Content Include="Views\Shared\_RightSidebar.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Manage.cshtml" />
     <Content Include="Views\Admin\AddPost.cshtml" />
+    <Content Include="Scripts\external\summernote-bs4.js.map" />
+    <Content Include="Scripts\external\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\external\jquery-3.3.1.slim.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -270,7 +275,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4866</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

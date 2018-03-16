@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Blog.WebApp.ViewModels
 {
@@ -11,6 +12,7 @@ namespace Blog.WebApp.ViewModels
         public string Title { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Treść")]
         public string Content { get; set; }
 
