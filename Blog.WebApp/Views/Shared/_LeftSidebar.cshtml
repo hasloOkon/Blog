@@ -2,25 +2,50 @@
 
 <div id="sidebars">
     <div class="sidebar">
-        <div class="text-center section-title">
+        <img src="@Url.Content("~/Content/themes/night_sky_2/images/small_logo.png")" class="w-100  mb-10 image-border"/>
+    </div>
+    <div class="sidebar">
+        <div class="text-center section-title mt-5">
             <h3>Wyprawy</h3>
         </div>
-        <ul>
+        <ul class="pin-list mt-3">
             @foreach (var category in Model.Categories)
             {
-                <li>@Html.CategoryLink(category)</li>
+                <li>
+                    @Html.CategoryLink(category)
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="sidebar mt-5">
+        @Html.Partial("_Search")
+    </div>
+    <div class="sidebar">
+        <div class="text-center section-title mt-5">
+            <h3>Ostatnie posty</h3>
+        </div>
+        <ul class="pin-list mt-3">
+            @foreach (var post in Model.LatestPosts)
+            {
+                <li>
+                    @Html.PostLink(post, post.Title)
+                </li>
             }
         </ul>
     </div>
     <div class="sidebar">
-        <div class="text-center section-title">
-            <h3>Ostatnie posty</h3>
+        <div class="text-center section-title mt-5">
+            <h3>O nas</h3>
         </div>
-        <ul>
-            @foreach (var post in Model.LatestPosts)
-            {
-                <li>@Html.PostLink(post, post.Title)</li>
-            }
-        </ul>
+        <img src="@Url.Content("~/Content/themes/night_sky_2/images/us.jpg")" class="w-100 mt-3 image-border"/>
     </div>
-</div>
+    <div class="sidebar">
+        <div class="text-center section-title mt-5 mb-3">
+            <h3>Tagi</h3>
+        </div>
+            @foreach (var tag in Model.Tags)
+            {
+                    <span>@Html.TagLink(tag)</span> 
+            }
+        </div>
+    </div>

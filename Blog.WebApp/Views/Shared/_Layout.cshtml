@@ -1,55 +1,58 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>@ViewBag.Title</title>
     @Styles.Render("~/external/css")
     @Styles.Render("~/internal/css")
     @Scripts.Render("~/external/js")
 </head>
 <body>
-    <div id="header" class="container">
-        <div class="row justify-content-center">
-            <div class="col-8 text-center">
-                <img src="@Url.Content("~/Content/themes/night_sky_2/images/main-logo-3.png")" class="w-100  mb-10" />
-            </div>
+<div class="container">
+    <div class="row">
+        <div id="left-sidebar" class="col-3 mt-2 content-bg">
+            @Html.Action("LeftSidebar", "Blog")
         </div>
-        @*<div class="row justify-content-center">
-            <div class="col-8 text-center">*@
-                @*<ul class="nav nav-pills nav-fill">
-                    <li class="nav-item">
-                        @Html.ActionLink("Posts", "Posts", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("About Me", "AboutMe", "Blog", new { }, htmlAttributes: new { @class = "nav-link active" })
-                    </li>
-                </ul>*@
-                @*<div class="btn-group d-flex" role="group">
-                    @Html.ActionLink("Posts", "Posts", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100  content-bg" })
-                    @Html.ActionLink("Kontakt", "Contact", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100 content-bg" })
-                    @Html.ActionLink("O mnie", "AboutMe", "Blog", new {}, htmlAttributes: new {@class = "btn btn-primary w-100 content-bg" })
+        <div id="center-content" class="col-9 mt-2">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active image-border">
+                        <img class="d-block w-100" src="@Url.Content("~/Content/themes/night_sky_2/images/baltictrip_1.jpg")" alt="First slide">
+                    </div>
+                    <div class="carousel-item image-border">
+                        <img class="d-block w-100" src="@Url.Content("~/Content/themes/night_sky_2/images/baltictrip_2.jpg")" alt="Second slide">
+                    </div>
+                    <div class="carousel-item image-border">
+                        <img class="d-block w-100" src="@Url.Content("~/Content/themes/night_sky_2/images/baltictrip_3.jpg")" alt="Third slide">
+                    </div>
                 </div>
-            </div>*@
-        </div>
-    @*</div>*@
-    <div class="container">
-        <div class="row">
-            <div id="left-sidebar" class="col-2 mt-2 content-bg">
-                @Html.Action("LeftSidebar", "Blog")
+                <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <div id="center-content" class="col-8 mt-2">
-                @RenderBody()
-            </div>
-            <div id="right-sidebar" class="col-2 mt-2 content-bg">
-                @Html.Action("RightSidebar", "Blog")
-            </div>
+            @RenderBody()
         </div>
     </div>
-    <div id="footer" class="container">
-        Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
-    </div>
+</div>
+<div id="footer" class="container justify-content-center">
+    Copyright © @DateTime.Now.Year BunnyBlog All Rights Reserved
+</div>
+    <script>
+    $(document).ready(function () {
+        $('.carousel').carousel();
+    });
+    </script>
 </body>
 </html>
+
+

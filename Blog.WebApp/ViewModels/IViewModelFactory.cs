@@ -10,6 +10,5 @@ namespace Blog.WebApp.ViewModels
         PostsViewModel GetPostsBySearch(string searchPhrase, int pageNumber);
         Post GetPostDetails(int year, int month, string postSlug);
         LeftSidebarViewModel GetLeftSidebar();
-        RightSidebarViewModel GetRightSidebar();
     }
 }

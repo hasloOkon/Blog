@@ -1,5 +1,5 @@
 body {
-    background: transparent url(images/tlo3.jpg) repeat;
+    background: transparent url(images/background.jpg) repeat;
     font-family: arial;
 }
 
@@ -17,10 +17,11 @@ a:hover {
 }
 
 .content-bg {
-    background-color: gainsboro;
-    border-style: solid;
+    background-color: #F2F2F2;
+    border-style: outset;
     border-width: 4px;
-    border-color: #F5F5F5;
+    border-color: #C0C0C0;
+    border-radius: 5px;
 }
 
 #left-sidebar, #right-sidebar {
@@ -50,11 +51,24 @@ a:hover {
 
 .section-title {
     color: black;
-    border-color: #FF8C00;
-    border-style: dashed;
-    background-color: #F5F5F5;
+    font-weight: bold !important;
 }
 
 .section-title h3 {
     margin: 4px 0;
+    font-weight: bold;
+}
+
+.image-border {
+     border-style: ridge; 
+     border-width: 5px; 
+     border-color: gainsboro;
+}
+
+.pin-list {
+    list-style-image: url(images/pin.png);
+}
+
+input#image-button{
+    background: url(images/spy_glass.png) no-repeat center;
 }

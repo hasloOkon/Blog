@@ -7,5 +7,6 @@ namespace Blog.WebApp.ViewModels
     {
         public IList<Category> Categories { get; set; }
         public IList<Post> LatestPosts { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }
