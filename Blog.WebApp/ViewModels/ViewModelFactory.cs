@@ -82,14 +82,7 @@ namespace Blog.WebApp.ViewModels
             return new LeftSidebarViewModel
             {
                 Categories = blogRepository.Categories(),
-                LatestPosts = blogRepository.Posts(pageNumber: 1, pageSize: PageSize)
-            };
-        }
-
-        public RightSidebarViewModel GetRightSidebar()
-        {
-            return new RightSidebarViewModel
-            {
+                LatestPosts = blogRepository.Posts(pageNumber: 1, pageSize: PageSize),
                 Tags = blogRepository.Tags()
             };
         }
