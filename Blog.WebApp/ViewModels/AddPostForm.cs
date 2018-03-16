@@ -13,6 +13,11 @@ namespace Blog.WebApp.ViewModels
 
         [Required]
         [AllowHtml]
+        [Display(Name = "Krótki opis")]
+        public string ShortDescription { get; set; }
+
+        [Required]
+        [AllowHtml]
         [Display(Name = "Treść")]
         public string Content { get; set; }
 
