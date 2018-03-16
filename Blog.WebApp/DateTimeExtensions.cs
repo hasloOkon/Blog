@@ -7,8 +7,9 @@ namespace Blog.WebApp
     {
         public static string ToConfigLocalTime(this DateTime utcDateTime)
         {
-            var timezoneInfo = TimeZoneInfo.FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
-            return string.Format("{0}", TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString());
+            var timezoneInfo = TimeZoneInfo
+                .FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
+            return $"{TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString()}";
         }
     }
 }

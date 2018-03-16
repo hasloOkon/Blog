@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Blog.Core.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -26,5 +27,9 @@ namespace Blog.WebApp.ViewModels
         public int CategoryId { get; set; }
 
         public IList<int> TagIds { get; set; }
+
+        public IList<Category> Categories { get; set; }
+
+        public IList<Tag> Tags { get; set; }
     }
 }

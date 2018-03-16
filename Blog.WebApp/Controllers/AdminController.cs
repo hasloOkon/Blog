@@ -64,9 +64,11 @@ namespace Blog.WebApp.Controllers
 
         public ActionResult AddPost()
         {
-            ViewData["Categories"] = blogRepository.Categories();
-
-            return View(new AddPostForm());
+            return View(new AddPostForm
+            {
+                Categories = blogRepository.Categories(),
+                Tags = blogRepository.Tags()
+            });
         }
 
         [HttpPost]
@@ -79,8 +81,13 @@ namespace Blog.WebApp.Controllers
                     Title = addPostForm.Title,
                     Content = addPostForm.Content,
                     Published = true,
-                    Category = blogRepository.Categories().First(category => category.Id == addPostForm.CategoryId),
-                    ShortDescription = "test SD",
+                    Category = blogRepository
+                        .Categories()
+                        .First(category => category.Id == addPostForm.CategoryId),
+                    Tags = blogRepository
+                        .Tags()
+                        .Where(tag => addPostForm.TagIds.Contains(tag.Id)).ToList(),
+                    ShortDescription = addPostForm.ShortDescription,
                     PostedOn = DateTime.Now,
                     Meta = "test meta",
                     UrlSlug = "test_url_slug"
@@ -92,7 +99,8 @@ namespace Blog.WebApp.Controllers
             }
             else
             {
-                ViewData["Categories"] = blogRepository.Categories();
+                addPostForm.Categories = blogRepository.Categories();
+                addPostForm.Tags = blogRepository.Tags();
 
                 return View(addPostForm);
             }

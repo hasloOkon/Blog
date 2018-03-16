@@ -1,6 +1,4 @@
-﻿@using Blog.Core.Models
-@using Blog.WebApp.Widgets
-@model Blog.WebApp.ViewModels.AddPostForm
+﻿@model Blog.WebApp.ViewModels.AddPostForm
 
 @{
     ViewBag.Title = "AddPost";
@@ -30,9 +28,11 @@
         </p>
 
         <p>
-            @Html.CategoryDropDownListFor(m => m.CategoryId, (IEnumerable<Category>)ViewData["Categories"])
+            @Html.CategoryDropDownListFor(m => m.CategoryId, Model.Categories)
         </p>
 
+        <p>
+            @Html.TagListBoxFor(m => m.TagIds, Model.Tags)
         <p>
             <input type="submit" value="Add post" />
         </p>

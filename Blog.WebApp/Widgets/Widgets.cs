@@ -8,7 +8,7 @@ using System.Web.Mvc.Html;
 
 namespace Blog.WebApp.Widgets
 {
-    public static class DropDowns
+    public static class Widgets
     {
         public static MvcHtmlString CategoryDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> html,
             Expression<Func<TModel, TProperty>> selector, IEnumerable<Category> categories)
@@ -16,6 +16,14 @@ namespace Blog.WebApp.Widgets
             return html.DropDownListFor(
                 selector,
                 categories.ToSelectList(category => category.Name, category => category.Id));
+        }
+
+        public static MvcHtmlString TagListBoxFor<TModel, TProperty>(this HtmlHelper<TModel> html,
+            Expression<Func<TModel, TProperty>> selector, IEnumerable<Tag> tags)
+        {
+            return html.ListBoxFor(
+                selector,
+                tags.ToSelectList(tag => tag.Name, tag => tag.Id));
         }
 
         private static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> items,
