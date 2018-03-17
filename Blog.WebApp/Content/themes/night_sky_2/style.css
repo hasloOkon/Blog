@@ -72,3 +72,12 @@ a:hover {
 input#image-button{
     background: url(images/spy_glass.png) no-repeat center;
 }
+
+.img-responsive {
+  max-height: 450px;
+}
+
+.post-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

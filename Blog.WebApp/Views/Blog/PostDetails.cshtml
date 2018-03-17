@@ -1,27 +1,33 @@
 ﻿@model Blog.Core.Models.Post
 
-<div id="content">
-    <div class="post">
-        <div class="post-meta">
-            <div class="row">
-                <div class="post-title">
-                    <h2>@Html.PostLink(Model, Model.Title)</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="post-category">
-                    <span>Category: </span>@Html.CategoryLink(Model.Category)
-                </div>
-                <div class="post-tags">
-                    <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
-                </div>
-                <div class="posted-date">
-                    @Model.PostedOn.ToConfigLocalTime()
-                </div>
+@{
+    Layout = "~/Views/Shared/_SideLayout.cshtml";
+}
+
+<div class="post content-bg">
+    <div class="p-4">
+        <div class="row">
+            <div class="col">
+                <h2>@Html.PostLink(Model, Model.Title)</h2>
             </div>
         </div>
-        <div class="post-body">
-            @Html.Raw(Model.Content)
+        <div class="row">
+            <div class="col">
+                <span>Category: </span>@Html.CategoryLink(Model.Category)
+            </div>
+
+            <div class="col-auto text-right">
+                @Model.PostedOn.ToConfigLocalTime()
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
+            </div>
         </div>
     </div>
+    <div class="p-4">
+        @Html.Raw(Model.Content)
+    </div>
 </div>
+
