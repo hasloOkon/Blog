@@ -11,19 +11,23 @@ namespace Blog.WebApp.Widgets
     public static class Widgets
     {
         public static MvcHtmlString CategoryDropDownListFor<TModel, TProperty>(this HtmlHelper<TModel> html,
-            Expression<Func<TModel, TProperty>> selector, IEnumerable<Category> categories)
+            Expression<Func<TModel, TProperty>> selector, IEnumerable<Category> categories,
+            IDictionary<string, object> htmlAttributes = null)
         {
             return html.DropDownListFor(
                 selector,
-                categories.ToSelectList(category => category.Name, category => category.Id));
+                categories.ToSelectList(category => category.Name, category => category.Id),
+                htmlAttributes ?? new Dictionary<string, object>());
         }
 
         public static MvcHtmlString TagListBoxFor<TModel, TProperty>(this HtmlHelper<TModel> html,
-            Expression<Func<TModel, TProperty>> selector, IEnumerable<Tag> tags)
+            Expression<Func<TModel, TProperty>> selector, IEnumerable<Tag> tags,
+            IDictionary<string, object> htmlAttributes = null)
         {
             return html.ListBoxFor(
                 selector,
-                tags.ToSelectList(tag => tag.Name, tag => tag.Id));
+                tags.ToSelectList(tag => tag.Name, tag => tag.Id),
+                htmlAttributes ?? new Dictionary<string, object>());
         }
 
         private static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> items,

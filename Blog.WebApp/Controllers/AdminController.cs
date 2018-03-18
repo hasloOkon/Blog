@@ -1,8 +1,10 @@
 ﻿using Blog.Core;
 using Blog.Core.Models;
+using Blog.Core.Utility;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -74,13 +76,15 @@ namespace Blog.WebApp.Controllers
         [HttpPost]
         public ActionResult AddPost(AddPostForm addPostForm)
         {
+            addPostForm.TagIds = addPostForm.TagIds ?? new List<int>();
+
             if (ModelState.IsValid)
             {
                 var post = new Post
                 {
                     Title = addPostForm.Title,
                     Content = addPostForm.Content,
-                    Published = true,
+                    Published = addPostForm.Published,
                     Category = blogRepository
                         .Categories()
                         .First(category => category.Id == addPostForm.CategoryId),
@@ -90,7 +94,7 @@ namespace Blog.WebApp.Controllers
                     ShortDescription = addPostForm.ShortDescription,
                     PostedOn = DateTime.Now,
                     Meta = "test meta",
-                    UrlSlug = "test_url_slug"
+                    UrlSlug = addPostForm.Title.Slugify()
                 };
 
                 blogRepository.AddPost(post);
