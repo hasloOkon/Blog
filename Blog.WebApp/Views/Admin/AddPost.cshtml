@@ -5,44 +5,76 @@
 }
 
 <div class="content-bg">
-    <h2>AddPost</h2>
+    <h2 class="m-2">Nowy post</h2>
 
-    @using (Html.BeginForm("AddPost", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("AddPost", "Admin", FormMethod.Post, Html.Attributes()
+        .Id(".form-horizontal")
+        .Class("align-middle")))
     {
-    <fieldset>
-        <legend>Add Post</legend>
-        <p>
-            @Html.LabelFor(m => m.Title)
-            @Html.TextBoxFor(m => m.Title)
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Title, Html.Attributes()
+                .Id("control-label")
+                .Class("col-2"))
+            @Html.TextBoxFor(m => m.Title, Html.Attributes()
+                .Class("col-8"))
             @Html.ValidationMessageFor(m => m.Title)
-        </p>
+        </div>
 
-        <p>
-            @Html.LabelFor(m => m.ShortDescription)
-            @Html.TextAreaFor(m => m.ShortDescription, htmlAttributes: new { id = "short-description-editor" })
-        </p>
-
-        <p>
-            @Html.LabelFor(m => m.Content)
-            @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "content-editor" })
-        </p>
-
-        <p>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.CategoryId, Html.Attributes()
+                .Id("control-label")
+                .Class("col-2"))
             @Html.CategoryDropDownListFor(m => m.CategoryId, Model.Categories)
-        </p>
+        </div>
 
-        <p>
-            @Html.TagListBoxFor(m => m.TagIds, Model.Tags)
-        <p>
-            <input type="submit" value="Add post" />
-        </p>
-    </fieldset>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.TagIds, Html.Attributes()
+                .Id("control-label")
+                .Class("col-2"))
+            @Html.TagListBoxFor(m => m.TagIds, Model.Tags, Html.Attributes()
+                .Class("col-8"))
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ShortDescription, Html.Attributes()
+                 .Id("control-label")
+                 .Class("col-2"))
+            @Html.TextAreaFor(m => m.ShortDescription, Html.Attributes()
+                 .Id("short-description-editor")
+                 .Class("col-8"))
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Content, Html.Attributes()
+                .Id("control-label")
+                .Class("col-2"))
+            @Html.TextAreaFor(m => m.Content, Html.Attributes()
+                .Id("content-editor")
+                .Class("col-8"))
+        </div>
+
+        <div class="form-group row">
+            @Html.CheckBoxFor(m => m.Published, Html.Attributes()
+                .Class("col-8 offset-2"))
+            @Html.LabelFor(m => m.Published, Html.Attributes()
+                .Class("col-8 offset-2"))
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn">Submit</button>
+        </div>
     }
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#short-description-editor').summernote();
-        $('#content-editor').summernote();
+        $('#short-description-editor').summernote({
+            height: 100,
+            followingToolbar: false
+        });
+        $('#content-editor').summernote({
+            height: 300,
+            followingToolbar: false
+        });
     });
 </script>

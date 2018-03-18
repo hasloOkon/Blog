@@ -22,10 +22,13 @@ namespace Blog.WebApp.ViewModels
         [Display(Name = "Treść")]
         public string Content { get; set; }
 
+        [Display(Name = "Opublikowany")]
         public bool Published { get; set; }
 
+        [Display(Name = "Kategoria")]
         public int CategoryId { get; set; }
 
+        [Display(Name = "Tagi")]
         public IList<int> TagIds { get; set; }
 
         public IList<Category> Categories { get; set; }
