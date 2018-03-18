@@ -155,5 +155,14 @@ namespace Blog.Core
                 transaction.Commit();
             }
         }
+
+        public void AddCategory(Category category)
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                session.Save(category);
+                transaction.Commit();
+            }
+        }
     }
 }
