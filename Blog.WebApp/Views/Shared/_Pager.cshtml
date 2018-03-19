@@ -26,27 +26,27 @@
             @if (Model.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a href="@getPageUrl(1)" class="page-link content-bg">Pierwsza</a>
+                    <a href="@getPageUrl(1)" class="page-link">Pierwsza</a>
                 </li>
                 <li class="page-item">
-                    <a href="@getPageUrl(Model.CurrentPage - 1)" class="page-link content-bg"><<</a>
+                    <a href="@getPageUrl(Model.CurrentPage - 1)" class="page-link"><<</a>
                 </li>
             }
 
             @for (var pageNumber = Model.StartPage; pageNumber <= Model.EndPage; pageNumber++)
             {
                 <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")">
-                    <a href="@getPageUrl(pageNumber)" class="page-link content-bg">@pageNumber</a>
+                    <a href="@getPageUrl(pageNumber)" class="page-link">@pageNumber</a>
                 </li>
             }
 
             @if (Model.CurrentPage < Model.TotalPages)
             {
                 <li class="page-item">
-                    <a href="@getPageUrl(Model.CurrentPage + 1)" class="page-link content-bg">>></a>
+                    <a href="@getPageUrl(Model.CurrentPage + 1)" class="page-link">>></a>
                 </li>
                 <li class="page-item">
-                    <a href="@getPageUrl(Model.TotalPages)" class="page-link content-bg">Ostatnia</a>
+                    <a href="@getPageUrl(Model.TotalPages)" class="page-link">Ostatnia</a>
                 </li>
             }
         </ul>

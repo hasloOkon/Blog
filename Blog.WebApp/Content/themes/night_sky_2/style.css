@@ -33,9 +33,12 @@ a:hover {
 }
 
 .btn.btn-primary, .pagination .page-item .page-link {
-    color: #FF8C00;
+    color: black;
+    border-color: #C0C0C0;
+    background-color: #F2F2F2;
+    border-width: 2px;
     font-weight: bold;
-    border-radius: 0;
+    border-radius: 2px;
 }
 
 .pagination .page-item .page-link {
@@ -44,7 +47,7 @@ a:hover {
 }
 
 .btn.btn-primary:hover, .pagination .page-item.active .page-link, .pagination .page-item .page-link:hover{
-    color: black;
+    color: white;
     background-color: #FF8C00;
     border-color: #F5F5F5;
 }
@@ -69,7 +72,7 @@ a:hover {
     list-style-image: url(images/pin.png);
 }
 
-input#image-button{
+input #image-button{
     background: url(images/spy_glass.png) no-repeat center;
 }
 

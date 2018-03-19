@@ -25,5 +25,7 @@ namespace Blog.Core
         IList<Tag> Tags();
 
         void AddPost(Post post);
+
+        void AddCategory(Category category);
     }
 }

@@ -209,6 +209,7 @@
     <Compile Include="Providers\ILoginProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="ViewModels\AddPostForm.cs" />
+    <Compile Include="ViewModels\AddCategoryForm.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PagerViewModel.cs" />
