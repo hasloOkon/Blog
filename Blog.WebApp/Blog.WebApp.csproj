@@ -210,6 +210,7 @@
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="ViewModels\AddPostForm.cs" />
     <Compile Include="ViewModels\AddCategoryForm.cs" />
+    <Compile Include="ViewModels\AddTagForm.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PagerViewModel.cs" />
@@ -238,7 +239,8 @@
     <Content Include="Scripts\external\jquery-3.3.1.min.map" />
     <Content Include="Scripts\external\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
-	<Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\AddTag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -137,6 +137,33 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        public ActionResult AddTag()
+        {
+            return View(new AddTagForm());
+        }
+
+        [HttpPost]
+        public ActionResult AddTag(AddTagForm addTagForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var tag = new Tag()
+                {
+                    Name = addTagForm.Name,
+                    Description = addTagForm.Description,
+                    UrlSlug = addTagForm.Name.Slugify()
+                };
+
+                blogRepository.AddTag(tag);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                return View(addTagForm);
+            }
+        }
+
         private ActionResult RedirectToUrl(string returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
