@@ -72,7 +72,7 @@ a:hover {
     list-style-image: url(images/pin.png);
 }
 
-input #image-button{
+#search-button{
     background: url(images/spy_glass.png) no-repeat center;
 }
 

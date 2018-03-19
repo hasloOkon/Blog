@@ -7,16 +7,17 @@ using System.Web.Mvc;
 
 namespace Blog.WebApp.ViewModels
 {
-    public class AddCategoryForm
+    public class AddTagForm
     {
         [Required]
         [StringLength(500)]
-        [Display(Name = "Nazwa kategorii")]
-        public string Name { get; set; }
+        [Display(Name = "Nazwa taga")]
+        public string Name
+        { get; set; }
 
         [AllowHtml]
-        [Display(Name = "Opis kategorii")]
-        public virtual string Description
+        [Display(Name = "Opis taga")]
+        public string Description
         { get; set; }
     }
 }

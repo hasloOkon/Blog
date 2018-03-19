@@ -27,5 +27,7 @@ namespace Blog.Core
         void AddPost(Post post);
 
         void AddCategory(Category category);
+
+        void AddTag(Tag tag);
     }
 }

@@ -164,5 +164,14 @@ namespace Blog.Core
                 transaction.Commit();
             }
         }
+
+        public void AddTag(Tag tag)
+        {
+            using (var transaction = session.BeginTransaction())
+            {
+                session.Save(tag);
+                transaction.Commit();
+            }
+        }
     }
 }
