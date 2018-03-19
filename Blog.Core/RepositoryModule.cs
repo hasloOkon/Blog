@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cache;
+using NHibernate.Tool.hbm2ddl;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;

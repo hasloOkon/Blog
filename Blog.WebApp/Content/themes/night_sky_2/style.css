@@ -68,6 +68,10 @@ a:hover {
      border-color: gainsboro;
 }
 
+li {
+    list-style-type: none;
+}
+
 .pin-list {
     list-style-image: url(images/pin.png);
 }
@@ -83,4 +87,11 @@ a:hover {
 .post-title {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.category-image-link img {
+    width: 100% !important;
+    border-style: ridge; 
+    border-width: 5px; 
+    border-color: gainsboro;
 }

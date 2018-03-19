@@ -18,7 +18,7 @@ namespace Blog.Core.Mappings
                 .Not.Nullable();
 
             Map(category => category.Description)
-                .Length(200);
+                .Length(5000);
 
             HasMany(category => category.Posts)
                 .Inverse()

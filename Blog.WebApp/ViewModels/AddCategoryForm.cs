@@ -16,7 +16,6 @@ namespace Blog.WebApp.ViewModels
 
         [AllowHtml]
         [Display(Name = "Opis kategorii")]
-        public virtual string Description
-        { get; set; }
+        public string Description { get; set; }
     }
 }
