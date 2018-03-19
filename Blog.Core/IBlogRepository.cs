@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
+using System.Collections.Generic;
 
 namespace Blog.Core
 {
@@ -24,10 +24,12 @@ namespace Blog.Core
         IList<Category> Categories();
         IList<Tag> Tags();
 
-        void AddPost(Post post);
+        void AddOrUpdatePost(Post post);
 
         void AddCategory(Category category);
 
         void AddTag(Tag tag);
+
+        Post GetPostById(int id);
     }
 }

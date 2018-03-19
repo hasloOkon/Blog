@@ -211,6 +211,7 @@
     <Compile Include="ViewModels\AddPostForm.cs" />
     <Compile Include="ViewModels\AddCategoryForm.cs" />
     <Compile Include="ViewModels\AddTagForm.cs" />
+    <Compile Include="ViewModels\EditPostForm.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PagerViewModel.cs" />
@@ -241,6 +242,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Admin\AddCategory.cshtml" />
     <Content Include="Views\Admin\AddTag.cshtml" />
+    <Content Include="Views\Admin\EditPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

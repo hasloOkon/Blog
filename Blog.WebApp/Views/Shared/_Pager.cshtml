@@ -3,34 +3,39 @@
 @{
     Func<int, string> getPageUrl = pageNumber =>
     {
-        var pageAction = string.Format("pageNumber={0}", pageNumber);
+        var searchInterfix = ViewContext.RouteData.Values["action"].ToString()
+            .Equals("search", StringComparison.OrdinalIgnoreCase)
+            ? string.Format("searchPhrase={0}&",
+                ViewContext.RequestContext.HttpContext.Request.QueryString["searchPhrase"])
+            : string.Empty;
 
-        if (ViewContext.RouteData.Values["action"].ToString()
-        .Equals("search", StringComparison.OrdinalIgnoreCase))
-        {
-            var searchActionPrefix = string.Format("searchPhrase={0}", 
-                ViewContext.RequestContext.HttpContext.Request.QueryString["searchPhrase"]);
-            pageAction = string.Format("{0}&{1}", searchActionPrefix, pageAction);
-        }
-
-        pageAction = string.Format("?{0}", pageAction);
-
-        return pageAction;
+        return string.Format("?{0}pageNumber={1}", searchInterfix, pageNumber);
     };
 }
 
 <div>
     @if (Model.EndPage > 1)
     {
-        <ul class="pagination justify-content-center mt-2 mb-2">
+        <ul class="pagination justify-content-center mt-2 mb-2 w-100">
+
             @if (Model.CurrentPage > 1)
             {
-                <li class="page-item">
-                    <a href="@getPageUrl(1)" class="page-link">Pierwsza</a>
+                <li class="page-item mr-2">
+                    <a href="@getPageUrl(Model.CurrentPage - 1)" class="page-link"><</a>
                 </li>
+            }
+
+            @if (Model.StartPage > 1)
+            {
                 <li class="page-item">
-                    <a href="@getPageUrl(Model.CurrentPage - 1)" class="page-link"><<</a>
+                    <a href="@getPageUrl(1)" class="page-link">1</a>
                 </li>
+                if (Model.StartPage > 2)
+                {
+                    <li class="page-item">
+                        <div class="page-link">...</div>
+                    </li>
+                }
             }
 
             @for (var pageNumber = Model.StartPage; pageNumber <= Model.EndPage; pageNumber++)
@@ -40,15 +45,25 @@
                 </li>
             }
 
+            @if (Model.EndPage < Model.TotalPages)
+            {
+                if (Model.EndPage + 1 < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <div class="page-link">...</div>
+                    </li>
+                }
+                <li class="page-item">
+                    <a href="@getPageUrl(Model.TotalPages)" class="page-link">@Model.TotalPages</a>
+                </li>
+            }
+
             @if (Model.CurrentPage < Model.TotalPages)
             {
-                <li class="page-item">
-                    <a href="@getPageUrl(Model.CurrentPage + 1)" class="page-link">>></a>
-                </li>
-                <li class="page-item">
-                    <a href="@getPageUrl(Model.TotalPages)" class="page-link">Ostatnia</a>
+                <li class="page-item ml-2">
+                    <a href="@getPageUrl(Model.CurrentPage + 1)" class="page-link">></a>
                 </li>
             }
         </ul>
-    }
+     }
 </div>

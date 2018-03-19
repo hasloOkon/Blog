@@ -97,7 +97,7 @@ namespace Blog.WebApp.Controllers
                     UrlSlug = addPostForm.Title.Slugify()
                 };
 
-                blogRepository.AddPost(post);
+                blogRepository.AddOrUpdatePost(post);
 
                 return RedirectToAction("Posts", "Blog");
             }
@@ -107,6 +107,61 @@ namespace Blog.WebApp.Controllers
                 addPostForm.Tags = blogRepository.Tags();
 
                 return View(addPostForm);
+            }
+        }
+
+        public ActionResult EditPost(int postId)
+        {
+            var post = blogRepository.GetPostById(postId);
+
+            return View(new EditPostForm
+            {
+                Id = postId,
+                Title = post.Title,
+                Content = post.Content,
+                Published = post.Published,
+                CategoryId = post.Category.Id,
+                TagIds = post.Tags.Select(tag => tag.Id).ToList(),
+                ShortDescription = post.ShortDescription,
+
+                Categories = blogRepository.Categories(),
+                Tags = blogRepository.Tags()
+            });
+        }
+
+        [HttpPost]
+        public ActionResult EditPost(EditPostForm editPostForm)
+        {
+            editPostForm.TagIds = editPostForm.TagIds ?? new List<int>();
+
+            if (ModelState.IsValid)
+            {
+                var post = blogRepository.GetPostById(editPostForm.Id);
+
+                post.Title = editPostForm.Title;
+                post.Content = editPostForm.Content;
+                post.Published = editPostForm.Published;
+                post.Category = blogRepository
+                    .Categories()
+                    .First(category => category.Id == editPostForm.CategoryId);
+                post.Tags = blogRepository
+                    .Tags()
+                    .Where(tag => editPostForm.TagIds.Contains(tag.Id)).ToList();
+                post.ShortDescription = editPostForm.ShortDescription;
+                post.Modified = DateTime.Now;
+                post.Meta = "test meta";
+                post.UrlSlug = editPostForm.Title.Slugify();
+
+                blogRepository.AddOrUpdatePost(post);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                editPostForm.Categories = blogRepository.Categories();
+                editPostForm.Tags = blogRepository.Tags();
+
+                return View(editPostForm);
             }
         }
 

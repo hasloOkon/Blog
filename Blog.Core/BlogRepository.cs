@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
 using NHibernate;
 using NHibernate.Linq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.Core
 {
@@ -147,11 +147,11 @@ namespace Blog.Core
             return session.Query<Tag>().ToList();
         }
 
-        public void AddPost(Post post)
+        public void AddOrUpdatePost(Post post)
         {
             using (var transaction = session.BeginTransaction())
             {
-                session.Save(post);
+                session.SaveOrUpdate(post);
                 transaction.Commit();
             }
         }
@@ -172,6 +172,11 @@ namespace Blog.Core
                 session.Save(tag);
                 transaction.Commit();
             }
+        }
+
+        public Post GetPostById(int id)
+        {
+            return session.Query<Post>().First(post => post.Id == id);
         }
     }
 }
