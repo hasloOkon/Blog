@@ -1,0 +1,43 @@
+﻿@model Blog.WebApp.ViewModels.AddCategoryForm
+
+@{
+    ViewBag.Title = "AddCategory";
+}
+
+<div class="content-bg p-5">
+    <h2>Nowa kategoria</h2>
+
+    @using (Html.BeginForm("AddCategory", "Admin", FormMethod.Post))
+    {
+        <div class="row mt-4">
+            @Html.LabelFor(m => m.Name)
+        </div>
+        <div class="row">
+            @Html.TextBoxFor(m => m.Name, Html.Attributes().Class("form-control col-12"))
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="row mt-4">
+            @Html.LabelFor(m => m.Description)
+        </div>
+        <div class="row">
+            <div class="w-100">
+                @Html.TextAreaFor(m => m.Description, Html.Attributes()
+                    .Id("short-description-editor"))
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn">Submit</button>
+        </div>
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#short-description-editor').summernote({
+            height: 100,
+            followingToolbar: false
+        });
+    });
+</script>
+

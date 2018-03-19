@@ -110,6 +110,33 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        public ActionResult AddCategory()
+        {
+            return View(new AddCategoryForm());
+        }
+
+        [HttpPost]
+        public ActionResult AddCategory(AddCategoryForm addCategoryForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var category = new Category
+                {
+                    Name = addCategoryForm.Name,
+                    Description = addCategoryForm.Description,
+                    UrlSlug = addCategoryForm.Name.Slugify()
+                };
+
+                blogRepository.AddCategory(category);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                return View(addCategoryForm);
+            }
+        }
+
         private ActionResult RedirectToUrl(string returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
