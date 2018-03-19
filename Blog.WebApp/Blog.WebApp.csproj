@@ -223,7 +223,6 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Blog\_ViewStart.cshtml" />
     <Content Include="Views\Blog\Posts.cshtml" />
     <Content Include="Views\Shared\_PostTemplate.cshtml" />
     <Content Include="App_Code\Helpers.cshtml" />
@@ -237,8 +236,7 @@
     <Content Include="Scripts\external\summernote-bs4.js.map" />
     <Content Include="Scripts\external\jquery-3.3.1.min.map" />
     <Content Include="Scripts\external\jquery-3.3.1.slim.min.map" />
-    <Content Include="Views\Shared\_SideLayout.cshtml" />
-    <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
