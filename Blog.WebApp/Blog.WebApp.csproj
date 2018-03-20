@@ -213,6 +213,7 @@
     <Compile Include="ViewModels\AddPostForm.cs" />
     <Compile Include="ViewModels\AddCategoryForm.cs" />
     <Compile Include="ViewModels\AddTagForm.cs" />
+    <Compile Include="ViewModels\EditCategoryForm.cs" />
     <Compile Include="ViewModels\EditPostForm.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
@@ -248,6 +249,7 @@
     <Content Include="Views\Admin\EditPost.cshtml" />
     <Content Include="Views\Admin\Images.cshtml" />
     <Content Include="Views\Shared\_AddImage.cshtml" />
+    <Content Include="Views\Admin\EditCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -204,13 +204,46 @@ namespace Blog.WebApp.Controllers
                     UrlSlug = addCategoryForm.Name.Slugify()
                 };
 
-                blogRepository.AddCategory(category);
+                blogRepository.AddOrUpdateCategory(category);
 
                 return RedirectToAction("Posts", "Blog");
             }
             else
             {
                 return View(addCategoryForm);
+            }
+        }
+
+        public ActionResult EditCategory(int categoryId)
+        {
+            var category = blogRepository.GetCategoryById(categoryId);
+
+            return View(new EditCategoryForm
+            {
+                Id = categoryId,
+                Name = category.Name,
+                Description = category.Description
+            });
+        }
+
+        [HttpPost]
+        public ActionResult EditCategory(EditCategoryForm editCategoryForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var category = blogRepository.GetCategoryById(editCategoryForm.Id);
+
+                category.Name = editCategoryForm.Name;
+                category.Description = editCategoryForm.Description;
+                category.UrlSlug = editCategoryForm.Name.Slugify();
+
+                blogRepository.AddOrUpdateCategory(category);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                return View(editCategoryForm);
             }
         }
 
