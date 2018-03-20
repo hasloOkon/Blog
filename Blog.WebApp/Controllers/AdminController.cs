@@ -80,7 +80,7 @@ namespace Blog.WebApp.Controllers
         {
             if (image != null)
             {
-                imageProvider.SavePostedImage(image, Server);
+                imageProvider.SavePostedImage(image);
             }
 
             return RedirectToAction("Images");

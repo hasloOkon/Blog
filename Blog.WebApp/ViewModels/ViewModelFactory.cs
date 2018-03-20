@@ -11,14 +11,11 @@ namespace Blog.WebApp.ViewModels
     {
         private const int PageSize = 3;
         private readonly IBlogRepository blogRepository;
-        private readonly IImageRepository imageRepository;
         private readonly IImageProvider imageProvider;
 
-        public ViewModelFactory(IBlogRepository blogRepository, IImageRepository imageRepository,
-            IImageProvider imageProvider)
+        public ViewModelFactory(IBlogRepository blogRepository, IImageProvider imageProvider)
         {
             this.blogRepository = blogRepository;
-            this.imageRepository = imageRepository;
             this.imageProvider = imageProvider;
         }
 
@@ -97,17 +94,13 @@ namespace Blog.WebApp.ViewModels
 
         public IList<ImageViewModel> GetImages()
         {
-            var images = imageRepository.Images().ToList();
-
-            var imageViewModels = images
+            return imageProvider.GetImages()
                 .Select(image => new ImageViewModel
                 {
                     Id = image.Id,
                     ImagePath = imageProvider.GetImageUrl(image),
                     ThumbnailPath = imageProvider.GetThumbnailUrl(image)
                 }).ToList();
-
-            return imageViewModels;
         }
     }
 }

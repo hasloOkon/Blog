@@ -1,13 +1,13 @@
 ﻿<h2 class="col-12">Nowa grafika</h2>
-@using (var form = Html.BeginForm("AddImage", "Admin", FormMethod.Post, 
+@using (Html.BeginForm("AddImage", "Admin", FormMethod.Post, 
     new { enctype = "multipart/form-data" }))
 {
-<div class="form-group">
-    <div class="col">
-        <input name="image" type="file" />
+    <div class="form-group">
+        <div class="col">
+            <input name="image" type="file" />
+        </div>
+        <div class="col-auto">
+            <input type="submit" value="Prześlij" />
+        </div>
     </div>
-    <div class="col-auto">
-        <input type="submit" value="Prześlij" />
-    </div>
-</div>
 }

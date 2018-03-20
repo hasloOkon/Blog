@@ -223,7 +223,6 @@
     <Compile Include="ViewModels\LeftSidebarViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
-    <Compile Include="Widgets\HtmlAttributes.cs" />
     <Compile Include="Widgets\Widgets.cs" />
   </ItemGroup>
   <ItemGroup>
