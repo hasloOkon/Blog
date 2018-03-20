@@ -264,13 +264,46 @@ namespace Blog.WebApp.Controllers
                     UrlSlug = addTagForm.Name.Slugify()
                 };
 
-                blogRepository.AddTag(tag);
+                blogRepository.AddOrUpdateTag(tag);
 
                 return RedirectToAction("Posts", "Blog");
             }
             else
             {
                 return View(addTagForm);
+            }
+        }
+
+        public ActionResult EditTag(int tagId)
+        {
+            var category = blogRepository.GetTagById(tagId);
+
+            return View(new EditTagForm
+            {
+                Id = tagId,
+                Name = category.Name,
+                Description = category.Description
+            });
+        }
+
+        [HttpPost]
+        public ActionResult EditTag(EditTagForm editTagForm)
+        {
+            if (ModelState.IsValid)
+            {
+                var tag = blogRepository.GetTagById(editTagForm.Id);
+
+                tag.Name = editTagForm.Name;
+                tag.Description = editTagForm.Description;
+                tag.UrlSlug = editTagForm.Name.Slugify();
+
+                blogRepository.AddOrUpdateTag(tag);
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                return View(editTagForm);
             }
         }
 

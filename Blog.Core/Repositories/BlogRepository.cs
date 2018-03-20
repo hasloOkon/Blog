@@ -166,7 +166,7 @@ namespace Blog.Core.Repositories
             }
         }
 
-        public void AddTag(Tag tag)
+        public void AddOrUpdateTag(Tag tag)
         {
             using (var transaction = session.BeginTransaction())
             {
@@ -183,6 +183,11 @@ namespace Blog.Core.Repositories
         public Category GetCategoryById(int id)
         {
             return session.Query<Category>().First(category => category.Id == id);
+        }
+
+        public Tag GetTagById(int id)
+        {
+            return session.Query<Tag>().First(tag => tag.Id == id);
         }
     }
 }

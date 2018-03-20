@@ -215,6 +215,7 @@
     <Compile Include="ViewModels\AddTagForm.cs" />
     <Compile Include="ViewModels\EditCategoryForm.cs" />
     <Compile Include="ViewModels\EditPostForm.cs" />
+    <Compile Include="ViewModels\EditTagForm.cs" />
     <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -249,6 +250,7 @@
     <Content Include="Views\Admin\Images.cshtml" />
     <Content Include="Views\Shared\_AddImage.cshtml" />
     <Content Include="Views\Admin\EditCategory.cshtml" />
+    <Content Include="Views\Admin\EditTag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

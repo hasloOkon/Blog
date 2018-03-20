@@ -1,13 +1,13 @@
-﻿@model Blog.WebApp.ViewModels.EditCategoryForm
+﻿@model Blog.WebApp.ViewModels.EditTagForm
 
 @{
-    ViewBag.Title = "Edycja kategorii";
+    ViewBag.Title = "Edytuj taga";
 }
 
 <div class="content-bg p-5">
-    <h2>Edytuj kategorię</h2>
+    <h2>Edytuj taga</h2>
 
-    @using (Html.BeginForm("EditCategory", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("EditTag", "Admin", FormMethod.Post))
     {
         @Html.HiddenFor(m => m.Id)
 
@@ -32,14 +32,4 @@
         </div>
     }
 </div>
-
-
-<script>
-    $(document).ready(function () {
-        $('#short-description-editor').summernote({
-            height: 100,
-            followingToolbar: false
-        });
-    });
-</script>
 

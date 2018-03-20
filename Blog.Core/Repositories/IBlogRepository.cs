@@ -28,10 +28,12 @@ namespace Blog.Core.Repositories
 
         void AddOrUpdateCategory(Category category);
 
-        void AddTag(Tag tag);
+        void AddOrUpdateTag(Tag tag);
 
         Post GetPostById(int id);
 
         Category GetCategoryById(int id);
+
+        Tag GetTagById(int id);
     }
 }
