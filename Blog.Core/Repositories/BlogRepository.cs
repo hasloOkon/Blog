@@ -4,7 +4,7 @@ using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Blog.Core
+namespace Blog.Core.Repositories
 {
     public class BlogRepository : IBlogRepository
     {

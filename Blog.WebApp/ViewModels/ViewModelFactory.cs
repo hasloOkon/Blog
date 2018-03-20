@@ -1,6 +1,9 @@
-﻿using System.Web;
-using Blog.Core;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
+using Blog.Core.Repositories;
+using Blog.WebApp.Providers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
 namespace Blog.WebApp.ViewModels
 {
@@ -8,10 +11,15 @@ namespace Blog.WebApp.ViewModels
     {
         private const int PageSize = 3;
         private readonly IBlogRepository blogRepository;
+        private readonly IImageRepository imageRepository;
+        private readonly IImageProvider imageProvider;
 
-        public ViewModelFactory(IBlogRepository blogRepository)
+        public ViewModelFactory(IBlogRepository blogRepository, IImageRepository imageRepository,
+            IImageProvider imageProvider)
         {
             this.blogRepository = blogRepository;
+            this.imageRepository = imageRepository;
+            this.imageProvider = imageProvider;
         }
 
         public PostsViewModel GetPosts(int pageNumber)
@@ -41,7 +49,7 @@ namespace Blog.WebApp.ViewModels
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Ostatnie posty dla kategorii \"{category.Name}\":"
             };
-        }   
+        }
 
         public PostsViewModel GetPostsForTag(string tagSlug, int pageNumber)
         {
@@ -85,6 +93,21 @@ namespace Blog.WebApp.ViewModels
                 LatestPosts = blogRepository.Posts(pageNumber: 1, pageSize: PageSize),
                 Tags = blogRepository.Tags()
             };
+        }
+
+        public IList<ImageViewModel> GetImages()
+        {
+            var images = imageRepository.Images().ToList();
+
+            var imageViewModels = images
+                .Select(image => new ImageViewModel
+                {
+                    Id = image.Id,
+                    ImagePath = imageProvider.GetImageUrl(image),
+                    ThumbnailPath = imageProvider.GetThumbnailUrl(image)
+                }).ToList();
+
+            return imageViewModels;
         }
     }
 }

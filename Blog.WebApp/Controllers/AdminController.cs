@@ -1,11 +1,12 @@
-﻿using Blog.Core;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
+using Blog.Core.Repositories;
 using Blog.Core.Utility;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Blog.WebApp.Controllers
@@ -14,12 +15,17 @@ namespace Blog.WebApp.Controllers
     public class AdminController : Controller
     {
         private readonly ILoginProvider loginProvider;
+        private readonly IImageProvider imageProvider;
         private readonly IBlogRepository blogRepository;
+        private readonly IViewModelFactory viewModelFactory;
 
-        public AdminController(ILoginProvider loginProvider, IBlogRepository blogRepository)
+        public AdminController(ILoginProvider loginProvider, IImageProvider imageProvider,
+            IBlogRepository blogRepository, IViewModelFactory viewModelFactory)
         {
             this.loginProvider = loginProvider;
+            this.imageProvider = imageProvider;
             this.blogRepository = blogRepository;
+            this.viewModelFactory = viewModelFactory;
         }
 
         [AllowAnonymous]
@@ -62,6 +68,22 @@ namespace Blog.WebApp.Controllers
         public ActionResult Manage()
         {
             return View();
+        }
+
+        public ActionResult Images()
+        {
+            return View(viewModelFactory.GetImages());
+        }
+
+        [HttpPost]
+        public ActionResult AddImage(HttpPostedFileBase image)
+        {
+            if (image != null)
+            {
+                imageProvider.SavePostedImage(image, Server);
+            }
+
+            return RedirectToAction("Images");
         }
 
         public ActionResult AddPost()

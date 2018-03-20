@@ -1,10 +1,10 @@
-﻿using System.Web.Optimization;
-using System.Web.Routing;
-using Blog.Core;
+﻿using Blog.Core;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
 using Ninject;
 using Ninject.Web.Common;
+using System.Web.Optimization;
+using System.Web.Routing;
 
 namespace Blog.WebApp
 {
@@ -17,6 +17,7 @@ namespace Blog.WebApp
             kernel.Load(new RepositoryModule());
             kernel.Bind<IViewModelFactory>().To<ViewModelFactory>();
             kernel.Bind<ILoginProvider>().To<LoginProvider>();
+            kernel.Bind<IImageProvider>().To<ImageProvider>();
 
             return kernel;
         }

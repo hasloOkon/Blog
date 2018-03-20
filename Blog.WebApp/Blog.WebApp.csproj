@@ -206,12 +206,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Providers\IImageProvider.cs" />
     <Compile Include="Providers\ILoginProvider.cs" />
+    <Compile Include="Providers\ImageProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="ViewModels\AddPostForm.cs" />
     <Compile Include="ViewModels\AddCategoryForm.cs" />
     <Compile Include="ViewModels\AddTagForm.cs" />
     <Compile Include="ViewModels\EditPostForm.cs" />
+    <Compile Include="ViewModels\ImageViewModel.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PagerViewModel.cs" />
@@ -243,6 +246,8 @@
     <Content Include="Views\Admin\AddCategory.cshtml" />
     <Content Include="Views\Admin\AddTag.cshtml" />
     <Content Include="Views\Admin\EditPost.cshtml" />
+    <Content Include="Views\Admin\Images.cshtml" />
+    <Content Include="Views\Shared\_AddImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -252,6 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\uploads\originals\" />
+    <Folder Include="Content\uploads\thumbnails\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Core\Blog.Core.csproj">

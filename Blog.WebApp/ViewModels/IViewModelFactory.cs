@@ -1,4 +1,5 @@
 ﻿using Blog.Core.Models;
+using System.Collections.Generic;
 
 namespace Blog.WebApp.ViewModels
 {
@@ -10,5 +11,6 @@ namespace Blog.WebApp.ViewModels
         PostsViewModel GetPostsBySearch(string searchPhrase, int pageNumber);
         Post GetPostDetails(int year, int month, string postSlug);
         LeftSidebarViewModel GetLeftSidebar();
+        IList<ImageViewModel> GetImages();
     }
 }
