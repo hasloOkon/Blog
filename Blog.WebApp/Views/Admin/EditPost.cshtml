@@ -15,7 +15,7 @@
             @Html.LabelFor(m => m.Title)
         </div>
         <div class="row">
-            @Html.TextBoxFor(m => m.Title, Html.Attributes().Class("form-control col-12"))
+            @Html.TextBoxFor(m => m.Title, htmlAttributes: new { @class = "form-control col-12" })
             @Html.ValidationMessageFor(m => m.Title)
         </div>
 
@@ -38,8 +38,7 @@
         </div>
         <div class="row">
             <div class="w-100">
-                @Html.TextAreaFor(m => m.ShortDescription, Html.Attributes()
-                              .Id("short-description-editor"))
+                @Html.TextAreaFor(m => m.ShortDescription, htmlAttributes: new { id = "short-description-editor" })
             </div>
         </div>
 
@@ -48,8 +47,7 @@
         </div>
         <div class="row">
             <div class="w-100">
-                @Html.TextAreaFor(m => m.Content, Html.Attributes()
-                          .Id("content-editor"))
+                @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "content-editor" })
             </div>
         </div>
 

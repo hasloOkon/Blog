@@ -1,6 +1,8 @@
 ﻿using Blog.Core.Repositories;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using Image = Blog.Core.Models.Image;
 using SystemImage = System.Drawing.Image;
@@ -10,13 +12,14 @@ namespace Blog.WebApp.Providers
     public class ImageProvider : IImageProvider
     {
         private readonly IImageRepository imageRepository;
+        private static HttpServerUtility Server => HttpContext.Current.Server;
 
         public ImageProvider(IImageRepository imageRepository)
         {
             this.imageRepository = imageRepository;
         }
 
-        public void SavePostedImage(HttpPostedFileBase postedImage, HttpServerUtilityBase server)
+        public void SavePostedImage(HttpPostedFileBase postedImage)
         {
             var image = new Image
             {
@@ -27,8 +30,6 @@ namespace Blog.WebApp.Providers
             postedImage.InputStream.Read(image.Data, 0, image.Data.Length);
 
             imageRepository.Save(image);
-
-            PersistImageAndThumbnail(image, server);
         }
 
         public string GetImageUrl(Image image)
@@ -41,17 +42,37 @@ namespace Blog.WebApp.Providers
             return $"~/Content/uploads/thumbnails/{GetImageFilename(image)}";
         }
 
-        public string GetImagePath(Image image, HttpServerUtilityBase server)
+        public IList<Image> GetImages()
+        {
+            var images = imageRepository.Images().ToList();
+
+            foreach (var image in images)
+            {
+                EnsureImageAndThumbnailExists(image);
+            }
+
+            return images;
+        }
+
+        private void EnsureImageAndThumbnailExists(Image image)
+        {
+            if (!File.Exists(GetImagePath(image)) || !File.Exists(GetThumbnailPath(image)))
+            {
+                PersistImageAndThumbnail(image);
+            }
+        }
+
+        public string GetImagePath(Image image)
         {
             var filename = GetImageFilename(image);
-            var originalsPath = server.MapPath("~/Content/uploads/originals");
+            var originalsPath = Server.MapPath("~/Content/uploads/originals");
             return Path.Combine(originalsPath, filename);
         }
 
-        public string GetThumbnailPath(Image image, HttpServerUtilityBase server)
+        public string GetThumbnailPath(Image image)
         {
             var filename = GetImageFilename(image);
-            var thumbnailsPath = server.MapPath("~/Content/uploads/thumbnails");
+            var thumbnailsPath = Server.MapPath("~/Content/uploads/thumbnails");
             return Path.Combine(thumbnailsPath, filename);
         }
 
@@ -60,10 +81,10 @@ namespace Blog.WebApp.Providers
             return $"{image.Id}.png";
         }
 
-        private void PersistImageAndThumbnail(Image image, HttpServerUtilityBase server)
+        private void PersistImageAndThumbnail(Image image)
         {
-            var imagePath = GetImagePath(image, server);
-            var thumbnailPath = GetThumbnailPath(image, server);
+            var imagePath = GetImagePath(image);
+            var thumbnailPath = GetThumbnailPath(image);
 
             using (var stream = new MemoryStream(image.Data))
             using (var systemImage = SystemImage.FromStream(stream))

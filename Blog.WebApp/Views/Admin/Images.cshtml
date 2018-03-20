@@ -19,7 +19,8 @@
                         <img src="@Url.Content(image.ThumbnailPath)" alt=""/>
                     </div>
                     <div class="col">
-                        @Html.TextBox("image-url", Url.Content(image.ImagePath), htmlAttributes: new { @class = "w-100" })
+                        @Html.TextBox("image-url", Url.Content(image.ImagePath), 
+                            htmlAttributes: new { @class = "w-100" })
                     </div>
                 </div>
             }
