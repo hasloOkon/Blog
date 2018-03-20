@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Blog.WebApp.ViewModels.Forms;
 
 namespace Blog.WebApp.Controllers
@@ -103,17 +104,7 @@ namespace Blog.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var post = new Post
-                {
-                    Title = addPostForm.Title,
-                    Content = addPostForm.Content,
-                    Category = categoryRepository.GetById(addPostForm.CategoryId),
-                    Tags = tagRepository.GetAll()
-                        .Where(tag => addPostForm.TagIds.Contains(tag.Id)).ToList(),
-                    ShortDescription = addPostForm.ShortDescription,
-                    PostedOn = DateTime.Now,
-                    UrlSlug = addPostForm.Title.Slugify()
-                };
+                var post = Mapper.Map<Post>(addPostForm);
 
                 postRepository.AddOrUpdate(post);
 
@@ -132,18 +123,12 @@ namespace Blog.WebApp.Controllers
         {
             var post = postRepository.GetById(postId);
 
-            return View(new EditPostForm
-            {
-                Id = postId,
-                Title = post.Title,
-                Content = post.Content,
-                CategoryId = post.Category.Id,
-                TagIds = post.Tags.Select(tag => tag.Id).ToList(),
-                ShortDescription = post.ShortDescription,
+            var editPostForm = Mapper.Map<EditPostForm>(post);
 
-                Categories = categoryRepository.GetAll().ToList(),
-                Tags = tagRepository.GetAll().ToList()
-            });
+            editPostForm.Categories = categoryRepository.GetAll().ToList();
+            editPostForm.Tags = tagRepository.GetAll().ToList();
+
+            return View(editPostForm);
         }
 
         [HttpPost]
@@ -187,12 +172,7 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = new Category
-                {
-                    Name = addCategoryForm.Name,
-                    Description = addCategoryForm.Description,
-                    UrlSlug = addCategoryForm.Name.Slugify()
-                };
+                var category = Mapper.Map<Category>(addCategoryForm);
 
                 categoryRepository.AddOrUpdate(category);
 
@@ -208,12 +188,7 @@ namespace Blog.WebApp.Controllers
         {
             var category = categoryRepository.GetById(categoryId);
 
-            return View(new EditCategoryForm
-            {
-                Id = categoryId,
-                Name = category.Name,
-                Description = category.Description
-            });
+            return View(Mapper.Map<EditCategoryForm>(category));
         }
 
         [HttpPost]
@@ -221,11 +196,7 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = categoryRepository.GetById(editCategoryForm.Id);
-
-                category.Name = editCategoryForm.Name;
-                category.Description = editCategoryForm.Description;
-                category.UrlSlug = editCategoryForm.Name.Slugify();
+                var category = Mapper.Map<Category>(editCategoryForm);
 
                 categoryRepository.AddOrUpdate(category);
 
@@ -247,11 +218,7 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tag = new Tag()
-                {
-                    Name = addTagForm.Name,
-                    UrlSlug = addTagForm.Name.Slugify()
-                };
+                var tag = Mapper.Map<Tag>(addTagForm);
 
                 tagRepository.AddOrUpdate(tag);
 
@@ -267,11 +234,7 @@ namespace Blog.WebApp.Controllers
         {
             var tag = tagRepository.GetById(tagId);
 
-            return View(new EditTagForm
-            {
-                Id = tagId,
-                Name = tag.Name
-            });
+            return View(Mapper.Map<EditTagForm>(tag));
         }
 
         [HttpPost]
@@ -279,10 +242,7 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tag = tagRepository.GetById(editTagForm.Id);
-
-                tag.Name = editTagForm.Name;
-                tag.UrlSlug = editTagForm.Name.Slugify();
+                var tag = Mapper.Map<Tag>(editTagForm);
 
                 tagRepository.AddOrUpdate(tag);
 

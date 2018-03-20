@@ -2,9 +2,9 @@
 using System.Web.Mvc.Html;
 using Blog.Core.Models;
 
-namespace Blog.WebApp
+namespace Blog.WebApp.Widgets
 {
-    public static class ActionLinkExtensions
+    public static class ActionLinks
     {
         public static MvcHtmlString PostLink(this HtmlHelper helper, Post post, string title)
         {

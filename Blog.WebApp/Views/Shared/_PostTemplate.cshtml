@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Category: </span>@Html.CategoryLink(Model.Category)
+                <span>Kategoria: </span>@Html.CategoryLink(Model.Category)
             </div>
 
             <div class="col-auto text-right">
@@ -18,7 +18,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
+                <span>Tagi:</span>@Helpers.Tags(Html, Model.Tags)
             </div>
         </div>
     </div>
@@ -28,6 +28,6 @@
     </div>
 
     <div class="text-right p-0">
-        @Html.PostLink(Model, "continue...")
+        @Html.PostLink(Model, "więcej...")
     </div>
 </div>
