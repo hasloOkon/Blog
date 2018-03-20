@@ -1,53 +1,56 @@
 ﻿@model Blog.WebApp.ViewModels.LeftSidebarViewModel
 
 <div id="sidebars">
-    <div class="sidebar">
-        <img src="@Url.Content("~/Content/themes/night_sky_2/images/small_logo.png")" class="w-100  mb-10 image-border"/>
+    <div>
+        <a href="/">
+            <img src="@Url.Content("~/Content/themes/night_sky_2/images/small_logo.png")" class="w-100 mb-5 image-border" alt="logo"/>
+        </a>
     </div>
-    <div class="sidebar">
+    <div>
         <div class="text-center section-title mt-5">
-            <h3>Wyprawy</h3>
+            <h3>Wyprawy @AdminOnly.AddCategoryLink(Html)</h3>
         </div>
         <ul class="mt-3 p-1">
             @foreach (var category in Model.Categories)
             {
-                <li>
-                    <a class="category-image-link" href="@Url.Action("Category", "Blog", new { categorySlug = category.UrlSlug })">
+                <li class="mb-2">
+                    <a class="category-image-link m-0" href="@Url.Action("Category", "Blog", new { categorySlug = category.UrlSlug })">
                         @Html.Raw(category.Description)
                     </a>
+                    @AdminOnly.EditCategoryLink(Html, category)
                 </li>
             }
         </ul>
     </div>
-    <div class="sidebar mt-5">
+    <div class="mt-5">
         @Html.Partial("_Search")
     </div>
-    <div class="sidebar">
+    <div>
         <div class="text-center section-title mt-5">
-            <h3>Ostatnie posty</h3>
+            <h3>Ostatnie posty @AdminOnly.AddPostLink(Html)</h3>
         </div>
         <ul class="pin-list mt-3">
             @foreach (var post in Model.LatestPosts)
             {
                 <li>
-                    @Html.PostLink(post, post.Title)
+                    @Html.PostLink(post, post.Title) @AdminOnly.EditPostLink(Html, post)
                 </li>
             }
         </ul>
     </div>
-    <div class="sidebar">
+    <div>
         <div class="text-center section-title mt-5">
             <h3>O nas</h3>
         </div>
-        <img src="@Url.Content("~/Content/themes/night_sky_2/images/us.jpg")" class="w-100 mt-3 image-border"/>
+        <img src="@Url.Content("~/Content/themes/night_sky_2/images/us.jpg")" class="w-100 mt-3 image-border" alt="o nas"/>
     </div>
-    <div class="sidebar">
+    <div>
         <div class="text-center section-title mt-5 mb-3">
-            <h3>Tagi</h3>
+            <h3>Tagi @AdminOnly.AddTagLink(Html)</h3>
         </div>
             @foreach (var tag in Model.Tags)
             {
-                    <span>@Html.TagLink(tag)</span> 
+                <span>@Html.TagLink(tag) @AdminOnly.EditTagLink(Html, tag)</span> 
             }
         </div>
     </div>

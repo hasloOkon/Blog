@@ -1,0 +1,43 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Blog.Core.Models
+
+@helper CustomContent(MvcHtmlString htmlString)
+{
+    if (User.Identity.IsAuthenticated)
+    {
+        <span class="admin-only">
+            @htmlString
+        </span>
+    }
+}
+
+@helper EditPostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
+{
+    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditPost", "Admin", new { postId = post.Id }, new { }))
+}
+
+@helper EditCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
+{
+    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditCategory", "Admin", new { categoryId = category.Id }, new { }))
+}
+
+@helper EditTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
+{
+    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditTag", "Admin", new { tagId = tag.Id }, new { }))
+}
+
+@helper AddPostLink(System.Web.Mvc.HtmlHelper htmlHelper)
+{
+    @CustomContent(htmlHelper.ActionLink("[+]", "AddPost", "Admin"))
+}
+
+@helper AddCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper)
+{
+    @CustomContent(htmlHelper.ActionLink("[+]", "AddCategory", "Admin"))
+}
+
+@helper AddTagLink(System.Web.Mvc.HtmlHelper htmlHelper)
+{
+    @CustomContent(htmlHelper.ActionLink("[+]", "AddTag", "Admin"))
+}

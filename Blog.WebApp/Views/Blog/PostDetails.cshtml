@@ -4,7 +4,7 @@
     <div class="p-4">
         <div class="row">
             <div class="col">
-                <h2>@Html.PostLink(Model, Model.Title)</h2>
+                <h2>@Html.PostLink(Model, Model.Title) @AdminOnly.EditPostLink(Html, Model)</h2>
             </div>
         </div>
         <div class="row">

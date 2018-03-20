@@ -4,7 +4,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin: 0px;
+    margin: 0;
 }
 
 a {
@@ -29,7 +29,7 @@ a:hover {
 }
 
 .post p {
-    margin: 0px;
+    margin: 0;
 }
 
 .btn.btn-primary, .pagination .page-item .page-link {
@@ -91,7 +91,15 @@ li {
 
 .category-image-link img {
     width: 100% !important;
-    border-style: ridge; 
-    border-width: 5px; 
+    border-style: ridge;
+    border-width: 5px;
     border-color: gainsboro;
+}
+
+.category-image-link p {
+    margin-bottom: 0;
+}
+
+.admin-only a {
+    color: red;
 }
