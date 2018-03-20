@@ -3,6 +3,7 @@ using NHibernate;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace Blog.Core.Repositories
 {
@@ -156,7 +157,7 @@ namespace Blog.Core.Repositories
             }
         }
 
-        public void AddCategory(Category category)
+        public void AddOrUpdateCategory(Category category)
         {
             using (var transaction = session.BeginTransaction())
             {
@@ -165,7 +166,7 @@ namespace Blog.Core.Repositories
             }
         }
 
-        public void AddTag(Tag tag)
+        public void AddOrUpdateTag(Tag tag)
         {
             using (var transaction = session.BeginTransaction())
             {
@@ -177,6 +178,16 @@ namespace Blog.Core.Repositories
         public Post GetPostById(int id)
         {
             return session.Query<Post>().First(post => post.Id == id);
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            return session.Query<Category>().First(category => category.Id == id);
+        }
+
+        public Tag GetTagById(int id)
+        {
+            return session.Query<Tag>().First(tag => tag.Id == id);
         }
     }
 }
