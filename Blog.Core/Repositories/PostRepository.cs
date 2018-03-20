@@ -3,23 +3,19 @@ using NHibernate;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Blog.Core.Repositories
 {
-    public class BlogRepository : IBlogRepository
+    public class PostRepository : Repository<Post>, IPostRepository
     {
-        private readonly ISession session;
-
-        public BlogRepository(ISession session)
+        public PostRepository(ISession session)
+            : base(session)
         {
-            this.session = session;
         }
 
         public IList<Post> Posts(int pageNumber, int pageSize)
         {
-            var posts = session.Query<Post>()
-                                  .Where(post => post.Published)
+            var posts = Session.Query<Post>()
                                   .OrderByDescending(post => post.PostedOn)
                                   .Skip((pageNumber - 1) * pageSize)
                                   .Take(pageSize)
@@ -28,7 +24,7 @@ namespace Blog.Core.Repositories
 
             var postIds = posts.Select(post => post.Id).ToList();
 
-            return session.Query<Post>()
+            return Session.Query<Post>()
                   .Where(post => postIds.Contains(post.Id))
                   .OrderByDescending(post => post.PostedOn)
                   .FetchMany(post => post.Tags)
@@ -37,13 +33,13 @@ namespace Blog.Core.Repositories
 
         public int TotalPosts()
         {
-            return session.Query<Post>().Count(post => post.Published);
+            return Session.Query<Post>().Count();
         }
 
         public IList<Post> PostsForCategory(string categorySlug, int pageNumber, int pageSize)
         {
-            var posts = session.Query<Post>()
-                                  .Where(post => post.Published && post.Category.UrlSlug == categorySlug)
+            var posts = Session.Query<Post>()
+                                  .Where(post => post.Category.UrlSlug == categorySlug)
                                   .OrderByDescending(post => post.PostedOn)
                                   .Skip((pageNumber - 1) * pageSize)
                                   .Take(pageSize)
@@ -52,7 +48,7 @@ namespace Blog.Core.Repositories
 
             var postIds = posts.Select(post => post.Id).ToList();
 
-            return session.Query<Post>()
+            return Session.Query<Post>()
                   .Where(post => postIds.Contains(post.Id))
                   .OrderByDescending(post => post.PostedOn)
                   .FetchMany(post => post.Tags)
@@ -61,18 +57,13 @@ namespace Blog.Core.Repositories
 
         public int TotalPostsForCategory(string categorySlug)
         {
-            return session.Query<Post>().Count(post => post.Published && post.Category.UrlSlug == categorySlug);
-        }
-
-        public Category Category(string categorySlug)
-        {
-            return session.Query<Category>().FirstOrDefault(category => category.UrlSlug == categorySlug);
+            return Session.Query<Post>().Count(post => post.Category.UrlSlug == categorySlug);
         }
 
         public IList<Post> PostsForTag(string tagSlug, int pageNumber, int pageSize)
         {
-            var posts = session.Query<Post>()
-                                  .Where(post => post.Published && post.Tags.Any(tag => tag.UrlSlug == tagSlug))
+            var posts = Session.Query<Post>()
+                                  .Where(post => post.Tags.Any(tag => tag.UrlSlug == tagSlug))
                                   .OrderByDescending(post => post.PostedOn)
                                   .Skip((pageNumber - 1) * pageSize)
                                   .Take(pageSize)
@@ -81,7 +72,7 @@ namespace Blog.Core.Repositories
 
             var postIds = posts.Select(post => post.Id).ToList();
 
-            return session.Query<Post>()
+            return Session.Query<Post>()
                   .Where(post => postIds.Contains(post.Id))
                   .OrderByDescending(post => post.PostedOn)
                   .FetchMany(post => post.Tags)
@@ -90,21 +81,15 @@ namespace Blog.Core.Repositories
 
         public int TotalPostsForTag(string tagSlug)
         {
-            return session.Query<Post>().Count(post => post.Published && post.Tags.Any(tag => tag.UrlSlug == tagSlug));
-        }
-
-        public Tag Tag(string tagSlug)
-        {
-            return session.Query<Tag>().FirstOrDefault(tag => tag.UrlSlug == tagSlug);
+            return Session.Query<Post>().Count(post => post.Tags.Any(tag => tag.UrlSlug == tagSlug));
         }
 
         public IList<Post> PostsBySearch(string searchPhrase, int pageNumber, int pageSize)
         {
             searchPhrase = searchPhrase.ToLower();
 
-            var posts = session.Query<Post>()
-                .Where(post => post.Published
-                    && post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase))
+            var posts = Session.Query<Post>()
+                .Where(post => post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase))
                 .OrderByDescending(post => post.PostedOn)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
@@ -113,7 +98,7 @@ namespace Blog.Core.Repositories
 
             var postIds = posts.Select(post => post.Id).ToList();
 
-            return session.Query<Post>()
+            return Session.Query<Post>()
                   .Where(post => postIds.Contains(post.Id))
                   .OrderByDescending(post => post.PostedOn)
                   .FetchMany(post => post.Tags)
@@ -124,70 +109,17 @@ namespace Blog.Core.Repositories
         {
             searchPhrase = searchPhrase.ToLower();
 
-            return session.Query<Post>().Count(post => post.Published
-                && post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase));
+            return Session.Query<Post>()
+                .Count(post => post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase));
         }
 
         public Post PostDetails(int year, int month, string postSlug)
         {
-            return session.Query<Post>()
+            return Session.Query<Post>()
                 .Fetch(post => post.Category)
-                .FirstOrDefault(post => post.Published
-                    && post.PostedOn.Year == year
+                .FirstOrDefault(post => post.PostedOn.Year == year
                     && post.PostedOn.Month == month
                     && post.UrlSlug == postSlug);
-        }
-
-        public IList<Category> Categories()
-        {
-            return session.Query<Category>().ToList();
-        }
-
-        public IList<Tag> Tags()
-        {
-            return session.Query<Tag>().ToList();
-        }
-
-        public void AddOrUpdatePost(Post post)
-        {
-            using (var transaction = session.BeginTransaction())
-            {
-                session.SaveOrUpdate(post);
-                transaction.Commit();
-            }
-        }
-
-        public void AddOrUpdateCategory(Category category)
-        {
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(category);
-                transaction.Commit();
-            }
-        }
-
-        public void AddOrUpdateTag(Tag tag)
-        {
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(tag);
-                transaction.Commit();
-            }
-        }
-
-        public Post GetPostById(int id)
-        {
-            return session.Query<Post>().First(post => post.Id == id);
-        }
-
-        public Category GetCategoryById(int id)
-        {
-            return session.Query<Category>().First(category => category.Id == id);
-        }
-
-        public Tag GetTagById(int id)
-        {
-            return session.Query<Tag>().First(tag => tag.Id == id);
         }
     }
 }

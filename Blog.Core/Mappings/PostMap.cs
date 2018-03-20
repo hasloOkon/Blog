@@ -21,15 +21,8 @@ namespace Blog.Core.Mappings
                 .Length(5000)
                 .Not.Nullable();
 
-            Map(post => post.Meta)
-                .Length(1000)
-                .Not.Nullable();
-
             Map(post => post.UrlSlug)
                 .Length(200)
-                .Not.Nullable();
-
-            Map(post => post.Published)
                 .Not.Nullable();
 
             Map(post => post.PostedOn)

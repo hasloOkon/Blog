@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Blog.WebApp.ViewModels
+namespace Blog.WebApp.ViewModels.Forms
 {
     public class EditCategoryForm
     {

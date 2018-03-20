@@ -1,12 +1,8 @@
 ﻿using Blog.Core.Models;
-using System.Collections.Generic;
 
 namespace Blog.Core.Repositories
 {
-    public interface IImageRepository
+    public interface IImageRepository : IRepository<Image>
     {
-        Image GetById(int id);
-        void Save(Image image);
-        IEnumerable<Image> Images();
     }
 }

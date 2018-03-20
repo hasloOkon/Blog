@@ -76,20 +76,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\BlogRepository.cs" />
+    <Compile Include="Models\IKeyedEntity.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\ITagRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Mappings\ImageMap.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="Repositories\IBlogRepository.cs" />
+    <Compile Include="Repositories\IPostRepository.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\PostMap.cs" />
     <Compile Include="Mappings\TagMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IImageRepository.cs" />
     <Compile Include="Repositories\ImageRepository.cs" />
-    <Compile Include="RepositoryModule.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="CoreModule.cs" />
     <Compile Include="Utility\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Blog.WebApp.ViewModels.Forms;
 
 namespace Blog.WebApp.Controllers
 {
@@ -16,15 +17,20 @@ namespace Blog.WebApp.Controllers
     {
         private readonly ILoginProvider loginProvider;
         private readonly IImageProvider imageProvider;
-        private readonly IBlogRepository blogRepository;
+        private readonly IPostRepository postRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly ITagRepository tagRepository;
         private readonly IViewModelFactory viewModelFactory;
 
         public AdminController(ILoginProvider loginProvider, IImageProvider imageProvider,
-            IBlogRepository blogRepository, IViewModelFactory viewModelFactory)
+            IPostRepository postRepository, ICategoryRepository categoryRepository, ITagRepository tagRepository,
+            IViewModelFactory viewModelFactory)
         {
             this.loginProvider = loginProvider;
             this.imageProvider = imageProvider;
-            this.blogRepository = blogRepository;
+            this.postRepository = postRepository;
+            this.categoryRepository = categoryRepository;
+            this.tagRepository = tagRepository;
             this.viewModelFactory = viewModelFactory;
         }
 
@@ -65,11 +71,6 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Login", "Admin");
         }
 
-        public ActionResult Manage()
-        {
-            return View();
-        }
-
         public ActionResult Images()
         {
             return View(viewModelFactory.GetImages());
@@ -90,8 +91,8 @@ namespace Blog.WebApp.Controllers
         {
             return View(new AddPostForm
             {
-                Categories = blogRepository.Categories(),
-                Tags = blogRepository.Tags()
+                Categories = categoryRepository.GetAll().ToList(),
+                Tags = tagRepository.GetAll().ToList()
             });
         }
 
@@ -106,27 +107,22 @@ namespace Blog.WebApp.Controllers
                 {
                     Title = addPostForm.Title,
                     Content = addPostForm.Content,
-                    Published = addPostForm.Published,
-                    Category = blogRepository
-                        .Categories()
-                        .First(category => category.Id == addPostForm.CategoryId),
-                    Tags = blogRepository
-                        .Tags()
+                    Category = categoryRepository.GetById(addPostForm.CategoryId),
+                    Tags = tagRepository.GetAll()
                         .Where(tag => addPostForm.TagIds.Contains(tag.Id)).ToList(),
                     ShortDescription = addPostForm.ShortDescription,
                     PostedOn = DateTime.Now,
-                    Meta = "test meta",
                     UrlSlug = addPostForm.Title.Slugify()
                 };
 
-                blogRepository.AddOrUpdatePost(post);
+                postRepository.AddOrUpdate(post);
 
                 return RedirectToAction("Posts", "Blog");
             }
             else
             {
-                addPostForm.Categories = blogRepository.Categories();
-                addPostForm.Tags = blogRepository.Tags();
+                addPostForm.Categories = categoryRepository.GetAll().ToList();
+                addPostForm.Tags = tagRepository.GetAll().ToList();
 
                 return View(addPostForm);
             }
@@ -134,20 +130,19 @@ namespace Blog.WebApp.Controllers
 
         public ActionResult EditPost(int postId)
         {
-            var post = blogRepository.GetPostById(postId);
+            var post = postRepository.GetById(postId);
 
             return View(new EditPostForm
             {
                 Id = postId,
                 Title = post.Title,
                 Content = post.Content,
-                Published = post.Published,
                 CategoryId = post.Category.Id,
                 TagIds = post.Tags.Select(tag => tag.Id).ToList(),
                 ShortDescription = post.ShortDescription,
 
-                Categories = blogRepository.Categories(),
-                Tags = blogRepository.Tags()
+                Categories = categoryRepository.GetAll().ToList(),
+                Tags = tagRepository.GetAll().ToList()
             });
         }
 
@@ -158,30 +153,25 @@ namespace Blog.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var post = blogRepository.GetPostById(editPostForm.Id);
+                var post = postRepository.GetById(editPostForm.Id);
 
                 post.Title = editPostForm.Title;
                 post.Content = editPostForm.Content;
-                post.Published = editPostForm.Published;
-                post.Category = blogRepository
-                    .Categories()
-                    .First(category => category.Id == editPostForm.CategoryId);
-                post.Tags = blogRepository
-                    .Tags()
+                post.Category = categoryRepository.GetById(editPostForm.CategoryId);
+                post.Tags = tagRepository.GetAll()
                     .Where(tag => editPostForm.TagIds.Contains(tag.Id)).ToList();
                 post.ShortDescription = editPostForm.ShortDescription;
                 post.Modified = DateTime.Now;
-                post.Meta = "test meta";
                 post.UrlSlug = editPostForm.Title.Slugify();
 
-                blogRepository.AddOrUpdatePost(post);
+                postRepository.AddOrUpdate(post);
 
                 return RedirectToAction("Posts", "Blog");
             }
             else
             {
-                editPostForm.Categories = blogRepository.Categories();
-                editPostForm.Tags = blogRepository.Tags();
+                editPostForm.Categories = categoryRepository.GetAll().ToList();
+                editPostForm.Tags = tagRepository.GetAll().ToList();
 
                 return View(editPostForm);
             }
@@ -204,7 +194,7 @@ namespace Blog.WebApp.Controllers
                     UrlSlug = addCategoryForm.Name.Slugify()
                 };
 
-                blogRepository.AddOrUpdateCategory(category);
+                categoryRepository.AddOrUpdate(category);
 
                 return RedirectToAction("Posts", "Blog");
             }
@@ -216,7 +206,7 @@ namespace Blog.WebApp.Controllers
 
         public ActionResult EditCategory(int categoryId)
         {
-            var category = blogRepository.GetCategoryById(categoryId);
+            var category = categoryRepository.GetById(categoryId);
 
             return View(new EditCategoryForm
             {
@@ -231,13 +221,13 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = blogRepository.GetCategoryById(editCategoryForm.Id);
+                var category = categoryRepository.GetById(editCategoryForm.Id);
 
                 category.Name = editCategoryForm.Name;
                 category.Description = editCategoryForm.Description;
                 category.UrlSlug = editCategoryForm.Name.Slugify();
 
-                blogRepository.AddOrUpdateCategory(category);
+                categoryRepository.AddOrUpdate(category);
 
                 return RedirectToAction("Posts", "Blog");
             }
@@ -260,11 +250,10 @@ namespace Blog.WebApp.Controllers
                 var tag = new Tag()
                 {
                     Name = addTagForm.Name,
-                    Description = addTagForm.Description,
                     UrlSlug = addTagForm.Name.Slugify()
                 };
 
-                blogRepository.AddOrUpdateTag(tag);
+                tagRepository.AddOrUpdate(tag);
 
                 return RedirectToAction("Posts", "Blog");
             }
@@ -276,13 +265,12 @@ namespace Blog.WebApp.Controllers
 
         public ActionResult EditTag(int tagId)
         {
-            var category = blogRepository.GetTagById(tagId);
+            var tag = tagRepository.GetById(tagId);
 
             return View(new EditTagForm
             {
                 Id = tagId,
-                Name = category.Name,
-                Description = category.Description
+                Name = tag.Name
             });
         }
 
@@ -291,13 +279,12 @@ namespace Blog.WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tag = blogRepository.GetTagById(editTagForm.Id);
+                var tag = tagRepository.GetById(editTagForm.Id);
 
                 tag.Name = editTagForm.Name;
-                tag.Description = editTagForm.Description;
                 tag.UrlSlug = editTagForm.Name.Slugify();
 
-                blogRepository.AddOrUpdateTag(tag);
+                tagRepository.AddOrUpdate(tag);
 
                 return RedirectToAction("Posts", "Blog");
             }
@@ -315,7 +302,7 @@ namespace Blog.WebApp.Controllers
             }
             else
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("Posts", "Blog");
             }
         }
     }

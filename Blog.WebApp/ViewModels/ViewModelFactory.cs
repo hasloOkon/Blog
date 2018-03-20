@@ -10,22 +10,29 @@ namespace Blog.WebApp.ViewModels
     public class ViewModelFactory : IViewModelFactory
     {
         private const int PageSize = 3;
-        private readonly IBlogRepository blogRepository;
+        private readonly IPostRepository postRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly ITagRepository tagRepository;
         private readonly IImageProvider imageProvider;
 
-        public ViewModelFactory(IBlogRepository blogRepository, IImageProvider imageProvider)
+        public ViewModelFactory(IPostRepository postRepository, 
+            ICategoryRepository categoryRepository, 
+            ITagRepository tagRepository,
+            IImageProvider imageProvider)
         {
-            this.blogRepository = blogRepository;
+            this.postRepository = postRepository;
+            this.categoryRepository = categoryRepository;
+            this.tagRepository = tagRepository;
             this.imageProvider = imageProvider;
         }
 
         public PostsViewModel GetPosts(int pageNumber)
         {
-            var totalPosts = blogRepository.TotalPosts();
+            var totalPosts = postRepository.TotalPosts();
 
             return new PostsViewModel
             {
-                Posts = blogRepository.Posts(pageNumber, PageSize),
+                Posts = postRepository.Posts(pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = string.Empty
             };
@@ -33,16 +40,16 @@ namespace Blog.WebApp.ViewModels
 
         public PostsViewModel GetPostsForCategory(string categorySlug, int pageNumber)
         {
-            var category = blogRepository.Category(categorySlug);
+            var category = categoryRepository.GetBySlug(categorySlug);
 
             if (category == null)
                 throw new HttpException(404, "Nie znaleziono kategorii :(");
 
-            var totalPosts = blogRepository.TotalPostsForCategory(categorySlug);
+            var totalPosts = postRepository.TotalPostsForCategory(categorySlug);
 
             return new PostsViewModel
             {
-                Posts = blogRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
+                Posts = postRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Ostatnie posty dla kategorii \"{category.Name}\":"
             };
@@ -50,16 +57,16 @@ namespace Blog.WebApp.ViewModels
 
         public PostsViewModel GetPostsForTag(string tagSlug, int pageNumber)
         {
-            var tag = blogRepository.Tag(tagSlug);
+            var tag = tagRepository.GetBySlug(tagSlug);
 
             if (tag == null)
                 throw new HttpException(404, "Nie znaleziono taga :(");
 
-            var totalPosts = blogRepository.TotalPostsForTag(tagSlug);
+            var totalPosts = postRepository.TotalPostsForTag(tagSlug);
 
             return new PostsViewModel
             {
-                Posts = blogRepository.PostsForTag(tagSlug, pageNumber, PageSize),
+                Posts = postRepository.PostsForTag(tagSlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Ostatnie posty dla taga \"{tag.Name}\":"
             };
@@ -67,11 +74,11 @@ namespace Blog.WebApp.ViewModels
 
         public PostsViewModel GetPostsBySearch(string searchPhrase, int pageNumber)
         {
-            var totalPosts = blogRepository.TotalPostsBySearch(searchPhrase);
+            var totalPosts = postRepository.TotalPostsBySearch(searchPhrase);
 
             return new PostsViewModel
             {
-                Posts = blogRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
+                Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
                 Title = $"Search results for phrase \"{searchPhrase}\""
             };
@@ -79,16 +86,16 @@ namespace Blog.WebApp.ViewModels
 
         public Post GetPostDetails(int year, int month, string postSlug)
         {
-            return blogRepository.PostDetails(year, month, postSlug);
+            return postRepository.PostDetails(year, month, postSlug);
         }
 
         public LeftSidebarViewModel GetLeftSidebar()
         {
             return new LeftSidebarViewModel
             {
-                Categories = blogRepository.Categories(),
-                LatestPosts = blogRepository.Posts(pageNumber: 1, pageSize: PageSize),
-                Tags = blogRepository.Tags()
+                Categories = categoryRepository.GetAll().ToList(),
+                LatestPosts = postRepository.Posts(pageNumber: 1, pageSize: PageSize),
+                Tags = tagRepository.GetAll().ToList()
             };
         }
 

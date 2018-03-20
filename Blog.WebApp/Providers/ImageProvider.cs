@@ -29,7 +29,7 @@ namespace Blog.WebApp.Providers
 
             postedImage.InputStream.Read(image.Data, 0, image.Data.Length);
 
-            imageRepository.Save(image);
+            imageRepository.AddOrUpdate(image);
         }
 
         public string GetImageUrl(Image image)
@@ -44,7 +44,7 @@ namespace Blog.WebApp.Providers
 
         public IList<Image> GetImages()
         {
-            var images = imageRepository.Images().ToList();
+            var images = imageRepository.GetAll().ToList();
 
             foreach (var image in images)
             {

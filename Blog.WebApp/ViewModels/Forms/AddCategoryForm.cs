@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace Blog.WebApp.ViewModels
+namespace Blog.WebApp.ViewModels.Forms
 {
     public class AddCategoryForm
     {

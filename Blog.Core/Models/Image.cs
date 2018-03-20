@@ -2,7 +2,7 @@
 
 namespace Blog.Core.Models
 {
-    public class Image
+    public class Image : IKeyedEntity
     {
         public virtual int Id { get; set; }
         public virtual DateTime UploadTime { get; set; }

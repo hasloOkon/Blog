@@ -17,9 +17,6 @@ namespace Blog.Core.Mappings
                 .Length(50)
                 .Not.Nullable();
 
-            Map(tag => tag.Description)
-                .Length(200);
-
             HasManyToMany(tag => tag.Posts)
                 .Cascade.All().Inverse()
                 .Table("PostTagMap");

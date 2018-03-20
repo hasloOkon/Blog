@@ -14,7 +14,7 @@ namespace Blog.WebApp
         {
             var kernel = new StandardKernel();
 
-            kernel.Load(new RepositoryModule());
+            kernel.Load(new CoreModule());
             kernel.Bind<IViewModelFactory>().To<ViewModelFactory>();
             kernel.Bind<ILoginProvider>().To<LoginProvider>();
             kernel.Bind<IImageProvider>().To<ImageProvider>();

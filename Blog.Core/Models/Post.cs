@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Blog.Core.Models
 {
-    public class Post
+    public class Post : IKeyedEntity
     {
         public virtual int Id { get; set; }
 
@@ -13,11 +13,7 @@ namespace Blog.Core.Models
 
         public virtual string Content { get; set; }
 
-        public virtual string Meta { get; set; }
-
         public virtual string UrlSlug { get; set; }
-
-        public virtual bool Published { get; set; }
 
         public virtual DateTime PostedOn { get; set; }
 

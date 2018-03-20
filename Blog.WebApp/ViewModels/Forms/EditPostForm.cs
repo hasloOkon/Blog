@@ -1,12 +1,14 @@
-﻿using Blog.Core.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using Blog.Core.Models;
 
-namespace Blog.WebApp.ViewModels
+namespace Blog.WebApp.ViewModels.Forms
 {
-    public class AddPostForm
+    public class EditPostForm
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(500)]
         [Display(Name = "Tytuł")]
@@ -21,9 +23,6 @@ namespace Blog.WebApp.ViewModels
         [AllowHtml]
         [Display(Name = "Treść")]
         public string Content { get; set; }
-
-        [Display(Name = "Opublikowany")]
-        public bool Published { get; set; }
 
         [Display(Name = "Kategoria")]
         public int CategoryId { get; set; }

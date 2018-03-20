@@ -1,4 +1,4 @@
-﻿@model Blog.WebApp.ViewModels.AddPostForm
+﻿@model Blog.WebApp.ViewModels.Forms.AddPostForm
 
 @{
     ViewBag.Title = "Nowy post";
@@ -49,16 +49,11 @@
             </div>
         </div>
         
-            <div class="form-group row">
-                @Html.CheckBoxFor(m => m.Published)
-                @Html.LabelFor(m => m.Published)
-            </div>
-
-            <div class="form-group text-center">
-                <button type="submit" class="btn">Submit</button>
-            </div>
-            }
+        <div class="form-group text-center">
+            <button type="submit" class="btn">Submit</button>
         </div>
+    }
+</div>
 
 <script>
     $(document).ready(function () {

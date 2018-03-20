@@ -11,7 +11,7 @@ using Ninject.Web.Common;
 
 namespace Blog.Core
 {
-    public class RepositoryModule : NinjectModule
+    public class CoreModule : NinjectModule
     {
         public override void Load()
         {
@@ -34,7 +34,9 @@ namespace Blog.Core
                 .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
                 .InRequestScope();
 
-            Bind<IBlogRepository>().To<BlogRepository>();
+            Bind<IPostRepository>().To<PostRepository>();
+            Bind<ICategoryRepository>().To<CategoryRepository>();
+            Bind<ITagRepository>().To<TagRepository>();
             Bind<IImageRepository>().To<ImageRepository>();
         }
     }
