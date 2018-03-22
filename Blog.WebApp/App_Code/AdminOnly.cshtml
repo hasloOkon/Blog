@@ -41,3 +41,18 @@
 {
     @CustomContent(htmlHelper.ActionLink("[+]", "AddTag", "Admin"))
 }
+
+@helper DeletePostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
+{
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeletePost", "Admin", new { postId = post.Id }, new { }))
+}
+
+@helper DeleteCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
+{
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteCategory", "Admin", new { categoryId = category.Id }, new { }))
+}
+
+@helper DeleteTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
+{
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin", new { tagId = tag.Id }, new { }))
+}

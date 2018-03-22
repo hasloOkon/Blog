@@ -18,6 +18,7 @@
                         @Html.Raw(category.Description)
                     </a>
                     @AdminOnly.EditCategoryLink(Html, category)
+                    @AdminOnly.DeleteCategoryLink(Html, category)
                 </li>
             }
         </ul>
@@ -33,7 +34,9 @@
             @foreach (var post in Model.LatestPosts)
             {
                 <li>
-                    @Html.PostLink(post, post.Title) @AdminOnly.EditPostLink(Html, post)
+                    @Html.PostLink(post, post.Title) 
+                    @AdminOnly.EditPostLink(Html, post)
+                    @AdminOnly.DeletePostLink(Html, post)
                 </li>
             }
         </ul>
@@ -50,7 +53,11 @@
         </div>
             @foreach (var tag in Model.Tags)
             {
-                <span>@Html.TagLink(tag) @AdminOnly.EditTagLink(Html, tag)</span> 
+                <span>
+                    @Html.TagLink(tag) 
+                    @AdminOnly.EditTagLink(Html, tag)
+                    @AdminOnly.DeleteTagLink(Html, tag)
+                </span> 
             }
         </div>
     </div>

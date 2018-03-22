@@ -162,6 +162,13 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        public ActionResult DeletePost(int postId)
+        {
+            postRepository.Delete(postId);
+
+            return RedirectToAction("Posts", "Blog");
+        }
+
         public ActionResult AddCategory()
         {
             return View(new AddCategoryForm());
@@ -208,6 +215,13 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        public ActionResult DeleteCategory(int categoryId)
+        {
+            categoryRepository.Delete(categoryId);
+
+            return RedirectToAction("Posts", "Blog");
+        }
+
         public ActionResult AddTag()
         {
             return View(new AddTagForm());
@@ -252,6 +266,13 @@ namespace Blog.WebApp.Controllers
             {
                 return View(editTagForm);
             }
+        }
+
+        public ActionResult DeleteTag(int tagId)
+        {
+            tagRepository.Delete(tagId);
+
+            return RedirectToAction("Posts", "Blog");
         }
 
         private ActionResult RedirectToUrl(string returnUrl)

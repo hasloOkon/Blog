@@ -32,5 +32,15 @@ namespace Blog.Core.Repositories
                 transaction.Commit();
             }
         }
+
+        public void Delete(int id)
+        {
+            using (var transaction = Session.BeginTransaction())
+            {
+                var entity = GetById(id);
+                Session.Delete(entity);
+                transaction.Commit();
+            }
+        }
     }
 }
