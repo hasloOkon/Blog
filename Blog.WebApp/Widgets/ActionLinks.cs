@@ -47,5 +47,10 @@ namespace Blog.WebApp.Widgets
                     title = $"See all posts in {tag.Name}"
                 });
         }
+
+        public static MvcHtmlString LoginLink(this HtmlHelper helper, string name)
+        {
+            return helper.ActionLink(name, "Login", "Admin");
+        }
     }
 }
