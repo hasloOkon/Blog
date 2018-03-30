@@ -11,10 +11,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
-
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js"></script>
+    @Scripts.Render("~/external/js")
 </head>
 
 <body>
@@ -23,27 +20,28 @@
 
         @using (Html.BeginForm())
         {
-            <fieldset>
-                <legend>Login</legend>
-                <p>
-                    @Html.LabelFor(m => m.UserName)
-                    @Html.TextBoxFor(m => m.UserName)
-                    @Html.ValidationMessageFor(m => m.UserName)
-                </p>
+        <fieldset>
+            <legend>Login</legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(m => m.UserName)</td>
+                    <td>@Html.TextBoxFor(m => m.UserName)</td>
+                    <td>@Html.ValidationMessageFor(m => m.UserName)</td>
+                </tr>
 
-                <p>
-                    @Html.LabelFor(m => m.Password)
-                    @Html.PasswordFor(m => m.Password)
-                    @Html.ValidationMessageFor(m => m.Password)
-                </p>
+                <tr>
+                    <td>@Html.LabelFor(m => m.Password)</td>
+                    <td>@Html.PasswordFor(m => m.Password)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Password)</td>
+                </tr>
+            </table>
 
-                @Html.Hidden("ReturnUrl")
-                @Html.AntiForgeryToken()
-
-                <p>
-                    <input type="submit" value="Login" />
-                </p>
-            </fieldset>
+            @Html.Hidden("ReturnUrl")
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" value="Login" />
+            </p>
+        </fieldset>
         }
     </div>
 </body>

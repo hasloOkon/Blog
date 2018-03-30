@@ -192,6 +192,10 @@
     <Content Include="Scripts\external\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\external\jquery-ui.js" />
     <Content Include="Scripts\external\jquery-ui.min.js" />
+    <Content Include="Scripts\external\jquery.validate.js" />
+    <Content Include="Scripts\external\jquery.validate.min.js" />
+    <Content Include="Scripts\external\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\external\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\external\popper.js" />
     <Content Include="Scripts\external\popper.min.js" />
     <Content Include="Scripts\external\summernote-bs4.js" />

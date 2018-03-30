@@ -15,6 +15,8 @@ namespace Blog.WebApp
             var externalScripts = new ScriptBundle("~/external/js")
                 .Include("~/Scripts/external/jquery-{version}.js")
                 .Include("~/Scripts/external/jquery-ui.js")
+                .Include("~/Scripts/external/jquery.validate.js")
+                .Include("~/Scripts/external/jquery.validate.unobtrusive.js")
                 .Include("~/Scripts/external/tether.js")
                 .Include("~/Scripts/external/popper.js")
                 .Include("~/Scripts/external/bootstrap.js")
