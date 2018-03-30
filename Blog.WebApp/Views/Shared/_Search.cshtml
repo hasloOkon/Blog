@@ -1,11 +1,13 @@
 ﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form" }))
 {
     <div class="row w-100 ml-0">
-        <div class="col-auto m-0 p-0 w-75">
-            @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase", @class = "form-control" })
+        <div class="col m-0 p-0">
+            @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase", @class = "form-control p-0" })
         </div>
-        <div class="col-auto m-0 p-0 w-25">
-            <input type="submit" id="search-button" class="form-control" value="">
+        <div class="col-auto m-0 p-0">
+            <input type="image" 
+                   src="@Url.Content("~/Content/themes/orange/images/spy_glass.png")" 
+                   class="form-control p-0 m-0 w-100 h-100" value="">
         </div>
     </div>
 }

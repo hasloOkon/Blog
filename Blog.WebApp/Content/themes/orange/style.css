@@ -76,10 +76,6 @@ li {
     list-style-image: url(images/pin.png);
 }
 
-#search-button{
-    background: url(images/spy_glass.png) no-repeat center;
-}
-
 .img-responsive {
   max-height: 450px;
 }

@@ -15,8 +15,8 @@ namespace Blog.WebApp.ViewModels
         private readonly ITagRepository tagRepository;
         private readonly IImageProvider imageProvider;
 
-        public ViewModelFactory(IPostRepository postRepository, 
-            ICategoryRepository categoryRepository, 
+        public ViewModelFactory(IPostRepository postRepository,
+            ICategoryRepository categoryRepository,
             ITagRepository tagRepository,
             IImageProvider imageProvider)
         {
@@ -80,7 +80,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Wniki wyszukiwania dla \"{searchPhrase}\""
+                Title = $"Wyniki wyszukiwania dla \"{searchPhrase}\":"
             };
         }
 
