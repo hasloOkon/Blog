@@ -1,7 +1,7 @@
-﻿using System.Web;
+﻿using Blog.Core.Models;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using Blog.Core.Models;
 
 namespace Blog.WebApp.Widgets
 {
@@ -32,20 +32,20 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = $"See all posts in {category.Name}"
+                    title = $"Posty w kategorii: {category.Name}"
                 });
         }
 
         public static MvcHtmlString TagLink(this HtmlHelper helper, Tag tag)
         {
-            return helper.ActionLink(tag.Name, "Tag", "Blog", 
+            return helper.ActionLink(tag.Name, "Tag", "Blog",
                 new
                 {
                     tagSlug = tag.UrlSlug
                 },
                 new
                 {
-                    title = $"See all posts in {tag.Name}"
+                    title = $"Posty dla taga: {tag.Name}"
                 });
         }
 
@@ -54,6 +54,16 @@ namespace Blog.WebApp.Widgets
             var actionName = HttpContext.Current.User.Identity.IsAuthenticated ? "Logout" : "Login";
 
             return helper.ActionLink(linkText, actionName, "Admin");
+        }
+
+        public static MvcHtmlString ImagesLink(this HtmlHelper helper,
+            string linkText,
+            bool openInNewTab = false)
+        {
+            var htmlAttributes = openInNewTab
+                ? new { target = "_blank" }
+                : null;
+            return helper.ActionLink(linkText, "Images", "Admin", null, htmlAttributes);
         }
     }
 }

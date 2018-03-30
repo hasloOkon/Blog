@@ -2,14 +2,19 @@
 @using System.Web.Mvc.Html
 @using Blog.Core.Models
 
-@helper CustomContent(MvcHtmlString htmlString)
+@helper CustomContent(MvcHtmlString mvcHtmlString)
 {
     if (User.Identity.IsAuthenticated)
     {
         <span class="admin-only">
-            @htmlString
+            @mvcHtmlString
         </span>
     }
+}
+
+@helper CustomContent(Func<object, HelperResult> html)
+{
+    @CustomContent(MvcHtmlString.Create(html.Invoke(null).ToHtmlString()))
 }
 
 @helper EditPostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
@@ -55,4 +60,9 @@
 @helper DeleteTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
 {
     @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin", new { tagId = tag.Id }, new { }))
+}
+
+@helper ImagesLink(System.Web.Mvc.HtmlHelper htmlHelper)
+{
+    @CustomContent(htmlHelper.ActionLink("[grafiki]", "Images", "Admin"))
 }
