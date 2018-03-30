@@ -33,8 +33,7 @@ namespace Blog.WebApp
             bundles.Add(externalStyles);
 
             var internalStyles = new StyleBundle("~/internal/css")
-                .Include("~/Content/themes/night_sky_2/style.css")
-                .Include("~/Content/themes/night_sky_2/admin.css");
+                .Include("~/Content/themes/orange/style.css");
 
             bundles.Add(internalStyles);
         }

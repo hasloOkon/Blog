@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using Blog.Core.Models;
 
@@ -48,9 +49,11 @@ namespace Blog.WebApp.Widgets
                 });
         }
 
-        public static MvcHtmlString LoginLink(this HtmlHelper helper, string name)
+        public static MvcHtmlString LoginLink(this HtmlHelper helper, string linkText)
         {
-            return helper.ActionLink(name, "Login", "Admin");
+            var actionName = HttpContext.Current.User.Identity.IsAuthenticated ? "Logout" : "Login";
+
+            return helper.ActionLink(linkText, actionName, "Admin");
         }
     }
 }

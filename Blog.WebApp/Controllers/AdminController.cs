@@ -60,7 +60,7 @@ namespace Blog.WebApp.Controllers
                     return RedirectToUrl(returnUrl);
                 }
 
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError("", "Podana nazwa użytkownika lub hasło są nieprawidłowe.");
             }
             return View();
         }
@@ -69,7 +69,7 @@ namespace Blog.WebApp.Controllers
         {
             loginProvider.Logout();
 
-            return RedirectToAction("Login", "Admin");
+            return RedirectToAction("Posts", "Blog");
         }
 
         public ActionResult Images()

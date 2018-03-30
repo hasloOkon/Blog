@@ -1,0 +1,105 @@
+body {
+    background: transparent url(images/background.jpg) repeat;
+    font-family: arial;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: #FC9C04;
+    text-decoration: none;
+}
+
+.content-bg {
+    background-color: #F2F2F2;
+    border-style: outset;
+    border-width: 4px;
+    border-color: #C0C0C0;
+    border-radius: 5px;
+}
+
+#left-sidebar, #right-sidebar {
+    padding: 15px 5px;
+}
+
+.post p {
+    margin: 0;
+}
+
+.btn.btn-primary, .pagination .page-item .page-link {
+    color: black;
+    border-color: #C0C0C0;
+    background-color: #F2F2F2;
+    border-width: 2px;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.pagination .page-item .page-link {
+    font-size: small;
+    padding: 4px;
+}
+
+.btn.btn-primary:hover, .pagination .page-item.active .page-link, .pagination .page-item .page-link:hover{
+    color: white;
+    background-color: #FF8C00;
+    border-color: #F5F5F5;
+}
+
+.section-title {
+    color: black;
+    font-weight: bold !important;
+}
+
+.section-title h3 {
+    margin: 4px 0;
+    font-weight: bold;
+}
+
+.image-border {
+     border-style: ridge; 
+     border-width: 5px; 
+     border-color: gainsboro;
+}
+
+li {
+    list-style-type: none;
+}
+
+.pin-list {
+    list-style-image: url(images/pin.png);
+}
+
+#search-button{
+    background: url(images/spy_glass.png) no-repeat center;
+}
+
+.img-responsive {
+  max-height: 450px;
+}
+
+.post-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.category-image-link img {
+    width: 100% !important;
+    border-style: ridge;
+    border-width: 5px;
+    border-color: gainsboro;
+}
+
+.category-image-link p {
+    margin-bottom: 0;
+}
+
+.admin-only a {
+    color: orange;
+}

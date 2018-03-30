@@ -4,12 +4,12 @@ namespace Blog.WebApp.ViewModels
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "User name is required")]
-        [Display(Name = "User name (*)")]
+        [Required(ErrorMessage = "Nazwa użytkownika jest wymagana!")]
+        [Display(Name = "Nazwa użytkownika")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
-        [Display(Name = "Password (*)")]
+        [Required(ErrorMessage = "Hasło jest wymagane!")]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
     }
 }

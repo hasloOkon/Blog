@@ -80,7 +80,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Search results for phrase \"{searchPhrase}\""
+                Title = $"Wniki wyszukiwania dla \"{searchPhrase}\""
             };
         }
 
