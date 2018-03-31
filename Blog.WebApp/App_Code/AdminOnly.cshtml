@@ -49,17 +49,23 @@
 
 @helper DeletePostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeletePost", "Admin", new { postId = post.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeletePost", "Admin", 
+        new { postId = post.Id }, 
+        new { onclick=$"return confirm('Czy na pewno chcesz usunąć posta \"{post.Title}\"?')" }))
 }
 
 @helper DeleteCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteCategory", "Admin", new { categoryId = category.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteCategory", "Admin",
+        new { categoryId = category.Id }, 
+        new { onclick = $"return confirm('Czy na pewno chcesz usunąć kategorię \"{category.Name}\"?')" }))
 }
 
 @helper DeleteTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin", new { tagId = tag.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin",
+        new { tagId = tag.Id }, 
+        new { onclick = $"return confirm('Czy na pewno chcesz usunąć taga \"{tag.Name}\"?')" }))
 }
 
 @helper ImagesLink(System.Web.Mvc.HtmlHelper htmlHelper)
