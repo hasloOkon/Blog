@@ -20,18 +20,21 @@
                 @Model.PostedOn.ToConfigLocalTime()
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <span>Tagi:</span>@Helpers.Tags(Html, Model.Tags)
+        @if (Model.Tags.Any())
+        {
+            <div class="row">
+                <div class="col">
+                    <span>Tagi:</span>@Helpers.Tags(Html, Model.Tags)
+                </div>
             </div>
-        </div>
+        }
     </div>
 
     <div class="p-4">
         @Html.Raw(Model.ShortDescription)
     </div>
 
-    <div class="text-right p-0">
+    <div class="text-right p-0 mr-2">
         @Html.PostLink(Model, "więcej...")
     </div>
 </div>
