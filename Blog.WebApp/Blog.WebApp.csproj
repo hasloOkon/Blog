@@ -205,6 +205,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utility\ImageExtensions.cs" />
     <Compile Include="Widgets\ActionLinks.cs" />
     <None Include="App_Code\AdminOnly.cshtml" />
     <Compile Include="App_Start\BundleConfig.cs" />
