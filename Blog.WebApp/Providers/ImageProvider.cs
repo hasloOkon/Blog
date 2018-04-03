@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Blog.WebApp.Utility;
 using Image = Blog.Core.Models.Image;
 using SystemImage = System.Drawing.Image;
 
@@ -114,6 +115,7 @@ namespace Blog.WebApp.Providers
             using (var stream = new MemoryStream(image.Data))
             using (var systemImage = SystemImage.FromStream(stream))
             {
+                systemImage.FixRotation();
                 systemImage.Save(imagePath);
 
                 using (var thumbnailSystemImage = systemImage
