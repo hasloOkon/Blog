@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Blog.WebApp.ViewModels;
+using System;
 using System.Web.Mvc;
-using Blog.WebApp.ViewModels;
 
 namespace Blog.WebApp.Controllers
 {
@@ -58,6 +58,11 @@ namespace Blog.WebApp.Controllers
             var postDetails = viewModelFactory.GetPostDetails(year, month, postSlug);
 
             return View("PostDetails", postDetails);
+        }
+
+        public ViewResult About()
+        {
+            return View();
         }
 
         [ChildActionOnly]

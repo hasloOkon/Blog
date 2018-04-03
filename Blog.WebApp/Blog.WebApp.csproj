@@ -263,6 +263,7 @@
     <Content Include="Views\Shared\_AddImage.cshtml" />
     <Content Include="Views\Admin\EditCategory.cshtml" />
     <Content Include="Views\Admin\EditTag.cshtml" />
+    <Content Include="Views\Blog\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

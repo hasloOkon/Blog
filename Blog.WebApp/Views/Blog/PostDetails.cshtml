@@ -1,6 +1,10 @@
 ﻿@model Blog.Core.Models.Post
 
-<div class="post content-bg">
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="container post content-bg">
     <div class="p-4">
         <div class="row">
             <div class="col">
@@ -9,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Category: </span>@Html.CategoryLink(Model.Category)
+                <span>Kategoria: </span>@Html.CategoryLink(Model.Category)
             </div>
 
             <div class="col-auto text-right">
@@ -18,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
+                <span>Tagi:</span>@Helpers.Tags(Html, Model.Tags)
             </div>
         </div>
     </div>

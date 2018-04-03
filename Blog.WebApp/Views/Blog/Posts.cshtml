@@ -1,5 +1,11 @@
 ﻿@model Blog.WebApp.ViewModels.PostsViewModel
 
+@{
+    ViewBag.Title = string.IsNullOrEmpty(ViewBag.Title)
+        ? "Szpilką po mapie"
+        : ViewBag.Title;
+}
+
 <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
@@ -47,7 +53,7 @@
     }
     else
     {
-        <p class="content-bg mb-2 p-2">No posts found!</p>
+        <h3 class="content-bg mb-2 p-2">Nie znaleziono żadnych postów!</h3>
     }
 
     @Html.Partial("_Pager", Model.PagerViewModel)
