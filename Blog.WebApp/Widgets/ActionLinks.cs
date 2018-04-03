@@ -45,7 +45,8 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = $"Posty dla taga: {tag.Name}"
+                    title = $"Posty dla taga: {tag.Name}",
+                    @class = "tag-link"
                 });
         }
 

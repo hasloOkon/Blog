@@ -1,8 +1,11 @@
-﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form" }))
+﻿@using (Html.BeginForm("Search", "Blog", FormMethod.Get, htmlAttributes: new { id = "search-form form-inline" }))
 {
-    <div class="row w-100 ml-0">
+    <div class="row form-group w-100 ml-0">
         <div class="col m-0 p-0">
-            @Html.TextBox("searchPhrase", "", htmlAttributes: new { id = "searchPhrase", @class = "form-control p-0" })
+            @Html.TextBox("searchPhrase", "", htmlAttributes: new
+       {
+           id = "searchPhrase", @class = "form-control pt-0 pb-0 pl-2 pr-2", placeholder = "szukaj na blogu..."
+       })
         </div>
         <div class="col-auto m-0 p-0">
             <input type="image" 

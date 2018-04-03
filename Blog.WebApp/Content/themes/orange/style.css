@@ -99,3 +99,31 @@ li {
 .admin-only a {
     color: orange;
 }
+
+a.tag-link {
+    text-decoration: underline;
+}
+
+.logo-overlay {
+    position: relative;
+    height: 100px;
+}
+
+.logo-overlay img {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+.logo-overlay .logo-text {
+    position: absolute;
+    font-weight: bold;
+    top: 25%;
+    left: 25%;
+    text-align: right;
+    z-index: 1;
+}
+
+.logo-overlay .logo-text-colored {
+    color: orange;
+}
