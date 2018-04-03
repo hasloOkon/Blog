@@ -15,7 +15,8 @@ namespace Blog.WebApp.Widgets
         {
             return html.DropDownListFor(
                 selector,
-                categories.ToSelectList(category => category.Name, category => category.Id));
+                categories.ToSelectList(category => category.Name, category => category.Id),
+                new { @class = "form-control" });
         }
 
         public static MvcHtmlString TagListBoxFor<TModel, TProperty>(this HtmlHelper<TModel> html,
@@ -23,7 +24,8 @@ namespace Blog.WebApp.Widgets
         {
             return html.ListBoxFor(
                 selector,
-                tags.ToSelectList(tag => tag.Name, tag => tag.Id));
+                tags.ToSelectList(tag => tag.Name, tag => tag.Id),
+                new { @class = "form-control" });
         }
 
         private static IEnumerable<SelectListItem> ToSelectList<T>(this IEnumerable<T> items,

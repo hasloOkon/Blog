@@ -129,3 +129,8 @@ a.tag-link {
     border-color: orange;
     box-shadow: 0 0 5px orange;
 }
+
+select.form-control option:checked,
+select.form-control option:active {
+    box-shadow: 0 0 10px 100px orange inset;
+}
