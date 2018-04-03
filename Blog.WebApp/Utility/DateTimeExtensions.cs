@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Blog.WebApp
+namespace Blog.WebApp.Utility
 {
     public static class Extensions
     {
@@ -9,6 +9,7 @@ namespace Blog.WebApp
         {
             var timezoneInfo = TimeZoneInfo
                 .FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
+
             return $"{TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString()}";
         }
     }

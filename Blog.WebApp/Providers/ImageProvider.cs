@@ -54,6 +54,31 @@ namespace Blog.WebApp.Providers
             return images;
         }
 
+        public void Delete(int id)
+        {
+            try
+            {
+                var image = imageRepository.GetById(id);
+
+                var imagePath = GetImagePath(image);
+                var thumbnaPath = GetThumbnailPath(image);
+
+                if (File.Exists(imagePath))
+                {
+                    File.Delete(imagePath);
+                }
+
+                if (File.Exists(thumbnaPath))
+                {
+                    File.Delete(thumbnaPath);
+                }
+            }
+            finally
+            {
+                imageRepository.Delete(id);
+            }
+        }
+
         private void EnsureImageAndThumbnailExists(Image image)
         {
             if (!File.Exists(GetImagePath(image)) || !File.Exists(GetThumbnailPath(image)))

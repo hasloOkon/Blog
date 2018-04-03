@@ -22,6 +22,9 @@
                         @Html.TextBox("image-url", Url.Content(image.ImagePath), 
                             htmlAttributes: new { @class = "w-100" })
                     </div>
+                    <div class="col-auto">
+                        @AdminOnly.DeleteImageLink(Html, image.Id)
+                    </div>
                 </div>
             }
         </div>

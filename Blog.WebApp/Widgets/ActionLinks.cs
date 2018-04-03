@@ -64,6 +64,7 @@ namespace Blog.WebApp.Widgets
             var htmlAttributes = openInNewTab
                 ? new { target = "_blank" }
                 : null;
+
             return helper.ActionLink(linkText, "Images", "Admin", null, htmlAttributes);
         }
     }

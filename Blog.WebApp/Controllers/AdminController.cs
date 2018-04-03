@@ -1,15 +1,15 @@
-﻿using Blog.Core.Models;
+﻿using AutoMapper;
+using Blog.Core.Models;
 using Blog.Core.Repositories;
 using Blog.Core.Utility;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
+using Blog.WebApp.ViewModels.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
-using Blog.WebApp.ViewModels.Forms;
 
 namespace Blog.WebApp.Controllers
 {
@@ -84,6 +84,13 @@ namespace Blog.WebApp.Controllers
             {
                 imageProvider.SavePostedImage(image);
             }
+
+            return RedirectToAction("Images");
+        }
+
+        public ActionResult DeleteImage(int imageId)
+        {
+            imageProvider.Delete(imageId);
 
             return RedirectToAction("Images");
         }

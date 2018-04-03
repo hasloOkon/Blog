@@ -10,5 +10,6 @@ namespace Blog.WebApp.Providers
         string GetImageUrl(Image image);
         string GetThumbnailUrl(Image image);
         IList<Image> GetImages();
+        void Delete(int id);
     }
 }
