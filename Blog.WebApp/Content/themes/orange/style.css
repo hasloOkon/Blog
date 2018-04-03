@@ -118,12 +118,14 @@ a.tag-link {
 .logo-overlay .logo-text {
     position: absolute;
     font-weight: bold;
+    text-shadow: 3px 2px #c0c0c0;
     top: 25%;
     left: 25%;
     text-align: right;
     z-index: 1;
 }
 
-.logo-overlay .logo-text-colored {
-    color: orange;
+.form-control:focus {
+    border-color: orange;
+    box-shadow: 0 0 5px orange;
 }
