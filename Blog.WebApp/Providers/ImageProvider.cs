@@ -1,10 +1,10 @@
 ﻿using Blog.Core.Repositories;
+using Blog.WebApp.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using Blog.WebApp.Utility;
 using Image = Blog.Core.Models.Image;
 using SystemImage = System.Drawing.Image;
 
@@ -13,7 +13,10 @@ namespace Blog.WebApp.Providers
     public class ImageProvider : IImageProvider
     {
         private readonly IImageRepository imageRepository;
-        private static HttpServerUtility Server => HttpContext.Current.Server;
+        private static HttpServerUtility Server
+        {
+            get { return HttpContext.Current.Server; }
+        }
 
         public ImageProvider(IImageRepository imageRepository)
         {
@@ -35,12 +38,12 @@ namespace Blog.WebApp.Providers
 
         public string GetImageUrl(Image image)
         {
-            return $"~/Content/uploads/originals/{GetImageFilename(image)}";
+            return string.Format("~/Content/uploads/originals/{0}", GetImageFilename(image));
         }
 
         public string GetThumbnailUrl(Image image)
         {
-            return $"~/Content/uploads/thumbnails/{GetImageFilename(image)}";
+            return string.Format("~/Content/uploads/thumbnails/{0}", GetImageFilename(image));
         }
 
         public IList<Image> GetImages()
@@ -104,7 +107,7 @@ namespace Blog.WebApp.Providers
 
         private static string GetImageFilename(Image image)
         {
-            return $"{image.Id}.png";
+            return string.Format("{0}.png", image.Id);
         }
 
         private void PersistImageAndThumbnail(Image image)

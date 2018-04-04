@@ -10,7 +10,7 @@ namespace Blog.WebApp.Utility
             var timezoneInfo = TimeZoneInfo
                 .FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
 
-            return $"{TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString()}";
+            return string.Format("{0}", TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString());
         }
     }
 }

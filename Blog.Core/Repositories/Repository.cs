@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
 using NHibernate;
+using NHibernate.Linq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.Core.Repositories
 {

@@ -50,22 +50,22 @@
 @helper DeletePostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
 {
     @CustomContent(htmlHelper.ActionLink("[usuń]", "DeletePost", "Admin",
-            new { postId = post.Id },
-            new { onclick = $"return confirm('Czy na pewno chcesz usunąć posta \"{post.Title}\"?')" }))
+        new { postId = post.Id },
+        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć posta \"{0}\"?')", post.Title)}))
 }
 
 @helper DeleteCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
 {
     @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteCategory", "Admin",
-            new { categoryId = category.Id },
-            new { onclick = $"return confirm('Czy na pewno chcesz usunąć kategorię \"{category.Name}\"?')" }))
+        new { categoryId = category.Id },
+        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć kategorię \"{0}\"?')", category.Name)}))
 }
 
 @helper DeleteTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
 {
     @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin",
-            new { tagId = tag.Id },
-            new { onclick = $"return confirm('Czy na pewno chcesz usunąć taga \"{tag.Name}\"?')" }))
+        new { tagId = tag.Id },
+        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć taga \"{0}\"?')", tag.Name)}))
 }
 
 @helper ImagesLink(System.Web.Mvc.HtmlHelper htmlHelper)
@@ -77,5 +77,5 @@
 {
     @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteImage", "Admin",
         new { imageId },
-        new { onclick = $"return confirm('Czy na pewno chcesz usunąć grafikę?')" }))
+        new { onclick = "return confirm('Czy na pewno chcesz usunąć grafikę?')" }))
 }

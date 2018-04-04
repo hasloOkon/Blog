@@ -32,7 +32,7 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = $"Posty w kategorii: {category.Name}"
+                    title = string.Format("Posty w kategorii: {0}", category.Name)
                 });
         }
 
@@ -45,7 +45,7 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = $"Posty dla taga: {tag.Name}",
+                    title = string.Format("Posty dla taga: {0}", tag.Name),
                     @class = "tag-link"
                 });
         }

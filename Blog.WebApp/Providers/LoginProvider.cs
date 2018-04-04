@@ -5,7 +5,10 @@ namespace Blog.WebApp.Providers
 {
     public class LoginProvider : ILoginProvider
     {
-        public bool IsLoggedIn => HttpContext.Current.User.Identity.IsAuthenticated;
+        public bool IsLoggedIn
+        {
+            get { return HttpContext.Current.User.Identity.IsAuthenticated; }
+        }
 
         public bool Login(string username, string password)
         {

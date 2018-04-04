@@ -17,9 +17,9 @@ namespace Blog.WebApp.ViewModels
             EndPage = endPage;
         }
 
-        public int CurrentPage { get; }
-        public int TotalPages { get; }
-        public int StartPage { get; }
-        public int EndPage { get; }
+        public int CurrentPage { get; private set; }
+        public int TotalPages { get; private set; }
+        public int StartPage { get; private set; }
+        public int EndPage { get; private set; }
     }
 }

@@ -51,7 +51,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Ostatnie posty dla kategorii \"{category.Name}\":"
+                Title = string.Format("Ostatnie posty dla kategorii \"{0}\":", category.Name)
             };
         }
 
@@ -68,7 +68,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsForTag(tagSlug, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Ostatnie posty dla taga \"{tag.Name}\":"
+                Title = string.Format("Ostatnie posty dla taga \"{0}\":", tag.Name)
             };
         }
 
@@ -80,7 +80,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
-                Title = $"Wyniki wyszukiwania dla \"{searchPhrase}\":"
+                Title = string.Format("Wyniki wyszukiwania dla \"{0}\":", searchPhrase)
             };
         }
 
