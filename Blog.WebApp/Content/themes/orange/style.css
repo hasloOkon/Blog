@@ -1,5 +1,5 @@
 body {
-    background: transparent url(images/background.jpg) repeat;
+    background: transparent url(/Content/themes/orange/images/background.jpg) repeat;
     font-family: arial;
 }
 
@@ -73,7 +73,7 @@ li {
 }
 
 .pin-list {
-    list-style-image: url(images/pin.png);
+    list-style-image: url(/Content/themes/orange/images/pin.png);
 }
 
 .img-responsive {

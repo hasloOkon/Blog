@@ -242,3 +242,6 @@ ModelManifest.xml
 .fake/
 /Blog.WebApp/Content/uploads/originals
 /Blog.WebApp/Content/uploads/thumbnails
+/Blog.Core/Blog.Core.csproj.DotSettings
+/Blog.WebApp/Blog.WebApp.csproj.DotSettings
+/Blog.WebApp/Properties/PublishProfiles

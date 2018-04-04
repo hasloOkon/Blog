@@ -21,6 +21,8 @@ namespace Blog.WebApp.Providers
         public ImageProvider(IImageRepository imageRepository)
         {
             this.imageRepository = imageRepository;
+
+            EnsureDirectoriesExist();
         }
 
         public void SavePostedImage(HttpPostedFileBase postedImage)
@@ -88,6 +90,25 @@ namespace Blog.WebApp.Providers
             if (!File.Exists(GetImagePath(image)) || !File.Exists(GetThumbnailPath(image)))
             {
                 PersistImageAndThumbnail(image);
+            }
+        }
+
+        private void EnsureDirectoriesExist()
+        {
+            var uploadFolderPath = Server.MapPath("~/Content/uploads");
+            var originalsFolderPath = Server.MapPath("~/Content/uploads/originals");
+            var thumbnailsFolderPath = Server.MapPath("~/Content/uploads/thumbnails");
+
+            EnsureDirectoryExist(uploadFolderPath);
+            EnsureDirectoryExist(originalsFolderPath);
+            EnsureDirectoryExist(thumbnailsFolderPath);
+        }
+
+        private void EnsureDirectoryExist(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
             }
         }
 
