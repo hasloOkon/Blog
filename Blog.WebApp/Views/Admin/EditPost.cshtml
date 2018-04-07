@@ -35,6 +35,8 @@
 
         <div class="row mt-4">
             @Html.LabelFor(m => m.ShortDescription)
+            &nbsp;
+            @AdminOnly.CustomContent(Html.ImagesLink("[przeglądaj grafiki]", openInNewTab: true))
         </div>
         <div class="row">
             <div class="w-100">
@@ -44,6 +46,8 @@
 
         <div class="row mt-4">
             @Html.LabelFor(m => m.Content)
+            &nbsp;
+            @AdminOnly.CustomContent(Html.ImagesLink("[przeglądaj grafiki]", openInNewTab: true))
         </div>
         <div class="row">
             <div class="w-100">

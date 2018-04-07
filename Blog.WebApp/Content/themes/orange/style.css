@@ -134,3 +134,24 @@ select.form-control option:checked,
 select.form-control option:active {
     box-shadow: 0 0 10px 100px orange inset;
 }
+
+.post img {
+    max-width: 100%;
+}
+
+#sidebars .row {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+h1 {
+    font-size: 3.0vw;
+}
+
+h2 {
+    font-size: 2.5vw;
+}
+
+h3 {
+    font-size: 2.0vw;
+}
