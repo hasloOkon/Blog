@@ -12,7 +12,7 @@ namespace Blog.WebApp
 
         private static void RegisterScriptBundles(BundleCollection bundles)
         {
-            var externalScripts = new ScriptBundle("~/external/js")
+            var externalScripts = new ScriptBundle("~/Content/external/js")
                 .Include("~/Scripts/external/jquery-{version}.js")
                 .Include("~/Scripts/external/jquery-ui.js")
                 .Include("~/Scripts/external/jquery.validate.js")
@@ -29,12 +29,12 @@ namespace Blog.WebApp
 
         private static void RegisterStyleBundles(BundleCollection bundles)
         {
-            var externalStyles = new StyleBundle("~/external/css")
+            var externalStyles = new StyleBundle("~/Content/external/css")
                 .IncludeDirectory("~/Content/external", "*.css", searchSubdirectories: true);
 
             bundles.Add(externalStyles);
 
-            var internalStyles = new StyleBundle("~/internal/css")
+            var internalStyles = new StyleBundle("~/Content/internal/css")
                 .Include("~/Content/themes/orange/style.css");
 
             bundles.Add(internalStyles);
