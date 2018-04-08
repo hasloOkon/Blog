@@ -165,6 +165,7 @@
     <Content Include="Content\themes\orange\images\carousel_2.jpg" />
     <Content Include="Content\themes\orange\images\carousel_3.jpg" />
     <Content Include="Content\themes\orange\images\logo.png" />
+    <Content Include="Content\themes\orange\images\mapa.jpg" />
     <Content Include="Content\themes\orange\images\pin.png" />
     <Content Include="Content\themes\orange\images\spy_glass.png" />
     <Content Include="Content\themes\orange\style.css" />

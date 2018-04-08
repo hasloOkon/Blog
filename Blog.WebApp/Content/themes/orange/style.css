@@ -139,11 +139,6 @@ select.form-control option:active {
     max-width: 100%;
 }
 
-#sidebars .row {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 h1 {
     font-size: 3.0vw;
 }
