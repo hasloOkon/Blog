@@ -20,6 +20,7 @@ namespace Blog.WebApp
                 .Include("~/Scripts/external/tether.js")
                 .Include("~/Scripts/external/popper.js")
                 .Include("~/Scripts/external/bootstrap.js")
+                .Include("~/Scripts/external/bootstrap.bundle.js")
                 .Include("~/Scripts/external/tooltip.js")
                 .Include("~/Scripts/external/summernote-bs4.js")
                 .Include("~/Scripts/external/sumernote-fixedtoolbar.js");

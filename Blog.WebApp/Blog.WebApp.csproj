@@ -178,6 +178,8 @@
     <Content Include="Content\external\font\summernote.eot" />
     <Content Include="Content\external\font\summernote.ttf" />
     <Content Include="Content\external\font\summernote.woff" />
+    <Content Include="Scripts\external\bootstrap.bundle.js" />
+    <Content Include="Scripts\external\bootstrap.bundle.min.js" />
     <Content Include="Scripts\external\bootstrap.js" />
     <Content Include="Scripts\external\bootstrap.min.js" />
     <Content Include="Scripts\external\jquery-3.3.1.js" />
@@ -259,6 +261,10 @@
     <Content Include="Views\Admin\EditCategory.cshtml" />
     <Content Include="Views\Admin\EditTag.cshtml" />
     <Content Include="Views\Blog\About.cshtml" />
+    <Content Include="Scripts\external\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\external\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\external\bootstrap.js.map" />
+    <Content Include="Scripts\external\bootstrap.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
