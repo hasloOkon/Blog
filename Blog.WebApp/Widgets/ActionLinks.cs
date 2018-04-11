@@ -1,4 +1,5 @@
 ﻿using Blog.Core.Models;
+using Blog.WebApp.Properties;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -18,7 +19,7 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = title
+                    title = string.Format(Resources.PostLinkTitle, title)
                 });
         }
 
@@ -32,7 +33,7 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = string.Format("Posty w kategorii: {0}", category.Name)
+                    title = string.Format(Resources.CategoryLinkTitle, category.Name)
                 });
         }
 
@@ -45,7 +46,7 @@ namespace Blog.WebApp.Widgets
                 },
                 new
                 {
-                    title = string.Format("Posty dla taga: {0}", tag.Name),
+                    title = string.Format(Resources.TagLinkTitle, tag.Name),
                     @class = "tag-link"
                 });
         }

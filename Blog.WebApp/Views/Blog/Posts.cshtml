@@ -39,7 +39,7 @@
     }
     else
     {
-        ViewBag.Title = "Szpilką po mapie";
+        ViewBag.Title = Resources.BlogName;
     }
 
     @if (Model.Posts.Count > 0)
@@ -51,7 +51,7 @@
     }
     else
     {
-        <h3 class="content-bg mb-2 p-2">Nie znaleziono żadnych postów!</h3>
+        <h3 class="content-bg mb-2 p-2">@Resources.NoPostFound</h3>
     }
 
     @Html.Partial("_Pager", Model.PagerViewModel)

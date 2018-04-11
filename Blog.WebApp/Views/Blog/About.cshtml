@@ -1,25 +1,24 @@
 ﻿@{
-    ViewBag.Title = "O blogu";
+    ViewBag.Title = Resources.About;
 }
 
 <div class="container content-bg p-4">
     <p>
-        <h2>O blogu</h2>
+        <h2>@Resources.About</h2>
     </p>
     <p>
-        Szpilkami na mapie zaczęłam oznaczać, które miejsca już odwiedziłam. Pamięć jest zawodna, i pytana, co udało mi się zwiedzić, musiałam przekopać trochę umysłu. Pokazanie mapy było prostsze.
+        @Resources.AboutPart1
     </p>
     <p class="text-center">
         <img src="@Url.Content("~/Content/themes/orange/images/mapa.jpg")" class="w-75"/>
     </p>
     <p>
-        Pytana, co działo się na danej wyprawie, męczyłam się jeszcze bardziej. Wspomnienia z czasem zaczynają blednąć, a aparat nie wszystko uchwyci. Dlatego zaczęłam robić notatki.
+        @Resources.AboutPart2
     </p>
     <p>
-        Stworzenie bloga jest dosyć popularnym zadaniem dla programisty chcącego przeszkolić się w technologiach webowych. Zaciągnęłam więc do wspólnego kodzenia pierwszego programistę, jakiego znalazłam, i po czasem mniej, a czasem bardziej owocnej współpracy, udało nam się stworzyć niniejszy blog.
+        @Resources.AboutPart3
     </p>
     <p>
-        Chcesz skrytykować?
-        Wal. &#8594; <a href="mailto:szpilkapomapie@gmail.com">szpilkapomapie@gmail.com</a>
+        @Resources.AboutPart4 &#8594; <a href="mailto:szpilkapomapie@gmail.com">szpilkapomapie@gmail.com</a>
     </p>
 </div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Blog.WebApp.Properties;
+using System.ComponentModel.DataAnnotations;
 
 namespace Blog.WebApp.ViewModels.Forms
 {
@@ -8,7 +9,7 @@ namespace Blog.WebApp.ViewModels.Forms
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Nazwa taga")]
+        [Display(Name = "TagName", ResourceType = typeof(Resources))]
         public string Name { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Blog.WebApp.ViewModels.LoginModel
+﻿@model Blog.WebApp.ViewModels.Forms.LoginForm
 
 @{
     Layout = null;
@@ -10,7 +10,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>@Resources.LoginPage</title>
     @Scripts.Render("~/Content/external/js")
 </head>
 
@@ -21,7 +21,7 @@
         @using (Html.BeginForm())
         {
         <fieldset>
-            <legend>Login</legend>
+            <legend>@Resources.LoginPage</legend>
             <table>
                 <tr>
                     <td>@Html.LabelFor(m => m.UserName)</td>
@@ -39,7 +39,7 @@
             @Html.Hidden("ReturnUrl")
             @Html.AntiForgeryToken()
             <p>
-                <input type="submit" value="Login" />
+                <input type="submit" value="@Resources.LoginAction" />
             </p>
         </fieldset>
         }

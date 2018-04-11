@@ -1,5 +1,6 @@
 ﻿using Blog.Core.Models;
 using Blog.Core.Repositories;
+using Blog.WebApp.Properties;
 using Blog.WebApp.Providers;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Blog.WebApp.ViewModels
             var category = categoryRepository.GetBySlug(categorySlug);
 
             if (category == null)
-                throw new HttpException(404, "Nie znaleziono kategorii :(");
+                throw new HttpException(404, Resources.CategoryNotFound);
 
             var totalPosts = postRepository.TotalPostsForCategory(categorySlug);
 
@@ -51,7 +52,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsForCategory(categorySlug, pageNumber, DefaultPageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
-                Title = string.Format("Ostatnie posty dla kategorii \"{0}\":", category.Name)
+                Title = string.Format(Resources.LatestPostsForCategory, category.Name)
             };
         }
 
@@ -60,7 +61,7 @@ namespace Blog.WebApp.ViewModels
             var tag = tagRepository.GetBySlug(tagSlug);
 
             if (tag == null)
-                throw new HttpException(404, "Nie znaleziono taga :(");
+                throw new HttpException(404, Resources.TagNotFound);
 
             var totalPosts = postRepository.TotalPostsForTag(tagSlug);
 
@@ -68,7 +69,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsForTag(tagSlug, pageNumber, DefaultPageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
-                Title = string.Format("Ostatnie posty dla taga \"{0}\":", tag.Name)
+                Title = string.Format(Resources.LatestPostsForTag, tag.Name)
             };
         }
 
@@ -80,7 +81,7 @@ namespace Blog.WebApp.ViewModels
             {
                 Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, DefaultPageSize),
                 PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
-                Title = string.Format("Wyniki wyszukiwania dla \"{0}\":", searchPhrase)
+                Title = string.Format(Resources.SearchResultForPhrase, searchPhrase)
             };
         }
 

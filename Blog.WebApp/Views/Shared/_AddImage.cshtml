@@ -1,4 +1,4 @@
-﻿<h2 class="col-12">Nowa grafika</h2>
+﻿<h2 class="col-12">@Resources.NewImage</h2>
 @using (Html.BeginForm("AddImage", "Admin", FormMethod.Post, 
     new { enctype = "multipart/form-data" }))
 {
@@ -7,7 +7,7 @@
             <input name="image" type="file" />
         </div>
         <div class="col-auto">
-            <input type="submit" value="Prześlij" />
+            <input type="submit" value="@Resources.Upload" />
         </div>
     </div>
 }

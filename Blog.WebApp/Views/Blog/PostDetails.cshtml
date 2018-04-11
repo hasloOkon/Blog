@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Kategoria: </span>@Html.CategoryLink(Model.Category)
+                <span>@Resources.Category: </span>@Html.CategoryLink(Model.Category)
             </div>
 
             <div class="col-auto text-right">
@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <span>Tagi:</span>@Helpers.Tags(Html, Model.Tags)
+                <span>@Resources.Tags:</span>@Helpers.Tags(Html, Model.Tags)
             </div>
         </div>
     </div>

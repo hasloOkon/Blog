@@ -1,7 +1,7 @@
 ﻿@model IList<Blog.WebApp.ViewModels.ImageViewModel>
 
 @{
-    ViewBag.Title = "Grafiki";
+    ViewBag.Title = Resources.Images;
 }
 
 <div class="content-bg p-5">
@@ -11,7 +11,7 @@
     @if (Model.Any())
     {
         <div class="row">
-            <h2 class="col-12">Istniejące grafiki</h2>
+            <h2 class="col-12">@Resources.ExistingImages</h2>
             @foreach (var image in Model)
             {
                 <div class="col-12 row mt-2">

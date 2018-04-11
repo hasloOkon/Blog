@@ -1,11 +1,11 @@
 ﻿@model Blog.WebApp.ViewModels.Forms.AddPostForm
 
 @{
-    ViewBag.Title = "Nowy post";
+    ViewBag.Title = Resources.AddPost;
 }
 
 <div class="content-bg p-5">
-    <h2>Nowy post</h2>
+    <h2>@Resources.AddPost</h2>
 
     @using (Html.BeginForm("AddPost", "Admin", FormMethod.Post))
     {
@@ -13,8 +13,8 @@
             @Html.LabelFor(m => m.Title)
         </div>
         <div class="row">
-            @Html.TextBoxFor(m => m.Title, htmlAttributes: new { @class = "form-control col-12" })
             @Html.ValidationMessageFor(m => m.Title)
+            @Html.TextBoxFor(m => m.Title, htmlAttributes: new { @class = "form-control col-12" })
         </div>
 
         <div class="row mt-4">
@@ -34,34 +34,36 @@
         <div class="row mt-4">
             @Html.LabelFor(m => m.Description)
             &nbsp;
-            @AdminOnly.CustomContent(Html.ImagesLink("[przeglądaj grafiki]", openInNewTab: true))
+            @AdminOnly.CustomContent(Html.ImagesLink(Resources.BrowseImagesLink, openInNewTab: true))
         </div>
         <div class="row">
             <div class="w-100">
-                @Html.TextAreaFor(m => m.Description, htmlAttributes: new { id = "short-description-editor" })
+                @Html.ValidationMessageFor(m => m.Description)
+                @Html.TextAreaFor(m => m.Description, htmlAttributes: new { id = "description-editor" })
             </div>
         </div>
 
         <div class="row mt-4">
             @Html.LabelFor(m => m.Content)
             &nbsp;
-            @AdminOnly.CustomContent(Html.ImagesLink("[przeglądaj grafiki]", openInNewTab: true))
+            @AdminOnly.CustomContent(Html.ImagesLink(Resources.BrowseImagesLink, openInNewTab: true))
         </div>
         <div class="row">
             <div class="w-100">
+                @Html.ValidationMessageFor(m => m.Content)
                 @Html.TextAreaFor(m => m.Content, htmlAttributes: new { id = "content-editor" })
             </div>
         </div>
         
-        <div class="form-group text-center">
-            <button type="submit" class="btn">Submit</button>
+        <div class="form-group text-center mt-2">
+            <button type="submit" class="btn">@Resources.Submit</button>
         </div>
     }
 </div>
 
 <script>
     $(document).ready(function () {
-        $('#short-description-editor').summernote({
+        $('#description-editor').summernote({
             height: 100,
             followingToolbar: false
         });

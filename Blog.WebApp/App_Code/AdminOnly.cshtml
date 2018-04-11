@@ -1,6 +1,9 @@
 ﻿@using System.Web.Mvc
 @using System.Web.Mvc.Html
 @using Blog.Core.Models
+@using Blog.WebApp.Properties
+@using Blog.WebApp.Utility
+@using HtmlHelper = System.Web.Mvc.HtmlHelper
 
 @helper CustomContent(MvcHtmlString mvcHtmlString)
 {
@@ -17,65 +20,65 @@
     @CustomContent(MvcHtmlString.Create(html.Invoke(null).ToHtmlString()))
 }
 
-@helper EditPostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
+@helper EditPostLink(HtmlHelper htmlHelper, Post post)
 {
-    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditPost", "Admin", new { postId = post.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink(Resources.EditLink, "EditPost", "Admin", new { postId = post.Id }, new { }))
 }
 
-@helper EditCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
+@helper EditCategoryLink(HtmlHelper htmlHelper, Category category)
 {
-    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditCategory", "Admin", new { categoryId = category.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink(Resources.EditLink, "EditCategory", "Admin", new { categoryId = category.Id }, new { }))
 }
 
-@helper EditTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
+@helper EditTagLink(HtmlHelper htmlHelper, Tag tag)
 {
-    @CustomContent(htmlHelper.ActionLink("[edycja]", "EditTag", "Admin", new { tagId = tag.Id }, new { }))
+    @CustomContent(htmlHelper.ActionLink(Resources.EditLink, "EditTag", "Admin", new { tagId = tag.Id }, new { }))
 }
 
-@helper AddPostLink(System.Web.Mvc.HtmlHelper htmlHelper)
+@helper AddPostLink(HtmlHelper htmlHelper)
 {
-    @CustomContent(htmlHelper.ActionLink("[+]", "AddPost", "Admin"))
+    @CustomContent(htmlHelper.ActionLink(Resources.AddLink, "AddPost", "Admin"))
 }
 
-@helper AddCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper)
+@helper AddCategoryLink(HtmlHelper htmlHelper)
 {
-    @CustomContent(htmlHelper.ActionLink("[+]", "AddCategory", "Admin"))
+    @CustomContent(htmlHelper.ActionLink(Resources.AddLink, "AddCategory", "Admin"))
 }
 
-@helper AddTagLink(System.Web.Mvc.HtmlHelper htmlHelper)
+@helper AddTagLink(HtmlHelper htmlHelper)
 {
-    @CustomContent(htmlHelper.ActionLink("[+]", "AddTag", "Admin"))
+    @CustomContent(htmlHelper.ActionLink(Resources.AddLink, "AddTag", "Admin"))
 }
 
-@helper DeletePostLink(System.Web.Mvc.HtmlHelper htmlHelper, Post post)
+@helper DeletePostLink(HtmlHelper htmlHelper, Post post)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeletePost", "Admin",
+    @CustomContent(htmlHelper.ActionLink(Resources.DeleteLink, "DeletePost", "Admin",
         new { postId = post.Id },
-        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć posta \"{0}\"?')", post.Title)}))
+        new { onclick = JavaScript.Confirm(Resources.DeletePostConfirmationMessage, post.Title) }))
 }
 
-@helper DeleteCategoryLink(System.Web.Mvc.HtmlHelper htmlHelper, Category category)
+@helper DeleteCategoryLink(HtmlHelper htmlHelper, Category category)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteCategory", "Admin",
+    @CustomContent(htmlHelper.ActionLink(Resources.DeleteLink, "DeleteCategory", "Admin",
         new { categoryId = category.Id },
-        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć kategorię \"{0}\"?')", category.Name)}))
+        new { onclick = JavaScript.Confirm(Resources.DeleteCategoryConfirmationMessage, category.Name) }))
 }
 
-@helper DeleteTagLink(System.Web.Mvc.HtmlHelper htmlHelper, Tag tag)
+@helper DeleteTagLink(HtmlHelper htmlHelper, Tag tag)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteTag", "Admin",
+    @CustomContent(htmlHelper.ActionLink(Resources.DeleteLink, "DeleteTag", "Admin",
         new { tagId = tag.Id },
-        new { onclick = string.Format("return confirm('Czy na pewno chcesz usunąć taga \"{0}\"?')", tag.Name)}))
+        new { onclick = JavaScript.Confirm(Resources.DeleteTagConfirmationMessage, tag.Name) }))
 }
 
-@helper ImagesLink(System.Web.Mvc.HtmlHelper htmlHelper)
+@helper ImagesLink(HtmlHelper htmlHelper)
 {
-    @CustomContent(htmlHelper.ActionLink("[grafiki]", "Images", "Admin"))
+    @CustomContent(htmlHelper.ActionLink(Resources.ImagesLink, "Images", "Admin"))
 }
 
-@helper DeleteImageLink(System.Web.Mvc.HtmlHelper htmlHelper, int imageId)
+@helper DeleteImageLink(HtmlHelper htmlHelper, int imageId)
 {
-    @CustomContent(htmlHelper.ActionLink("[usuń]", "DeleteImage", "Admin",
+    @CustomContent(htmlHelper.ActionLink(Resources.DeleteLink, "DeleteImage", "Admin",
         new { imageId },
-        new { onclick = "return confirm('Czy na pewno chcesz usunąć grafikę?')" }))
+        new { onclick = JavaScript.Confirm(Resources.DeleteImageConfirmationMessage) }))
 }

@@ -2,6 +2,7 @@
 using Blog.Core.Models;
 using Blog.Core.Repositories;
 using Blog.Core.Utility;
+using Blog.WebApp.Properties;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
 using Blog.WebApp.ViewModels.Forms;
@@ -52,7 +53,7 @@ namespace Blog.WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public ActionResult Login(LoginForm model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +62,7 @@ namespace Blog.WebApp.Controllers
                     return RedirectToUrl(returnUrl);
                 }
 
-                ModelState.AddModelError("", "Podana nazwa użytkownika lub hasło są nieprawidłowe.");
+                ModelState.AddModelError("LoginUnsuccessful", Resources.LoginUnsuccessful);
             }
             return View();
         }

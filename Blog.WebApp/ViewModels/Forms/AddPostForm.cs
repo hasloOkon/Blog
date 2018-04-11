@@ -1,4 +1,5 @@
 ﻿using Blog.Core.Models;
+using Blog.WebApp.Properties;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -9,24 +10,24 @@ namespace Blog.WebApp.ViewModels.Forms
     {
         [Required]
         [StringLength(100)]
-        [Display(Name = "Tytuł")]
+        [Display(Name = "PostTitle", ResourceType = typeof(Resources))]
         public string Title { get; set; }
 
         [Required]
         [AllowHtml]
         [StringLength(255)]
-        [Display(Name = "Krótki opis")]
+        [Display(Name = "PostDescription", ResourceType = typeof(Resources))]
         public string Description { get; set; }
 
         [Required]
         [AllowHtml]
-        [Display(Name = "Treść")]
+        [Display(Name = "PostContent", ResourceType = typeof(Resources))]
         public string Content { get; set; }
 
-        [Display(Name = "Kategoria")]
+        [Display(Name = "PostCategory", ResourceType = typeof(Resources))]
         public int CategoryId { get; set; }
 
-        [Display(Name = "Tagi")]
+        [Display(Name = "PostTags", ResourceType = typeof(Resources))]
         public IList<int> TagIds { get; set; }
 
         public IList<Category> Categories { get; set; }
