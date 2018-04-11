@@ -8,13 +8,13 @@ namespace Blog.Core.Mappings
         public PostMap()
         {
             Id(post => post.Id);
-            
+
             Map(post => post.Title)
-                .Length(500)
+                .Length(100)
                 .Not.Nullable();
 
-            Map(post => post.ShortDescription)
-                .Length(5000)
+            Map(post => post.Description)
+                .Length(255)
                 .Not.Nullable();
 
             Map(post => post.Content)
@@ -22,16 +22,16 @@ namespace Blog.Core.Mappings
                 .Not.Nullable();
 
             Map(post => post.UrlSlug)
-                .Length(200)
+                .Length(100)
                 .Not.Nullable();
 
             Map(post => post.PostedOn)
                 .Not.Nullable();
 
-            Map(post => post.Modified);
+            Map(post => post.ModifiedOn);
 
             References(post => post.Category)
-                .Column("Category")
+                .Column("CategoryId")
                 .Not.Nullable();
 
             HasManyToMany(post => post.Tags)

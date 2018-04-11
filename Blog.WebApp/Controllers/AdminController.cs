@@ -35,6 +35,7 @@ namespace Blog.WebApp.Controllers
             this.viewModelFactory = viewModelFactory;
         }
 
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -65,6 +66,7 @@ namespace Blog.WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
             loginProvider.Logout();
@@ -72,6 +74,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Posts", "Blog");
         }
 
+        [HttpGet]
         public ActionResult Images()
         {
             return View(viewModelFactory.GetImages());
@@ -88,6 +91,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Images");
         }
 
+        [HttpGet]
         public ActionResult DeleteImage(int imageId)
         {
             imageProvider.Delete(imageId);
@@ -95,6 +99,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Images");
         }
 
+        [HttpGet]
         public ActionResult AddPost()
         {
             return View(new AddPostForm
@@ -126,6 +131,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult EditPost(int postId)
         {
             var post = postRepository.GetById(postId);
@@ -152,8 +158,8 @@ namespace Blog.WebApp.Controllers
                 post.Category = categoryRepository.GetById(editPostForm.CategoryId);
                 post.Tags = tagRepository.GetAll()
                     .Where(tag => editPostForm.TagIds.Contains(tag.Id)).ToList();
-                post.ShortDescription = editPostForm.ShortDescription;
-                post.Modified = DateTime.Now;
+                post.Description = editPostForm.Description;
+                post.ModifiedOn = DateTime.Now;
                 post.UrlSlug = editPostForm.Title.Slugify();
 
                 postRepository.AddOrUpdate(post);
@@ -169,6 +175,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult DeletePost(int postId)
         {
             postRepository.Delete(postId);
@@ -176,6 +183,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Posts", "Blog");
         }
 
+        [HttpGet]
         public ActionResult AddCategory()
         {
             return View(new AddCategoryForm());
@@ -198,6 +206,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult EditCategory(int categoryId)
         {
             var category = categoryRepository.GetById(categoryId);
@@ -222,6 +231,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult DeleteCategory(int categoryId)
         {
             categoryRepository.Delete(categoryId);
@@ -229,6 +239,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Posts", "Blog");
         }
 
+        [HttpGet]
         public ActionResult AddTag()
         {
             return View(new AddTagForm());
@@ -251,6 +262,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult EditTag(int tagId)
         {
             var tag = tagRepository.GetById(tagId);
@@ -275,6 +287,7 @@ namespace Blog.WebApp.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult DeleteTag(int tagId)
         {
             tagRepository.Delete(tagId);
@@ -282,6 +295,7 @@ namespace Blog.WebApp.Controllers
             return RedirectToAction("Posts", "Blog");
         }
 
+        [HttpGet]
         private ActionResult RedirectToUrl(string returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))

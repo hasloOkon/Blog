@@ -32,13 +32,13 @@
         </div>
 
         <div class="row mt-4">
-            @Html.LabelFor(m => m.ShortDescription)
+            @Html.LabelFor(m => m.Description)
             &nbsp;
             @AdminOnly.CustomContent(Html.ImagesLink("[przeglądaj grafiki]", openInNewTab: true))
         </div>
         <div class="row">
             <div class="w-100">
-                @Html.TextAreaFor(m => m.ShortDescription, htmlAttributes: new { id = "short-description-editor" })
+                @Html.TextAreaFor(m => m.Description, htmlAttributes: new { id = "short-description-editor" })
             </div>
         </div>
 

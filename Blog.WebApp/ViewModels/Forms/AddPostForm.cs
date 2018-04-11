@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using Blog.Core.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using Blog.Core.Models;
 
 namespace Blog.WebApp.ViewModels.Forms
 {
     public class AddPostForm
     {
         [Required]
-        [StringLength(500)]
+        [StringLength(100)]
         [Display(Name = "Tytuł")]
         public string Title { get; set; }
 
         [Required]
         [AllowHtml]
+        [StringLength(255)]
         [Display(Name = "Krótki opis")]
-        public string ShortDescription { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [AllowHtml]

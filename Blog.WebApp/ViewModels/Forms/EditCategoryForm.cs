@@ -8,11 +8,12 @@ namespace Blog.WebApp.ViewModels.Forms
         public int Id { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(100)]
         [Display(Name = "Nazwa kategorii")]
         public string Name { get; set; }
 
         [AllowHtml]
+        [StringLength(255)]
         [Display(Name = "Opis kategorii")]
         public string Description { get; set; }
     }

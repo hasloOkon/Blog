@@ -9,7 +9,7 @@ namespace Blog.WebApp.ViewModels
 {
     public class ViewModelFactory : IViewModelFactory
     {
-        private const int PageSize = 3;
+        private const int DefaultPageSize = 3;
         private readonly IPostRepository postRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly ITagRepository tagRepository;
@@ -32,8 +32,8 @@ namespace Blog.WebApp.ViewModels
 
             return new PostsViewModel
             {
-                Posts = postRepository.Posts(pageNumber, PageSize),
-                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
+                Posts = postRepository.Posts(pageNumber, DefaultPageSize),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
                 Title = string.Empty
             };
         }
@@ -49,8 +49,8 @@ namespace Blog.WebApp.ViewModels
 
             return new PostsViewModel
             {
-                Posts = postRepository.PostsForCategory(categorySlug, pageNumber, PageSize),
-                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
+                Posts = postRepository.PostsForCategory(categorySlug, pageNumber, DefaultPageSize),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
                 Title = string.Format("Ostatnie posty dla kategorii \"{0}\":", category.Name)
             };
         }
@@ -66,8 +66,8 @@ namespace Blog.WebApp.ViewModels
 
             return new PostsViewModel
             {
-                Posts = postRepository.PostsForTag(tagSlug, pageNumber, PageSize),
-                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
+                Posts = postRepository.PostsForTag(tagSlug, pageNumber, DefaultPageSize),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
                 Title = string.Format("Ostatnie posty dla taga \"{0}\":", tag.Name)
             };
         }
@@ -78,8 +78,8 @@ namespace Blog.WebApp.ViewModels
 
             return new PostsViewModel
             {
-                Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, PageSize),
-                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, PageSize),
+                Posts = postRepository.PostsBySearch(searchPhrase, pageNumber, DefaultPageSize),
+                PagerViewModel = new PagerViewModel(totalPosts, pageNumber, DefaultPageSize),
                 Title = string.Format("Wyniki wyszukiwania dla \"{0}\":", searchPhrase)
             };
         }
@@ -94,7 +94,7 @@ namespace Blog.WebApp.ViewModels
             return new LeftSidebarViewModel
             {
                 Categories = categoryRepository.GetAll().ToList(),
-                LatestPosts = postRepository.Posts(pageNumber: 1, pageSize: PageSize),
+                LatestPosts = postRepository.Posts(pageNumber: 1, pageSize: 8),
                 Tags = tagRepository.GetAll().ToList()
             };
         }

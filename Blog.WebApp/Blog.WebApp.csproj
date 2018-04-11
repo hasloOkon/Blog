@@ -206,6 +206,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="Utility\ImageExtensions.cs" />
     <Compile Include="Widgets\ActionLinks.cs" />
     <Content Include="App_Code\AdminOnly.cshtml" />

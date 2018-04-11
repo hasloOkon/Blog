@@ -8,10 +8,10 @@ namespace Blog.Core.Utility
         public static string Slugify(this string text)
         {
             return text
-                .Trim()
                 .ToLower()
                 .RemoveAccents()
                 .RemoveInvalidCharacters()
+                .Trim()
                 .ReplaceWhitespacesWithUnderscores();
         }
 

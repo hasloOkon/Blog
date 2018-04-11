@@ -10,11 +10,11 @@ namespace Blog.Core.Mappings
             Id(tag => tag.Id);
 
             Map(tag => tag.Name)
-                .Length(50)
+                .Length(100)
                 .Not.Nullable();
 
             Map(tag => tag.UrlSlug)
-                .Length(50)
+                .Length(100)
                 .Not.Nullable();
 
             HasManyToMany(tag => tag.Posts)

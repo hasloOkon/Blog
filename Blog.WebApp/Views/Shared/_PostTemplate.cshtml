@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-auto text-right">
-                @Model.PostedOn.ToConfigLocalTime()
+                @Model.PostedOn.ToFormattedDate()
             </div>
         </div>
         @if (Model.Tags.Any())
@@ -31,7 +31,7 @@
     </div>
 
     <div class="p-4">
-        @Html.Raw(Model.ShortDescription)
+        @Html.Raw(Model.Description)
     </div>
 
     <div class="text-right p-0 mr-2">

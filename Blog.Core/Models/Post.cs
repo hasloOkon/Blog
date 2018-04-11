@@ -9,7 +9,7 @@ namespace Blog.Core.Models
 
         public virtual string Title { get; set; }
 
-        public virtual string ShortDescription { get; set; }
+        public virtual string Description { get; set; }
 
         public virtual string Content { get; set; }
 
@@ -17,7 +17,7 @@ namespace Blog.Core.Models
 
         public virtual DateTime PostedOn { get; set; }
 
-        public virtual DateTime? Modified { get; set; }
+        public virtual DateTime? ModifiedOn { get; set; }
 
         public virtual Category Category { get; set; }
 

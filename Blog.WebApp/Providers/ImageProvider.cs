@@ -12,6 +12,8 @@ namespace Blog.WebApp.Providers
 {
     public class ImageProvider : IImageProvider
     {
+        private const int ThumnailWidth = 80;
+        private const int ThumnailHeight = 80;
         private readonly IImageRepository imageRepository;
         private static HttpServerUtility Server
         {
@@ -143,7 +145,7 @@ namespace Blog.WebApp.Providers
                 systemImage.Save(imagePath);
 
                 using (var thumbnailSystemImage = systemImage
-                    .GetThumbnailImage(80, 80, () => false, IntPtr.Zero))
+                    .GetThumbnailImage(ThumnailWidth, ThumnailHeight, () => false, IntPtr.Zero))
                 {
                     thumbnailSystemImage.Save(thumbnailPath);
                 }

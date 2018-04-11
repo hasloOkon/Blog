@@ -3,14 +3,16 @@ using System.Configuration;
 
 namespace Blog.WebApp.Utility
 {
-    public static class Extensions
+    public static class DateTimeExtensions
     {
-        public static string ToConfigLocalTime(this DateTime utcDateTime)
+        public static string ToFormattedDate(this DateTime utcDateTime)
         {
             var timezoneInfo = TimeZoneInfo
                 .FindSystemTimeZoneById(ConfigurationManager.AppSettings["Timezone"]);
 
-            return string.Format("{0}", TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo).ToShortDateString());
+            var dateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timezoneInfo);
+
+            return dateTime.ToString("dd.MM.yyyy");
         }
     }
 }

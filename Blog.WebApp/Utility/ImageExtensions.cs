@@ -12,8 +12,6 @@ namespace Blog.WebApp.Utility
                 int rotationValue = image.GetPropertyItem(0x0112).Value[0];
                 switch (rotationValue)
                 {
-                    case 1: // landscape, do nothing
-                        break;
                     case 8: // rotated 90 right
                         image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
                         break;
@@ -22,6 +20,9 @@ namespace Blog.WebApp.Utility
                         break;
                     case 6: // rotated 90 left
                         image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
+                        break;
+                    case 1: // landscape, do nothing
+                    default:
                         break;
                 }
             }
