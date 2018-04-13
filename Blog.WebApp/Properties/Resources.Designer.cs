@@ -19,7 +19,7 @@ namespace Blog.WebApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -223,7 +223,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CopyRight.
+        ///   Looks up a localized string similar to Copyright.
         /// </summary>
         public static string Copyright {
             get {
@@ -232,7 +232,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć wyprawę \&quot;{0}\&quot;?.
+        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć wyprawę &quot;{0}&quot;?.
         /// </summary>
         public static string DeleteCategoryConfirmationMessage {
             get {
@@ -259,7 +259,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć wpis \&quot;{0}\&quot;?.
+        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć wpis &quot;{0}&quot;?.
         /// </summary>
         public static string DeletePostConfirmationMessage {
             get {
@@ -268,7 +268,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć taga \&quot;{0}\&quot;?.
+        ///   Looks up a localized string similar to Czy na pewno chcesz usunąć taga &quot;{0}&quot;?.
         /// </summary>
         public static string DeleteTagConfirmationMessage {
             get {
@@ -349,7 +349,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostatnie posty dla kategorii \&quot;{0}\&quot;:.
+        ///   Looks up a localized string similar to Ostatnie posty dla kategorii &quot;{0}&quot;:.
         /// </summary>
         public static string LatestPostsForCategory {
             get {
@@ -358,7 +358,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostatnie posty dla taga \&quot;{0}\&quot;:.
+        ///   Looks up a localized string similar to Ostatnie posty dla taga &quot;{0}&quot;:.
         /// </summary>
         public static string LatestPostsForTag {
             get {
@@ -520,7 +520,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wyniki wyszukiwania dla \&quot;{0}\&quot;:.
+        ///   Looks up a localized string similar to Wyniki wyszukiwania dla &quot;{0}&quot;:.
         /// </summary>
         public static string SearchResultForPhrase {
             get {

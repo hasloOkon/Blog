@@ -94,6 +94,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="CoreModule.cs" />
+    <Compile Include="Utility\EnumerableExtensions.cs" />
     <Compile Include="Utility\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,6 @@
-﻿using Blog.Core.Models;
-using Blog.Core.Repositories;
+﻿using System.Linq;
+using System.Reflection;
+using Blog.Core.Utility;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -23,7 +24,7 @@ namespace Blog.Core
                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c =>
                             c.FromConnectionStringWithKey("BlogDbConnString")))
                         .Cache(c => c.UseQueryCache().ProviderClass<HashtableCacheProvider>())
-                        .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Post>())
+                        .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CoreModule>())
                         //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
                         .BuildConfiguration()
                         .BuildSessionFactory()
@@ -34,10 +35,10 @@ namespace Blog.Core
                 .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
                 .InRequestScope();
 
-            Bind<IPostRepository>().To<PostRepository>();
-            Bind<ICategoryRepository>().To<CategoryRepository>();
-            Bind<ITagRepository>().To<TagRepository>();
-            Bind<IImageRepository>().To<ImageRepository>();
+            Assembly.GetAssembly(typeof(CoreModule))
+                .GetTypes()
+                .Where(type => type.Name.EndsWith("Repository") && type.IsClass && !type.IsAbstract)
+                .ForEach(type => Bind(type.GetInterface("I" + type.Name)).To(type));
         }
     }
 }

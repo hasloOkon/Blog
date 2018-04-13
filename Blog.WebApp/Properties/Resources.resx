@@ -172,10 +172,10 @@
     <value>Nie znaleziono kategorii :(</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>CopyRight</value>
+    <value>Copyright</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Czy na pewno chcesz usunąć wyprawę \"{0}\"?</value>
+    <value>Czy na pewno chcesz usunąć wyprawę "{0}"?</value>
   </data>
   <data name="DeleteImageConfirmationMessage" xml:space="preserve">
     <value>Czy na pewno chcesz usunąć grafikę?</value>
@@ -184,10 +184,10 @@
     <value>[usuń]</value>
   </data>
   <data name="DeletePostConfirmationMessage" xml:space="preserve">
-    <value>Czy na pewno chcesz usunąć wpis \"{0}\"?</value>
+    <value>Czy na pewno chcesz usunąć wpis "{0}"?</value>
   </data>
   <data name="DeleteTagConfirmationMessage" xml:space="preserve">
-    <value>Czy na pewno chcesz usunąć taga \"{0}\"?</value>
+    <value>Czy na pewno chcesz usunąć taga "{0}"?</value>
   </data>
   <data name="EditCategory" xml:space="preserve">
     <value>Edytuj wyprawę</value>
@@ -214,10 +214,10 @@
     <value>Ostatnie posty</value>
   </data>
   <data name="LatestPostsForCategory" xml:space="preserve">
-    <value>Ostatnie posty dla kategorii \"{0}\":</value>
+    <value>Ostatnie posty dla kategorii "{0}":</value>
   </data>
   <data name="LatestPostsForTag" xml:space="preserve">
-    <value>Ostatnie posty dla taga \"{0}\":</value>
+    <value>Ostatnie posty dla taga "{0}":</value>
   </data>
   <data name="LoginAction" xml:space="preserve">
     <value>Zaloguj</value>
@@ -271,7 +271,7 @@
     <value>szukaj na blogu...</value>
   </data>
   <data name="SearchResultForPhrase" xml:space="preserve">
-    <value>Wyniki wyszukiwania dla \"{0}\":</value>
+    <value>Wyniki wyszukiwania dla "{0}":</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
