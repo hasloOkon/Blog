@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Utility\ImageExtensions.cs" />
     <Compile Include="Utility\JavaScript.cs" />
+    <Compile Include="WebModule.cs" />
     <Compile Include="Widgets\ActionLinks.cs" />
     <Content Include="App_Code\AdminOnly.cshtml" />
     <Compile Include="App_Start\BundleConfig.cs" />

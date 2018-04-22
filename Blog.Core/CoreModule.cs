@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using System.Reflection;
-using Blog.Core.Utility;
+﻿using Blog.Core.Utility;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cache;
-using NHibernate.Tool.hbm2ddl;
 using Ninject;
 using Ninject.Modules;
 using Ninject.Web.Common;
@@ -35,10 +32,7 @@ namespace Blog.Core
                 .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
                 .InRequestScope();
 
-            Assembly.GetAssembly(typeof(CoreModule))
-                .GetTypes()
-                .Where(type => type.Name.EndsWith("Repository") && type.IsClass && !type.IsAbstract)
-                .ForEach(type => Bind(type.GetInterface("I" + type.Name)).To(type));
+            Kernel.BindManyByName("Repository");
         }
     }
 }

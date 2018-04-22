@@ -1,13 +1,8 @@
-﻿using System.Linq;
-using System.Reflection;
-using Blog.Core;
-using Blog.WebApp.Providers;
-using Blog.WebApp.ViewModels;
+﻿using Blog.Core;
 using Ninject;
 using Ninject.Web.Common;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Blog.Core.Utility;
 
 namespace Blog.WebApp
 {
@@ -18,12 +13,7 @@ namespace Blog.WebApp
             var kernel = new StandardKernel();
 
             kernel.Load(new CoreModule());
-            kernel.Bind<IViewModelFactory>().To<ViewModelFactory>();
-
-            Assembly.GetAssembly(typeof(MvcApplication))
-                .GetTypes()
-                .Where(type => type.Name.EndsWith("Provider") && type.IsClass && !type.IsAbstract)
-                .ForEach(type => kernel.Bind(type.GetInterface("I" + type.Name)).To(type));
+            kernel.Load(new WebModule());
 
             return kernel;
         }

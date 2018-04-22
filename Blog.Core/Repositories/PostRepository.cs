@@ -3,6 +3,7 @@ using NHibernate;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using Blog.Core.Utility;
 
 namespace Blog.Core.Repositories
 {
@@ -17,8 +18,7 @@ namespace Blog.Core.Repositories
         {
             var posts = Session.Query<Post>()
                                   .OrderByDescending(post => post.PostedOn)
-                                  .Skip((pageNumber - 1) * pageSize)
-                                  .Take(pageSize)
+                                  .Page(pageNumber, pageSize)
                                   .Fetch(post => post.Category)
                                   .ToList();
 
@@ -41,8 +41,7 @@ namespace Blog.Core.Repositories
             var posts = Session.Query<Post>()
                                   .Where(post => post.Category.UrlSlug == categorySlug)
                                   .OrderByDescending(post => post.PostedOn)
-                                  .Skip((pageNumber - 1) * pageSize)
-                                  .Take(pageSize)
+                                  .Page(pageNumber, pageSize)
                                   .Fetch(post => post.Category)
                                   .ToList();
 
@@ -65,8 +64,7 @@ namespace Blog.Core.Repositories
             var posts = Session.Query<Post>()
                                   .Where(post => post.Tags.Any(tag => tag.UrlSlug == tagSlug))
                                   .OrderByDescending(post => post.PostedOn)
-                                  .Skip((pageNumber - 1) * pageSize)
-                                  .Take(pageSize)
+                                  .Page(pageNumber, pageSize)
                                   .Fetch(post => post.Category)
                                   .ToList();
 
@@ -91,8 +89,7 @@ namespace Blog.Core.Repositories
             var posts = Session.Query<Post>()
                 .Where(post => post.Title.ToLower().Contains(searchPhrase) || post.Content.ToLower().Contains(searchPhrase))
                 .OrderByDescending(post => post.PostedOn)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
+                .Page(pageNumber, pageSize)
                 .Fetch(post => post.Category)
                 .ToList();
 

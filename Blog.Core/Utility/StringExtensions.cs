@@ -24,6 +24,7 @@ namespace Blog.Core.Utility
         {
             return Regex.Replace(text, @"\s+", "_");
         }
+
         private static string RemoveInvalidCharacters(this string text)
         {
             return Regex.Replace(text, @"[^a-z0-9_\s]", string.Empty);
