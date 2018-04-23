@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using Ninject;
+using System.Linq;
 using System.Reflection;
-using Ninject;
 
 namespace Blog.Core.Utility
 {
@@ -9,8 +9,8 @@ namespace Blog.Core.Utility
         public static void BindManyByName(this IKernel kernel, string nameSuffix)
         {
             Assembly.GetCallingAssembly()
-                .GetTypes()
-                .Where(type => type.Name.EndsWith(nameSuffix) && type.IsClass && !type.IsAbstract)
+                .GetNonAbstractClasses()
+                .Where(type => type.Name.EndsWith(nameSuffix))
                 .ForEach(type => kernel.Bind(type.GetInterface("I" + type.Name)).To(type));
         }
     }
