@@ -16,20 +16,20 @@ namespace Blog.Core
             Bind<ISessionFactory>()
                 .ToMethod
                 (
-                    e =>
+                    context =>
                         Fluently.Configure()
                         .Database(MsSqlConfiguration.MsSql2012.ConnectionString(c =>
                             c.FromConnectionStringWithKey("BlogDbConnString")))
                         .Cache(c => c.UseQueryCache().ProviderClass<HashtableCacheProvider>())
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<CoreModule>())
-                        //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                        //.ExposeConfiguration(config => new SchemaExport(config).Execute(true, true, false))
                         .BuildConfiguration()
                         .BuildSessionFactory()
                 )
                 .InSingletonScope();
 
             Bind<ISession>()
-                .ToMethod((ctx) => ctx.Kernel.Get<ISessionFactory>().OpenSession())
+                .ToMethod(context => context.Kernel.Get<ISessionFactory>().OpenSession())
                 .InRequestScope();
 
             Kernel.BindManyByName("Repository");
