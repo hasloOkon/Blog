@@ -1,6 +1,7 @@
 ﻿using Blog.Core;
 using Ninject;
 using Ninject.Web.Common;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
@@ -22,6 +23,7 @@ namespace Blog.WebApp
         {
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             MapperConfig.CreateMaps();
             base.OnApplicationStarted();
         }

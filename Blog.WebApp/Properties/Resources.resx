@@ -169,7 +169,7 @@
     <value>Nazwa</value>
   </data>
   <data name="CategoryNotFound" xml:space="preserve">
-    <value>Nie znaleziono kategorii :(</value>
+    <value>Nie znaleziono wyprawy :(</value>
   </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright</value>
@@ -211,13 +211,13 @@
     <value>[grafiki]</value>
   </data>
   <data name="LatestPosts" xml:space="preserve">
-    <value>Ostatnie posty</value>
+    <value>Ostatnie wpisy</value>
   </data>
   <data name="LatestPostsForCategory" xml:space="preserve">
-    <value>Ostatnie posty dla kategorii "{0}":</value>
+    <value>Ostatnie wpisy dla wyprawy "{0}":</value>
   </data>
   <data name="LatestPostsForTag" xml:space="preserve">
-    <value>Ostatnie posty dla taga "{0}":</value>
+    <value>Ostatnie wpisy dla taga "{0}":</value>
   </data>
   <data name="LoginAction" xml:space="preserve">
     <value>Zaloguj</value>
@@ -238,7 +238,13 @@
     <value>Nowa grafika</value>
   </data>
   <data name="NoPostFound" xml:space="preserve">
-    <value>Nie znaleziono żadnych postów!</value>
+    <value>Nie znaleziono żadnych wpisów!</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>404: Nie znaleziono zasobu </value>
+  </data>
+  <data name="NotFoundMessage" xml:space="preserve">
+    <value>Nie znaleźliśmy zasobu.&lt;br/&gt;A szukaliśmy wszędzie! :(</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
@@ -287,6 +293,12 @@
   </data>
   <data name="Tags" xml:space="preserve">
     <value>Tagi</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>Nieoczekiwany błąd</value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Podczas przetwarzania żądania wystąpił błąd.&lt;br/&gt;Niezmiernie nas to smuci :(</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Prześlij</value>

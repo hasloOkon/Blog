@@ -19,7 +19,7 @@ namespace Blog.WebApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -214,7 +214,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nie znaleziono kategorii :(.
+        ///   Looks up a localized string similar to Nie znaleziono wyprawy :(.
         /// </summary>
         public static string CategoryNotFound {
             get {
@@ -340,7 +340,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostatnie posty.
+        ///   Looks up a localized string similar to Ostatnie wpisy.
         /// </summary>
         public static string LatestPosts {
             get {
@@ -349,7 +349,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostatnie posty dla kategorii &quot;{0}&quot;:.
+        ///   Looks up a localized string similar to Ostatnie wpisy dla wyprawy &quot;{0}&quot;:.
         /// </summary>
         public static string LatestPostsForCategory {
             get {
@@ -358,7 +358,7 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ostatnie posty dla taga &quot;{0}&quot;:.
+        ///   Looks up a localized string similar to Ostatnie wpisy dla taga &quot;{0}&quot;:.
         /// </summary>
         public static string LatestPostsForTag {
             get {
@@ -421,11 +421,29 @@ namespace Blog.WebApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nie znaleziono żadnych postów!.
+        ///   Looks up a localized string similar to Nie znaleziono żadnych wpisów!.
         /// </summary>
         public static string NoPostFound {
             get {
                 return ResourceManager.GetString("NoPostFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 404: Nie znaleziono zasobu .
+        /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie znaleźliśmy zasobu.&lt;br/&gt;A szukaliśmy wszędzie! :(.
+        /// </summary>
+        public static string NotFoundMessage {
+            get {
+                return ResourceManager.GetString("NotFoundMessage", resourceCulture);
             }
         }
         
@@ -570,6 +588,24 @@ namespace Blog.WebApp.Properties {
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieoczekiwany błąd.
+        /// </summary>
+        public static string UnexpectedError {
+            get {
+                return ResourceManager.GetString("UnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podczas przetwarzania żądania wystąpił błąd.&lt;br/&gt;Niezmiernie nas to smuci :(.
+        /// </summary>
+        public static string UnexpectedErrorMessage {
+            get {
+                return ResourceManager.GetString("UnexpectedErrorMessage", resourceCulture);
             }
         }
         

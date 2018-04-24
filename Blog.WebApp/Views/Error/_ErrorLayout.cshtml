@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/external/css")
+    @Styles.Render("~/Content/internal/css")
+    @Scripts.Render("~/Content/external/js")
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-auto content-bg m-2 p-2">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

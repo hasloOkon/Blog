@@ -218,12 +218,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\HandleErrorAttribute.cs" />
     <Compile Include="Utility\ImageExtensions.cs" />
     <Compile Include="Utility\JavaScript.cs" />
     <Compile Include="WebModule.cs" />
@@ -286,6 +289,10 @@
     <Content Include="Scripts\external\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\external\bootstrap.js.map" />
     <Content Include="Scripts\external\bootstrap.min.js.map" />
+    <Content Include="Views\Error\UnexpectedError.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\_ViewStart.cshtml" />
+    <Content Include="Views\Error\_ErrorLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
