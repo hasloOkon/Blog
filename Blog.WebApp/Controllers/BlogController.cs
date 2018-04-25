@@ -1,10 +1,12 @@
-﻿using Blog.WebApp.ViewModels;
+﻿using Blog.WebApp.Aspects;
+using Blog.WebApp.ViewModels;
 using System;
 using System.Web.Mvc;
 
 namespace Blog.WebApp.Controllers
 {
     [AllowAnonymous]
+    [ProfileController]
     public class BlogController : Controller
     {
         private readonly IViewModelFactory viewModelFactory;

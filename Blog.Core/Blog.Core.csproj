@@ -83,13 +83,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\EmptyTransaction.cs" />
+    <Compile Include="Aspects\ProfileAttribute.cs" />
+    <Compile Include="Aspects\ProfileInterceptor.cs" />
     <Compile Include="Aspects\TransactionInterceptor.cs" />
     <Compile Include="Aspects\TransactionAttribute.cs" />
+    <Compile Include="Mappings\PerformanceMap.cs" />
     <Compile Include="Models\IKeyedEntity.cs" />
+    <Compile Include="Models\Performance.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IPerformanceRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\ITagRepository.cs" />
+    <Compile Include="Repositories\PerformanceRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Mappings\ImageMap.cs" />
     <Compile Include="Models\Category.cs" />

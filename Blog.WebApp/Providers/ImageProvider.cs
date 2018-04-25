@@ -51,7 +51,8 @@ namespace Blog.WebApp.Providers
             return string.Format("~/Content/uploads/thumbnails/{0}", GetImageFilename(image));
         }
 
-        public IList<Image> GetImages()
+        [Profile(NamePrefix = "ImageProvider")]
+        public virtual IList<Image> GetImages()
         {
             var images = imageRepository.GetAll().ToList();
 
