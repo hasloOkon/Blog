@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Blog.Core.Utility
 {
@@ -11,6 +13,15 @@ namespace Blog.Core.Utility
             {
                 action(item);
             }
+        }
+
+        public static void ForEachAsync<T>(this IEnumerable<T> items, Action<T> action)
+        {
+            var tasks = items
+                .Select(item => Task.Run(() => action(item)))
+                .ToArray();
+
+            Task.WaitAll(tasks);
         }
     }
 }

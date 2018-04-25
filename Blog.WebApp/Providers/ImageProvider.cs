@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using Blog.Core.Utility;
 using Image = Blog.Core.Models.Image;
 using SystemImage = System.Drawing.Image;
 
@@ -14,7 +15,9 @@ namespace Blog.WebApp.Providers
     {
         private const int ThumnailWidth = 80;
         private const int ThumnailHeight = 80;
+
         private readonly IImageRepository imageRepository;
+
         private static HttpServerUtility Server
         {
             get { return HttpContext.Current.Server; }
@@ -54,10 +57,7 @@ namespace Blog.WebApp.Providers
         {
             var images = imageRepository.GetAll().ToList();
 
-            foreach (var image in images)
-            {
-                EnsureImageAndThumbnailExists(image);
-            }
+            EnsureImagesExist(images);
 
             return images;
         }
@@ -87,12 +87,21 @@ namespace Blog.WebApp.Providers
             }
         }
 
-        private void EnsureImageAndThumbnailExists(Image image)
+        private void EnsureImagesExist(IEnumerable<Image> images)
         {
-            if (!File.Exists(GetImagePath(image)) || !File.Exists(GetThumbnailPath(image)))
+            var imagesToPersist = imageRepository.FetchData(images.Where(IsImageMissing));
+
+            var context = HttpContext.Current;
+            imagesToPersist.ForEachAsync(image =>
             {
+                HttpContext.Current = context;
                 PersistImageAndThumbnail(image);
-            }
+            });
+        }
+
+        private bool IsImageMissing(Image image)
+        {
+            return !File.Exists(GetImagePath(image)) || !File.Exists(GetThumbnailPath(image));
         }
 
         private void EnsureDirectoriesExist()
