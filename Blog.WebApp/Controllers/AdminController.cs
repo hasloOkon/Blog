@@ -2,6 +2,7 @@
 using Blog.Core.Models;
 using Blog.Core.Repositories;
 using Blog.Core.Utility;
+using Blog.WebApp.Aspects;
 using Blog.WebApp.Properties;
 using Blog.WebApp.Providers;
 using Blog.WebApp.ViewModels;
@@ -15,6 +16,7 @@ using System.Web.Mvc;
 namespace Blog.WebApp.Controllers
 {
     [Authorize]
+    [ProfileController]
     public class AdminController : Controller
     {
         private readonly ILoginProvider loginProvider;

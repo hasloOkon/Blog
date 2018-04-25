@@ -1,4 +1,5 @@
-﻿using Blog.Core.Models;
+﻿using Blog.Core.Aspects;
+using Blog.Core.Models;
 using NHibernate;
 using NHibernate.Linq;
 using System.Collections.Generic;
@@ -25,23 +26,17 @@ namespace Blog.Core.Repositories
             return Session.Query<T>();
         }
 
+        [Transaction]
         public void AddOrUpdate(T entity)
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                Session.SaveOrUpdate(entity);
-                transaction.Commit();
-            }
+            Session.SaveOrUpdate(entity);
         }
 
+        [Transaction]
         public void Delete(int id)
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                var entity = GetById(id);
-                Session.Delete(entity);
-                transaction.Commit();
-            }
+            var entity = GetById(id);
+            Session.Delete(entity);
         }
     }
 }

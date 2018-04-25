@@ -10,18 +10,21 @@ namespace Blog.WebApp.Utility
             if (image.PropertyIdList.Contains(0x0112))
             {
                 int rotationValue = image.GetPropertyItem(0x0112).Value[0];
+                const int rotated90Right = 8;
+                const int rotated180 = 3;
+                const int rotated90Left = 6;
+
                 switch (rotationValue)
                 {
-                    case 8: // rotated 90 right
-                        image.RotateFlip(rotateFlipType: RotateFlipType.Rotate270FlipNone);
+                    case rotated90Right:
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                         break;
-                    case 3: // bottoms up
-                        image.RotateFlip(rotateFlipType: RotateFlipType.Rotate180FlipNone);
+                    case rotated180:
+                        image.RotateFlip(RotateFlipType.Rotate180FlipNone);
                         break;
-                    case 6: // rotated 90 left
-                        image.RotateFlip(rotateFlipType: RotateFlipType.Rotate90FlipNone);
+                    case rotated90Left:
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         break;
-                    case 1: // landscape, do nothing
                     default:
                         break;
                 }

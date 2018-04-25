@@ -1,4 +1,5 @@
-﻿using Blog.Core.Repositories;
+﻿using Blog.Core.Aspects;
+using Blog.Core.Repositories;
 using Blog.WebApp.Utility;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,8 @@ namespace Blog.WebApp.Providers
             return string.Format("~/Content/uploads/thumbnails/{0}", GetImageFilename(image));
         }
 
-        public IList<Image> GetImages()
+        [Profile(NamePrefix = "ImageProvider")]
+        public virtual IList<Image> GetImages()
         {
             var images = imageRepository.GetAll().ToList();
 
@@ -62,28 +64,24 @@ namespace Blog.WebApp.Providers
             return images;
         }
 
-        public void Delete(int id)
+        [Transaction]
+        public virtual void Delete(int id)
         {
-            try
+            var image = imageRepository.GetById(id);
+
+            var imagePath = GetImagePath(image);
+            var thumbnaPath = GetThumbnailPath(image);
+
+            imageRepository.Delete(id);
+
+            if (File.Exists(imagePath))
             {
-                var image = imageRepository.GetById(id);
-
-                var imagePath = GetImagePath(image);
-                var thumbnaPath = GetThumbnailPath(image);
-
-                if (File.Exists(imagePath))
-                {
-                    File.Delete(imagePath);
-                }
-
-                if (File.Exists(thumbnaPath))
-                {
-                    File.Delete(thumbnaPath);
-                }
+                File.Delete(imagePath);
             }
-            finally
+
+            if (File.Exists(thumbnaPath))
             {
-                imageRepository.Delete(id);
+                File.Delete(thumbnaPath);
             }
         }
 

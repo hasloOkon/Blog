@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Blog.Core.Models;
+﻿using Blog.Core.Models;
+using System.Collections.Generic;
 
 namespace Blog.Core.Repositories
 {
