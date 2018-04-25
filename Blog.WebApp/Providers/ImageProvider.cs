@@ -1,12 +1,12 @@
 ﻿using Blog.Core.Aspects;
 using Blog.Core.Repositories;
+using Blog.Core.Utility;
 using Blog.WebApp.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using Blog.Core.Utility;
 using Image = Blog.Core.Models.Image;
 using SystemImage = System.Drawing.Image;
 
@@ -14,15 +14,19 @@ namespace Blog.WebApp.Providers
 {
     public class ImageProvider : IImageProvider
     {
-        private const int ThumnailWidth = 80;
-        private const int ThumnailHeight = 80;
+        private const int ThumbnailMaxWidth = 80;
+        private const int ThumnbailMaxHeight = 80;
+        private const int OriginalMaxWidth = 1600;
+        private const int OriginalMaxHeight = 1200;
+
+        private const int ImageQuality = 90;
+        private const string ImageExtension = ".jpg";
+
+        private const string UploadsUrl = "~/Content/uploads";
+        private const string OriginalsUrl = UploadsUrl + "/originals";
+        private const string ThumbnailsUrl = UploadsUrl + "/thumbnails";
 
         private readonly IImageRepository imageRepository;
-
-        private static HttpServerUtility Server
-        {
-            get { return HttpContext.Current.Server; }
-        }
 
         public ImageProvider(IImageRepository imageRepository)
         {
@@ -46,12 +50,12 @@ namespace Blog.WebApp.Providers
 
         public string GetImageUrl(Image image)
         {
-            return string.Format("~/Content/uploads/originals/{0}", GetImageFilename(image));
+            return string.Format("{0}/{1}", OriginalsUrl, GetImageFilename(image));
         }
 
         public string GetThumbnailUrl(Image image)
         {
-            return string.Format("~/Content/uploads/thumbnails/{0}", GetImageFilename(image));
+            return string.Format("{0}/{1}", ThumbnailsUrl, GetImageFilename(image));
         }
 
         [Profile(NamePrefix = "ImageProvider")]
@@ -104,16 +108,16 @@ namespace Blog.WebApp.Providers
 
         private void EnsureDirectoriesExist()
         {
-            var uploadFolderPath = Server.MapPath("~/Content/uploads");
-            var originalsFolderPath = Server.MapPath("~/Content/uploads/originals");
-            var thumbnailsFolderPath = Server.MapPath("~/Content/uploads/thumbnails");
+            var uploadFolderPath = GetPhysicalPath(UploadsUrl);
+            var originalsFolderPath = GetPhysicalPath(OriginalsUrl);
+            var thumbnailsFolderPath = GetPhysicalPath(ThumbnailsUrl);
 
             EnsureDirectoryExist(uploadFolderPath);
             EnsureDirectoryExist(originalsFolderPath);
             EnsureDirectoryExist(thumbnailsFolderPath);
         }
 
-        private void EnsureDirectoryExist(string path)
+        private static void EnsureDirectoryExist(string path)
         {
             if (!Directory.Exists(path))
             {
@@ -121,42 +125,43 @@ namespace Blog.WebApp.Providers
             }
         }
 
-        public string GetImagePath(Image image)
+        private string GetImagePath(Image image)
         {
-            var filename = GetImageFilename(image);
-            var originalsPath = Server.MapPath("~/Content/uploads/originals");
-            return Path.Combine(originalsPath, filename);
+            return GetPhysicalPath(GetImageUrl(image));
         }
 
-        public string GetThumbnailPath(Image image)
+        private string GetThumbnailPath(Image image)
         {
-            var filename = GetImageFilename(image);
-            var thumbnailsPath = Server.MapPath("~/Content/uploads/thumbnails");
-            return Path.Combine(thumbnailsPath, filename);
+            return GetPhysicalPath(GetThumbnailUrl(image));
         }
 
         private static string GetImageFilename(Image image)
         {
-            return string.Format("{0}.png", image.Id);
+            return string.Format("{0}{1}", image.Id, ImageExtension);
         }
 
         private void PersistImageAndThumbnail(Image image)
         {
-            var imagePath = GetImagePath(image);
-            var thumbnailPath = GetThumbnailPath(image);
-
             using (var stream = new MemoryStream(image.Data))
             using (var systemImage = SystemImage.FromStream(stream))
             {
                 systemImage.FixRotation();
-                systemImage.Save(imagePath);
 
-                using (var thumbnailSystemImage = systemImage
-                    .GetThumbnailImage(ThumnailWidth, ThumnailHeight, () => false, IntPtr.Zero))
+                using (var shrinkedSystemImage = systemImage.ShrinkedToFit(OriginalMaxWidth, OriginalMaxHeight))
                 {
-                    thumbnailSystemImage.Save(thumbnailPath);
+                    shrinkedSystemImage.SaveAsJpg(GetImagePath(image), ImageQuality);
+                }
+
+                using (var thumbnailSystemImage = systemImage.ShrinkedToFit(ThumbnailMaxWidth, ThumnbailMaxHeight))
+                {
+                    thumbnailSystemImage.SaveAsJpg(GetThumbnailPath(image), ImageQuality);
                 }
             }
+        }
+
+        private static string GetPhysicalPath(string url)
+        {
+            return HttpContext.Current.Server.MapPath(url);
         }
     }
 }

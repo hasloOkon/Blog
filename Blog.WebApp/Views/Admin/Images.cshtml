@@ -15,11 +15,11 @@
             @foreach (var image in Model)
             {
                 <div class="col-12 row mt-2">
-                    <div class="col-auto">
-                        <img src="@Url.Content(image.ThumbnailPath)" alt=""/>
+                    <div class="col-2">
+                        <img src="@Url.Content(image.ThumbnailUrl)" alt=""/>
                     </div>
                     <div class="col">
-                        @Html.TextBox("image-url", Url.Content(image.ImagePath), 
+                        @Html.TextBox("image-url", Url.Content(image.ImageUrl), 
                             htmlAttributes: new { @class = "w-100" })
                     </div>
                     <div class="col-auto">

@@ -3,7 +3,7 @@
     public class ImageViewModel
     {
         public int Id { get; set; }
-        public string ImagePath { get; set; }
-        public string ThumbnailPath { get; set; }
+        public string ImageUrl { get; set; }
+        public string ThumbnailUrl { get; set; }
     }
 }

@@ -106,8 +106,8 @@ namespace Blog.WebApp.ViewModels
                 .Select(image => new ImageViewModel
                 {
                     Id = image.Id,
-                    ImagePath = imageProvider.GetImageUrl(image),
-                    ThumbnailPath = imageProvider.GetThumbnailUrl(image)
+                    ImageUrl = imageProvider.GetImageUrl(image),
+                    ThumbnailUrl = imageProvider.GetThumbnailUrl(image)
                 }).ToList();
         }
     }
